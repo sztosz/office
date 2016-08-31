@@ -8,6 +8,16 @@
   </li>
 
   <li>
+    <strong>Surname:</strong>
+    <%= @client.surname %>
+  </li>
+
+  <li>
+    <strong>Company:</strong>
+    <%= @client.company %>
+  </li>
+
+  <li>
     <strong>Email:</strong>
     <%= @client.email %>
   </li>

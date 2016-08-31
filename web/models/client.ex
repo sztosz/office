@@ -3,6 +3,8 @@ defmodule Office.Client do
 
   schema "clients" do
     field :name, :string
+    field :surname, :string
+    field :company, :string
     field :email, :string
     field :phone, :integer
     field :address, :string
@@ -18,7 +20,7 @@ defmodule Office.Client do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :email, :phone, :address, :nip, :regon, :krs])
-    |> validate_required([:name, :email, :phone, :address, :nip, :regon, :krs])
+    |> cast(params, [:name, :surname, :company, :email, :phone, :address, :nip, :regon, :krs])
+    |> validate_required([:phone])
   end
 end
