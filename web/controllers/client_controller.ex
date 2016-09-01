@@ -2,6 +2,8 @@ defmodule Office.ClientController do
   use Office.Web, :controller
 
   alias Office.Client
+  alias Office.Phone
+  alias Office.Email
 
   def index(conn, _params) do
     clients = Repo.all(Client)
@@ -9,7 +11,9 @@ defmodule Office.ClientController do
   end
 
   def new(conn, _params) do
-    changeset = Client.changeset(%Client{})
+    changeset =
+      Client.changeset(
+        %Client{phones: [%Phone{}, %Phone{}, %Phone{}], emails: [%Email{}, %Email{}, %Email{}]})
     render(conn, "new.html", changeset: changeset)
   end
 

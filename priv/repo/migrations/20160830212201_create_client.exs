@@ -4,12 +4,12 @@ defmodule Office.Repo.Migrations.CreateClient do
   def change do
     create table(:clients) do
       add :name, :string
-      add :email, :string
-      add :phone, :integer
       add :address, :string
       add :nip, :integer
       add :regon, :integer
       add :krs, :integer
+      add :emails, {:array, :map}
+      add :phones, {:array, :map}
 
       timestamps()
     end

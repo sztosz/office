@@ -22,8 +22,17 @@
       <td><%= client.name %></td>
       <td><%= client.surname %></td>
       <td><%= client.company %></td>
-      <td><%= client.email %></td>
-      <td><%= client.phone %></td>
+      <td>
+        <%= for email <- client.emails do %>
+          <%= email.email %>
+        <% end %>
+      </td>
+      <td>
+        <%= for phone <- client.phones do %>
+          <%= phone.phone %>
+        <% end %>
+      </td>
+
       <td><%= client.address %></td>
       <td><%= client.nip %></td>
       <td><%= client.regon %></td>

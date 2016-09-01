@@ -23,17 +23,21 @@
     <%= error_tag f, :company %>
   </div>
 
+  <%= inputs_for f, :phones, fn i -> %>
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
+    <%= label i, "Phone ##{i.index + 1}", class: "control-label" %>
+    <%= text_input i, :phone, class: "form-control" %>
+    <%= error_tag i, :phone %>
   </div>
+  <% end %>
 
-  <div class="form-group">
-    <%= label f, :phone, class: "control-label" %>
-    <%= number_input f, :phone, class: "form-control" %>
-    <%= error_tag f, :phone %>
-  </div>
+  <%= inputs_for f, :emails, fn i -> %>
+    <div class="form-group">
+      <%= label i, "Email ##{i.index + 1}", class: "control-label" %>
+      <%= text_input i, :email, class: "form-control" %>
+      <%= error_tag i, :email %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= label f, :address, class: "control-label" %>

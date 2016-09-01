@@ -18,13 +18,17 @@
   </li>
 
   <li>
-    <strong>Email:</strong>
-    <%= @client.email %>
+    <strong>Emails:</strong>
+    <%= for email <- @client.emails do %>
+      <%= email.email %>
+    <% end %>
   </li>
 
   <li>
-    <strong>Phone:</strong>
-    <%= @client.phone %>
+    <strong>Phones:</strong>
+    <%= for phone <- @client.phones do %>
+      <%= phone.phone %>
+    <% end %>
   </li>
 
   <li>
