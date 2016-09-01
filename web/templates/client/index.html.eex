@@ -1,0 +1,51 @@
+<h2>Listing clients</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Company</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Nip</th>
+      <th>Regon</th>
+      <th>Krs</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for client <- @clients do %>
+    <tr>
+      <td><%= client.name %></td>
+      <td><%= client.surname %></td>
+      <td><%= client.company %></td>
+      <td>
+        <%= for email <- client.emails do %>
+          <%= email.email %>
+        <% end %>
+      </td>
+      <td>
+        <%= for phone <- client.phones do %>
+          <%= phone.phone %>
+        <% end %>
+      </td>
+
+      <td><%= client.address %></td>
+      <td><%= client.nip %></td>
+      <td><%= client.regon %></td>
+      <td><%= client.krs %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: client_path(@conn, :show, client), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: client_path(@conn, :edit, client), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: client_path(@conn, :delete, client), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New client", to: client_path(@conn, :new) %>
