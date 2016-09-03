@@ -1,51 +1,34 @@
 <h2>Listing clients</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Surname</th>
-      <th>Company</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Address</th>
-      <th>Nip</th>
-      <th>Regon</th>
-      <th>Krs</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for client <- @clients do %>
-    <tr>
-      <td><%= client.name %></td>
-      <td><%= client.surname %></td>
-      <td><%= client.company %></td>
-      <td>
-        <%= for email <- client.emails do %>
-          <%= email.email %>
-        <% end %>
-      </td>
-      <td>
-        <%= for phone <- client.phones do %>
-          <%= phone.phone %>
-        <% end %>
-      </td>
-
-      <td><%= client.address %></td>
-      <td><%= client.nip %></td>
-      <td><%= client.regon %></td>
-      <td><%= client.krs %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: client_path(@conn, :show, client), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: client_path(@conn, :edit, client), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: client_path(@conn, :delete, client), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
+<%= for clients <- Enum.chunk(@clients, 4, 4, []) do %>
+  <div class="card-deck-wrapper">
+    <div class="card-deck">
+      <%= for client <- clients do %>
+        <div class="card">
+          <div class="card-block">
+            <h5 class="card-title"><%= client.company %></h4>
+            <h4 class="card-title"><%= "#{client.name} #{client.surname}" %></h4>
+            <p class="card-text">
+              <%= for email <- client.emails do %>
+               <%= email.email %><br />
+              <% end %>
+              <%= for phone <- client.phones do %>
+                <%= phone.phone %><br />
+              <% end %>
+            </p>
+            <h6 class="card-title">Address</h4>
+            <p class="card-text"><%= client.address %></p>
+            <h6 class="card-title">Nip</h4>
+            <p class="card-text"><%= client.nip %></p>
+            <h6 class="card-title">Regon</h4>
+            <p class="card-text"><%= client.regon %></p>
+            <h6 class="card-title">Krs</h4>
+            <p class="card-text"><%= client.krs %></p>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
-  </tbody>
-</table>
 
 <%= link "New client", to: client_path(@conn, :new) %>
