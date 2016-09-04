@@ -1,57 +1,44 @@
 <h2>Show client</h2>
+<div class="row">
+  <div class="col-md-6">
+    <dl class="row">
+      <dt class="col-sm-4">Name and Surname</dt>
+      <dd class="col-sm-8"><%= "#{@client.name} #{@client.surname}" %></dd>
+      <dt class="col-sm-4">Company</dt>
+      <dd class="col-sm-8"><%= @client.company %></dd>
+      <dt class="col-sm-4">Address</dt>
+      <dd class="col-sm-8"><%= @client.address %></dd>
+      <dt class="col-sm-4">Nip</dt>
+      <dd class="col-sm-8"><%= @client.nip %></dd>
+      <dt class="col-sm-4">Regon</dt>
+      <dd class="col-sm-8"><%= @client.regon %></dd>
+      <dt class="col-sm-4">Krs</dt>
+      <dd class="col-sm-8"><%= @client.krs %></dd>
+    </dl>
+  </div>
+  <div class="col-md-6">
+    <dl class="row">
+      <dt class="col-sm-4">Emails</dt>
+      <dd class="col-sm-8">
+        <%= for email <- @client.emails do %>
+          <%= email.email %><br />
+        <% end %>
+      </dd>
+      <dt class="col-sm-4">Phones</dt>
+      <dd class="col-sm-8">
+        <%= for phone <- @client.phones do %>
+          <%= phone.phone %><br />
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @client.name %>
-  </li>
-
-  <li>
-    <strong>Surname:</strong>
-    <%= @client.surname %>
-  </li>
-
-  <li>
-    <strong>Company:</strong>
-    <%= @client.company %>
-  </li>
-
-  <li>
-    <strong>Emails:</strong>
-    <%= for email <- @client.emails do %>
-      <%= email.email %>
-    <% end %>
-  </li>
-
-  <li>
-    <strong>Phones:</strong>
-    <%= for phone <- @client.phones do %>
-      <%= phone.phone %>
-    <% end %>
-  </li>
-
-  <li>
-    <strong>Address:</strong>
-    <%= @client.address %>
-  </li>
-
-  <li>
-    <strong>Nip:</strong>
-    <%= @client.nip %>
-  </li>
-
-  <li>
-    <strong>Regon:</strong>
-    <%= @client.regon %>
-  </li>
-
-  <li>
-    <strong>Krs:</strong>
-    <%= @client.krs %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: client_path(@conn, :edit, @client) %>
-<%= link "Back", to: client_path(@conn, :index) %>
+<div class="row">
+  <div class="col-md-6">
+    <%= link "Edit", to: client_path(@conn, :edit, @client), class: "btn btn-primary" %>
+  </div>
+  <div class="col-md-6">
+    <%= link "Delete", to: client_path(@conn, :delete, @client), method: :delete, class: "btn btn-danger pull-xs-right" %>
+  </div>
+</div>
