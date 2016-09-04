@@ -21,6 +21,7 @@ defmodule Office.Client do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :surname, :company, :address, :nip, :regon, :krs])
+    |> validate_required([:name, :surname])
     |> cast_embed(:emails)
     |> cast_embed(:phones, required: true)
   end

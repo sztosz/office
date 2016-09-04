@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
@@ -5,65 +7,91 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :surname, class: "control-label" %>
-    <%= text_input f, :surname, class: "form-control" %>
-    <%= error_tag f, :surname %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :company, class: "control-label" %>
-    <%= text_input f, :company, class: "form-control" %>
-    <%= error_tag f, :company %>
-  </div>
-
-  <%= inputs_for f, :phones, fn i -> %>
-  <div class="form-group">
-    <%= label i, "Phone ##{i.index + 1}", class: "control-label" %>
-    <%= text_input i, :phone, class: "form-control" %>
-    <%= error_tag i, :phone %>
-  </div>
-  <% end %>
-
-  <%= inputs_for f, :emails, fn i -> %>
-    <div class="form-group">
-      <%= label i, "Email ##{i.index + 1}", class: "control-label" %>
-      <%= text_input i, :email, class: "form-control" %>
-      <%= error_tag i, :email %>
+  <div class="col-sm-6">
+    <div class="form-group row">
+      <%= label f, :name, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= text_input f, :name, class: "form-control" %>
+        <%= error_tag f, :name %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= label f, :address, class: "control-label" %>
-    <%= text_input f, :address, class: "form-control" %>
-    <%= error_tag f, :address %>
+    <div class="form-group row">
+      <%= label f, :surname, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= text_input f, :surname, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= label f, :company, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= text_input f, :company, class: "form-control" %>
+        <%= error_tag f, :name %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= label f, :address, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= text_input f, :address, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= label f, :nip, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= number_input f, :nip, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= label f, :regon, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= number_input f, :regon, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= label f, :krs, class: "col-sm-4 col-form-label text-xs-right" %>
+      <div class="col-sm-8">
+        <%= number_input f, :krs, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="offset-sm-4 col-sm-8">
+        <%= submit "Submit", class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :nip, class: "control-label" %>
-    <%= number_input f, :nip, class: "form-control" %>
-    <%= error_tag f, :nip %>
+  <div class="col-sm-3">
+    <%= inputs_for f, :emails, fn i -> %>
+      <div class="form-group row">
+        <%= label i, :email, class: "sr-only" %>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ion-at"></i></div>
+          <%= text_input i, :email, class: "form-control" %>
+          <%= error_tag i, :email %>
+        </div>
+      </div>
+    <% end %>
+    <%= error_tag f, :emails %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :regon, class: "control-label" %>
-    <%= number_input f, :regon, class: "form-control" %>
-    <%= error_tag f, :regon %>
+  <div class="col-sm-3">
+    <%= inputs_for f, :phones, fn i -> %>
+      <div class="form-group row">
+        <%= label i, :phome, class: "sr-only" %>
+        <div class="input-group">
+          <div class="input-group-addon"><i class="ion-ios-telephone"></i></div>
+          <%= number_input i, :phone, class: "form-control" %>
+          <%= error_tag i, :phone %>
+        </div>
+      </div>
+    <% end %>
+    <%= error_tag f, :phones %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :krs, class: "control-label" %>
-    <%= number_input f, :krs, class: "form-control" %>
-    <%= error_tag f, :krs %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
 <% end %>

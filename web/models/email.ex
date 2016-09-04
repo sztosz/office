@@ -2,7 +2,7 @@ defmodule Office.Email do
   use Office.Web, :model
 
   embedded_schema do
-    field :email
+    field :email, :string
 
     timestamps
   end

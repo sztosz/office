@@ -32,6 +32,14 @@ for n <- 1..30 do
     nip: SeedHelp.rand_10_int,
     regon: SeedHelp.rand_10_int,
     krs: SeedHelp.rand_10_int,
-    phones: [%Phone{phone: SeedHelp.rand_10_int}, %Phone{phone: SeedHelp.rand_10_int}],
-    emails: [%Email{email: Faker.Internet.email}, %Email{email: Faker.Internet.email}]})
+    phones: [
+      %Phone{phone: SeedHelp.rand_10_int},
+      %Phone{phone: SeedHelp.rand_10_int},
+      %Phone{phone: SeedHelp.rand_10_int}
+    ],
+    emails: [
+      %Email{email: Faker.Internet.email},
+      %Email{email: Faker.Internet.email},
+      %Email{email: Faker.Internet.email}
+    ]})
 end
