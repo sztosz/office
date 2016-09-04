@@ -1,30 +1,20 @@
-<h2>Listing clients</h2>
-<%= for clients <- Enum.chunk(@clients, 4, 4, []) do %>
+<h2>Clients Listing</h2>
+<%= for clients <- Enum.chunk(@clients, 3, 3, []) do %>
   <div class="card-deck-wrapper">
     <div class="card-deck">
       <%= for client <- clients do %>
         <div class="card">
-          <div class="card-block">
-            <h5 class="card-title"><%= client.company %></h4>
-            <h4 class="card-title"><%= "#{client.name} #{client.surname}" %></h4>
-            <p class="card-text">
-              <%= for email <- client.emails do %>
-               <%= email.email %><br />
-              <% end %>
-              <%= for phone <- client.phones do %>
-                <%= phone.phone %><br />
-              <% end %>
-            </p>
-            <h6 class="card-title">Address</h4>
-            <p class="card-text"><%= client.address %></p>
-            <h6 class="card-title">Nip</h4>
-            <p class="card-text"><%= client.nip %></p>
-            <h6 class="card-title">Regon</h4>
-            <p class="card-text"><%= client.regon %></p>
-            <h6 class="card-title">Krs</h4>
-            <p class="card-text"><%= client.krs %></p>
-            </p>
-          </div>
+          <a href="<%= client_path(@conn, :show, client) %>">
+            <div class="card-header">
+              <h4 class="card-title text-primary"><%= "#{client.name} #{client.surname}" %></h4>
+              <h6 class="card-title text-primary"><%= client.company %></h6>
+            </div>
+          </a>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><%= Enum.at(client.phones, 1).phone %></li>
+            <li class="list-group-item"><%= Enum.at(client.emails, 1).email %></li>
+            <li class="list-group-item"><%= client.address %></li>
+          </ul>
         </div>
       <% end %>
     </div>
