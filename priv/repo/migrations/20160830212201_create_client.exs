@@ -5,9 +5,9 @@ defmodule Office.Repo.Migrations.CreateClient do
     create table(:clients) do
       add :name, :string
       add :address, :string
-      add :nip, :integer
-      add :regon, :integer
-      add :krs, :integer
+      add :nip, :bigint
+      add :regon, :bigint
+      add :krs, :bigint
       add :emails, {:array, :map}
       add :phones, {:array, :map}
 
