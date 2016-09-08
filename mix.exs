@@ -19,7 +19,7 @@ defmodule Office.Mixfile do
   def application do
     [mod: {Office, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule Office.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:credo, "~> 0.4", only: [:dev, :test]},
-     {:faker, "~> 0.5", only: [:dev, :test]}]
+     {:faker, "~> 0.5", only: [:dev, :test]},
+     {:comeonin, "~> 2.0"},]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
