@@ -5,8 +5,6 @@ defmodule Office.Auth do
 
   alias Office.Router.Helpers
 
-  import IEx
-
   def init(opts) do
     Keyword.fetch!(opts, :repo)
   end
