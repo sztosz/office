@@ -1,0 +1,99 @@
+# # `msgid`s in this file come from POT (.pot) files.
+# #
+# # Do not add, change, or remove `msgid`s manually here as
+# # they're tied to the ones in the corresponding POT file
+# # (with the same domain).
+# #
+# # Use `mix gettext.extract --merge` or `mix gettext.merge`
+# # to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pl\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+
+msgid "can't be blank"
+msgstr "nie może być puste"
+
+msgid "has already been taken"
+msgstr "już zostało zajęte"
+
+msgid "is invalid"
+msgstr "jest niepoprawne"
+
+msgid "has invalid format"
+msgstr "ma nieprawidłowy format"
+
+msgid "has an invalid entry"
+msgstr "ma niepoprawny wpis"
+
+msgid "is reserved"
+msgstr "jest zerezerwowane"
+
+msgid "does not match confirmation"
+msgstr "nie jest zgodne z potwierdzeniem"
+
+msgid "is still associated to this entry"
+msgstr "jest nadal powiązane z tym wpisem"
+
+msgid "are still associated to this entry"
+msgstr "są nadal powiązane z tym wpisem"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "powinno zawierać %{count} znak"
+msgstr[1] "powinno zawierać %{count} znaki"
+msgstr[2] "powinno zawierać %{count} znaków"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "powinno posiadać %{count} obiekt"
+msgstr[1] "powinno posiadać %{count} obiekty"
+msgstr[2] "powinno posiadać %{count} obiektów"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "powinno zawierać conajmniej %{count} znak"
+msgstr[1] "powinno zawierać conajmniej %{count} znaki"
+msgstr[2] "powinno zawierać conajmniej %{count} znaków"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "powinno posiadać conajmniej %{count} obiekt"
+msgstr[1] "powinno posiadać conajmniej %{count} obiekty"
+msgstr[2] "powinno posiadać conajmniej %{count} obiektów"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "powinno posiadać co najwyżej %{count} znak"
+msgstr[1] "powinno posiadać co najwyżej %{count} znaki"
+msgstr[2] "powinno posiadać co najwyżej %{count} znaków"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "powinno posiadać co najwyżej %{count} obiek"
+msgstr[1] "powinno posiadać co najwyżej %{count} obiekty"
+msgstr[2] "powinno posiadać co najwyżej %{count} obiektów"
+
+msgid "must be less than %{number}"
+msgstr "musi być mniejsze od %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "musi być większe od %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "musi być mniejsze lub równe %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "musi być większe lub równe %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "musi być równe %{number}"

@@ -7,7 +7,8 @@ defmodule Office.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Office.Auth, repo: Office.Repo
+    plug Office.Plugs.Auth, repo: Office.Repo
+    plug Office.Plugs.Locale
   end
 
   pipeline :api do

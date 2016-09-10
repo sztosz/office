@@ -31,14 +31,14 @@ defmodule Office.Web do
       use Phoenix.Controller
 
       alias Office.Repo
-      alias Office.Auth
+      alias Office.Plugs.Auth
 
       import Ecto
       import Ecto.Query
 
       import Office.Router.Helpers
       import Office.Gettext
-      import Office.Auth, only: [authenticate_user: 2]
+      import Office.Plugs.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -62,7 +62,7 @@ defmodule Office.Web do
     quote do
       use Phoenix.Router
 
-      import Office.Auth, only: [authenticate_user: 2]
+      import Office.Plugs.Auth, only: [authenticate_user: 2]
     end
   end
 

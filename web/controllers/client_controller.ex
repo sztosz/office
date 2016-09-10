@@ -5,6 +5,8 @@ defmodule Office.ClientController do
   alias Office.Phone
   alias Office.Email
 
+  plug :authenticate_user
+
   def index(conn, _params) do
     clients = Repo.all(Client)
     render(conn, "index.html", clients: clients)
