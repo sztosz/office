@@ -1,4 +1,4 @@
-defmodule Office.Auth do
+defmodule Office.Plugs.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Phoenix.Controller
