@@ -26,3 +26,6 @@ erl_crash.dump
 # INTELIJ
 /.idea
 office.iml
+
+# Disitlery release files
+/rel/office
