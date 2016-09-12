@@ -19,7 +19,7 @@ environment :dev do
 end
 
 environment :prod do
-  set include_erts: false
+  set include_erts: true
   set include_src: false
 end
 
@@ -31,4 +31,3 @@ end
 release :office do
   set version: current_version(:office)
 end
-
