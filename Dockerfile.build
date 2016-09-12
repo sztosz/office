@@ -1,34 +1,41 @@
-FROM erlang:19
+FROM nfnty/arch-mini:latest
 
 # elixir expects utf8.
-ENV ELIXIR_VERSION="v1.3.2" \
-	LANG=C.UTF-8
+ENV LANG=en_US.UTF-8
 
-RUN set -xe \
-	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/releases/download/${ELIXIR_VERSION}/Precompiled.zip" \
-	&& ELIXIR_DOWNLOAD_SHA256="45fdb9464b0fbe44c919482f1247740cc9c5d399280ef07e386aa7402b085be7"\
-	&& buildDeps=' \
-		unzip \
-	' \
-	&& apt-get update \
-	&& apt-get install -y --no-install-recommends $buildDeps \
-	&& curl -fSL -o elixir-precompiled.zip $ELIXIR_DOWNLOAD_URL \
-	&& echo "$ELIXIR_DOWNLOAD_SHA256 elixir-precompiled.zip" | sha256sum -c - \
-	&& unzip -d /usr/local elixir-precompiled.zip \
-	&& rm elixir-precompiled.zip \
-	&& apt-get purge -y --auto-remove $buildDeps \
-	&& rm -rf /var/lib/apt/lists/*
+RUN pacman -Sy --needed --noconfirm \
+      base-devel \
+      binutils \
+      sed \
+      make \
+      curl \
+      git \
+      libunistring \
+      elixir \
+      nodejs \
+      npm \
+      tree
 
-ENV HOME /root
+RUN mix local.hex --force && mix local.rebar --force
+RUN mkdir /build
+COPY ./config /build/config
+COPY ./priv /build/priv
+COPY ./lib /build/lib
+COPY ./rel/config.exs /build/rel/config.exs
+COPY ./test /build/test
+COPY ./web /build/web
+COPY ./package.json /build/package.json
+COPY ./brunch-config.js /build/brunch-config.js
+COPY ./mix.exs /build/mix.exs
 
-COPY . /build
-
-ENV MIX_ENV prod
+ENV MIX_ENV=prod
 
 WORKDIR /build
 
-RUN mix local.hex --force \
-	&& mix deps.get \
-	&& mix compile \
-	&& echo y | mix release.clean \
-	&& mix release
+RUN mix deps.get
+RUN npm install
+RUN mix compile \
+  && mix phoenix.digest \
+  && echo y | mix release.clean \
+  && mix release
+RUN cp /build/rel/office/releases/0.0.1/office.tar.gz /build/office.tar.gz
