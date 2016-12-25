@@ -1,0 +1,34 @@
+<h2>Listing courts</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Zip</th>
+      <th>Phone</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for court <- @courts do %>
+    <tr>
+      <td><%= court.name %></td>
+      <td><%= court.city %></td>
+      <td><%= court.street %></td>
+      <td><%= court.zip %></td>
+      <td><%= court.phone %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: court_path(@conn, :show, court), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: court_path(@conn, :edit, court), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New court", to: court_path(@conn, :new) %>

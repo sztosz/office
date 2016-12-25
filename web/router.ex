@@ -21,6 +21,9 @@ defmodule Office.Router do
     get "/", PageController, :index
     resources "/clients", ClientController
     resources "/sessions", SessionController, only: [:new, :create]
+    resources "/courts", CourtController do
+      resources "/departments", DepartmentController
+    end
   end
 
   # Other scopes may use custom stacks.
