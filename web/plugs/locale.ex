@@ -1,7 +1,7 @@
 defmodule Office.Plugs.Locale do
   import Plug.Conn
 
-  def init(opts) do
+  def init(_opts) do
     nil
   end
 
