@@ -1,9 +1,6 @@
 defmodule Office.User do
   use Office.Web, :model
 
-  alias Comeonin.Bcrypt
-  alias Ecto.Changeset
-
   schema "users" do
     field :name, :string
     field :username, :string
