@@ -34,6 +34,7 @@ defmodule Office.Web do
       alias Office.Plugs.Auth
 
       import Ecto
+      import Ecto.Changeset
       import Ecto.Query
 
       import Office.Router.Helpers
