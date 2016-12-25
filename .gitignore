@@ -30,3 +30,4 @@ office.iml
 # Disitlery release files
 /rel/office
 /rel/office_erts
+/office/

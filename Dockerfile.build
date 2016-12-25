@@ -1,4 +1,4 @@
-FROM nfnty/arch-mini:latest
+FROM pritunl/archlinux:latest
 
 # elixir expects utf8.
 ENV LANG=en_US.UTF-8
