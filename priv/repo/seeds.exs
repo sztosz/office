@@ -16,14 +16,14 @@ alias Office.Repo
 
 defmodule SeedHelp do
   def rand_10_int do
-    {int, rem} = Integer.parse(Faker.Code.isbn10)
+    {int, _} = Integer.parse(Faker.Code.isbn10)
     int
   end
 end
 
 Faker.start
 
-for n <- 1..30 do
+for _ <- 1..30 do
   Repo.insert!(%Client{
     name: Faker.Name.first_name,
     surname: Faker.Name.last_name,

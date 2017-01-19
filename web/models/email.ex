@@ -4,7 +4,7 @@ defmodule Office.Email do
   embedded_schema do
     field :email, :string
 
-    timestamps
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do

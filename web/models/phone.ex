@@ -4,7 +4,7 @@ defmodule Office.Phone do
   embedded_schema do
     field :phone, :integer
 
-    timestamps
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do
