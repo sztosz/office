@@ -1,0 +1,13 @@
+<h2>Show case</h2>
+
+<ul>
+
+  <li>
+    <strong>Signature:</strong>
+    <%= @case.signature %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: case_path(@conn, :edit, @case) %>
+<%= link "Back", to: case_path(@conn, :index) %>

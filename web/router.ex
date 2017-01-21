@@ -24,6 +24,7 @@ defmodule Office.Router do
     resources "/courts", CourtController do
       resources "/departments", DepartmentController
     end
+    resources "/cases", CaseController
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,6 @@
+<h2>Edit case</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: case_path(@conn, :update, @case) %>
+
+<%= link "Back", to: case_path(@conn, :index) %>
