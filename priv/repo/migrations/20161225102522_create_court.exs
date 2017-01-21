@@ -7,7 +7,7 @@ defmodule Office.Repo.Migrations.CreateCourt do
       add :city, :string
       add :street, :string
       add :zip, :string
-      add :phone, :integer
+      add :phone, :bigint
 
       timestamps()
     end
