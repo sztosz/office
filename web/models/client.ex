@@ -11,6 +11,8 @@ defmodule Office.Client do
     field :krs, :integer
     embeds_many :emails, Office.Email
     embeds_many :phones, Office.Phone
+    has_many :plaintiff_cases, Office.Department
+    has_many :defendant_cases, Office.Department
 
     timestamps()
   end
