@@ -12,6 +12,8 @@
 alias Office.Client
 alias Office.Email
 alias Office.Phone
+alias Office.Court
+alias Office.Department
 alias Office.Repo
 
 defmodule SeedHelp do
@@ -23,6 +25,7 @@ end
 
 Faker.start
 
+# Inserting clients
 for _ <- 1..30 do
   Repo.insert!(%Client{
     name: Faker.Name.first_name,
@@ -41,5 +44,23 @@ for _ <- 1..30 do
       %Email{email: Faker.Internet.email},
       %Email{email: Faker.Internet.email},
       %Email{email: Faker.Internet.email}
-    ]})
+  ]})
+end
+
+# Inserting courts with departaments
+for _ <- 1..10 do
+  city = Faker.Address.city()
+
+  Repo.insert!(%Court{
+    name: "COURT #{city}",
+    city: city,
+    street: Faker.Address.street_address(),
+    zip: Faker.Address.zip_code(),
+    phone: SeedHelp.rand_10_int(),
+    departments: [
+      %Department{name: Faker.Company.name},
+      %Department{name: Faker.Company.name},
+      %Department{name: Faker.Company.name}
+    ]
+  })
 end
