@@ -4,6 +4,7 @@ defmodule Office.Repo.Migrations.CreateCase do
   def change do
     create table(:cases) do
       add :signature, :string
+      add :kind, :case_kind
       add :plaintiff_id, references(:clients)
       add :defendant_id, references(:clients)
       add :court_id, references(:courts)

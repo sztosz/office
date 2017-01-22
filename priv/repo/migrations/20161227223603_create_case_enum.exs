@@ -2,14 +2,14 @@ defmodule Office.Repo.Migrations.CreateCase do
   use Ecto.Migration
 
   def up do
-    CaseEnum.create_type
+    CaseKindsEnum.create_type
     create table(:cases_pg) do
-      add :kind, :kind
+      add :case_kind, :case_kind
     end
   end
 
   def down do
     drop table(:casess_pg)
-    CaseEnum.drop_type
+    CaseKindsEnum.drop_type
   end
 end
