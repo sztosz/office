@@ -3,9 +3,10 @@ defmodule Office.Case do
 
   schema "cases" do
     field :signature, :string
-    field :kind, CaseEnum
+    field :kind, CaseKindsEnum
     belongs_to :plaintiff, Office.Client
     belongs_to :defendant, Office.Client
+    belongs_to :court, Office.Court
     belongs_to :department, Office.Deapartment
 
     timestamps()

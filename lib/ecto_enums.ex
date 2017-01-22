@@ -1,2 +1,2 @@
 import EctoEnum
-defenum CaseEnum, :kind, [:civil, :criminal]
+defenum CaseKindsEnum, :case_kind, [:civil, :criminal]
