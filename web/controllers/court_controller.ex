@@ -3,6 +3,8 @@ defmodule Office.CourtController do
 
   alias Office.Court
 
+  plug :authenticate_user
+
   def index(conn, _params) do
     courts =
       Court

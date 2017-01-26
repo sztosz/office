@@ -7,7 +7,6 @@ defmodule Office.Repo.Migrations.CreateCase do
       add :kind, :case_kind
       add :plaintiff_id, references(:clients)
       add :defendant_id, references(:clients)
-      add :court_id, references(:courts)
       add :department_id, references(:departments)
 
       timestamps()

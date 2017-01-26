@@ -3,6 +3,8 @@ defmodule Office.DepartmentController do
 
   alias Office.Department
 
+  plug :authenticate_user
+
   def index(conn, %{"court_id" => court_id}) do
     court = Repo.get!(Office.Court, court_id)
     departments = Repo.all(assoc(court, :departments))
@@ -18,7 +20,7 @@ defmodule Office.DepartmentController do
   def create(conn, %{"department" => department_params, "court_id" => court_id}) do
     with {val, _} <- Integer.parse(court_id),
          changeset = Department.changeset(%Department{court_id: val}, department_params),
-         {:ok, department} <- Repo.insert(changeset)
+         {:ok, _} <- Repo.insert(changeset)
     do conn
        |> put_flash(:info, "Department created successfully.")
        |> redirect(to: court_department_path(conn, :index, court_id))
@@ -29,7 +31,7 @@ defmodule Office.DepartmentController do
     end
   end
 
-  def show(conn, %{"id" => id, "court_id" => court_id}) do
+  def show(conn, %{"id" => id}) do
     department =
       Department
       |> Repo.get!(id)
@@ -37,7 +39,7 @@ defmodule Office.DepartmentController do
     render(conn, "show.html", department: department)
   end
 
-  def edit(conn, %{"id" => id, "court_id" => court_id}) do
+  def edit(conn, %{"id" => id}) do
     department = Repo.get!(Department, id)
     changeset = Department.changeset(department)
     render(conn, "edit.html", department: department, changeset: changeset)

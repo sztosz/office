@@ -6,6 +6,22 @@
     <strong>Signature:</strong>
     <%= @case.signature %>
   </li>
+  <li>
+    <strong>Kind:</strong>
+    <%= @case.kind %>
+  </li>
+  <li>
+    <strong>Plaintiff:</strong>
+    <%= @case.plaintiff.name %>
+  </li>
+  <li>
+    <strong>Defendant:</strong>
+    <%= @case.defendant.name %>
+  </li>
+  <li>
+    <strong>Court:</strong>
+    <%= @case.department.court.name <> @case.department.court.city <> @case.department.name %>
+  </li>
 
 </ul>
 
