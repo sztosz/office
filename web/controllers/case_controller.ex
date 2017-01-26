@@ -3,8 +3,10 @@ defmodule Office.CaseController do
 
   alias Office.Case
 
+  plug :authenticate_user
+
   def index(conn, _params) do
-    cases = Repo.all(Case)
+    cases = Repo.all(from c in Case, preload: [department: :court], preload: [:plaintiff, :defendant])
     render(conn, "index.html", cases: cases)
   end
 
@@ -27,7 +29,12 @@ defmodule Office.CaseController do
   end
 
   def show(conn, %{"id" => id}) do
-    case = Repo.get!(Case, id)
+    case =
+      Case
+      |> preload([department: :court])
+      |> preload([:plaintiff, :defendant])
+      |> Repo.get!(id)
+
     render(conn, "show.html", case: case)
   end
 

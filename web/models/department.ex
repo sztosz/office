@@ -4,6 +4,7 @@ defmodule Office.Department do
   schema "departments" do
     field :name, :string
     belongs_to :court, Office.Court
+    has_many :cases, Office.Case
 
     timestamps()
   end

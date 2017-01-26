@@ -6,8 +6,7 @@ defmodule Office.Case do
     field :kind, CaseKindsEnum
     belongs_to :plaintiff, Office.Client
     belongs_to :defendant, Office.Client
-    belongs_to :court, Office.Court
-    belongs_to :department, Office.Deapartment
+    belongs_to :department, Office.Department
 
     timestamps()
   end
