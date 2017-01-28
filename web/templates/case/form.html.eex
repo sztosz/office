@@ -12,6 +12,30 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :plaintiff, class: "control-label" %>
+    <%= select f, :plaintiff_id, clients_option(@clients), class: "form-control" %>
+    <%= error_tag f, :plaintiff %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :defendant, class: "control-label" %>
+    <%= select f, :defendant_id, clients_option(@clients), class: "form-control" %>
+    <%= error_tag f, :defendant %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :department, class: "control-label" %>
+    <%= select f, :department_id, departments_option(@departments), class: "form-control" %>
+    <%= error_tag f, :department %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :kind, class: "control-label" %>
+    <%= select f, :kind, @kinds, class: "form-control" %>
+    <%= error_tag f, :kind %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

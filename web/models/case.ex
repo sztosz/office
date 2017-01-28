@@ -16,7 +16,7 @@ defmodule Office.Case do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:signature])
-    |> validate_required([:signature])
+    |> cast(params, [:signature, :plaintiff_id, :defendant_id, :department_id, :kind])
+    |> validate_required([:signature, :plaintiff_id, :defendant_id, :department_id, :kind])
   end
 end

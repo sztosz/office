@@ -2,6 +2,8 @@ defmodule Office.CaseController do
   use Office.Web, :controller
 
   alias Office.Case
+  alias Office.Client
+  alias Office.Department
 
   plug :authenticate_user
 
@@ -11,8 +13,16 @@ defmodule Office.CaseController do
   end
 
   def new(conn, _params) do
-    changeset = Case.changeset(%Case{})
-    render(conn, "new.html", changeset: changeset)
+    clients = Repo.all(Client)
+    departments = Repo.all(Department)
+    kinds = CaseKindsEnum.__enum_map__
+    changeset =
+      %Case{}
+      |> Case.changeset()
+      |> cast_assoc(:plaintiff)
+      |> cast_assoc(:defendant)
+      |> cast_assoc(:department)
+    render(conn, "new.html", changeset: changeset, clients: clients, departments: departments, kinds: kinds)
   end
 
   def create(conn, %{"case" => case_params}) do
@@ -24,7 +34,8 @@ defmodule Office.CaseController do
         |> put_flash(:info, "Case created successfully.")
         |> redirect(to: case_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        clients = Repo.all(Client)
+        render(conn, "new.html", changeset: changeset, clients: clients)
     end
   end
 
@@ -39,9 +50,12 @@ defmodule Office.CaseController do
   end
 
   def edit(conn, %{"id" => id}) do
+    clients = Repo.all(Client)
+    departments = Repo.all(Department)
+    kinds = CaseKindsEnum.__enum_map__
     case = Repo.get!(Case, id)
     changeset = Case.changeset(case)
-    render(conn, "edit.html", case: case, changeset: changeset)
+    render(conn, "edit.html", case: case, changeset: changeset, clients: clients, departments: departments, kinds: kinds)
   end
 
   def update(conn, %{"id" => id, "case" => case_params}) do
