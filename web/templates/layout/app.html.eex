@@ -8,60 +8,45 @@
     <meta name="author" content="">
 
     <title>Hello Office!</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse m-b-1">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="/">Office</a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <%= link "Clients", to: client_path(@conn, :index), class: "nav-link"  %>
-              </li>
-              <li class="nav-item">
-                <%= link "Courts", to: court_path(@conn, :index), class: "nav-link"  %>
-              </li>
-              <li class="nav-item">
-                <%= link "Cases", to: case_path(@conn, :index), class: "nav-link"  %>
-              </li>
-            </ul>
-            <div class="dropdown navbar-nav pull-xs-right">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Language
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="<%= set_lang(@conn, "en") %>">English</a>
-                <a class="dropdown-item" href="<%= set_lang(@conn, "pl") %>">Polish</a>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <span class="logo"></span>
-      </header>
+  <div class="ui container">
+    <div class="ui menu">
+      <div class="header item">
+        Office
+      </div>
+      <a class="item" href="<%= client_path(@conn, :index) %>">
+        Clients
+      </a>
+      <a class="item" href="<%= court_path(@conn, :index) %>">
+        Courts
+      </a>
+      <a class="item" href="<%= case_path(@conn, :index) %>">
+        Cases
+      </a>
+    </div>
 
-      <% info = get_flash(@conn, :info) %>
-      <% error = get_flash(@conn, :error) %>
-      <%= if info do %>
-        <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
-      <% end %>
-      <%= if error do %>
-        <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
-      <% end %>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    <% info = get_flash(@conn, :info) %>
+    <% error = get_flash(@conn, :error) %>
+    <%= if info do %>
+      <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
+    <% end %>
+    <%= if error do %>
+      <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+    <% end %>
 
-    </div> <!-- /container -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+  </div> <!-- /container -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
