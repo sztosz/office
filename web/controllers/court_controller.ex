@@ -3,8 +3,13 @@ defmodule Office.CourtController do
 
   alias Office.Court
 
+  plug :authenticate_user
+
   def index(conn, _params) do
-    courts = Repo.all(Court)
+    courts =
+      Court
+      |> Repo.all
+      |> Repo.preload(:departments)
     render(conn, "index.html", courts: courts)
   end
 

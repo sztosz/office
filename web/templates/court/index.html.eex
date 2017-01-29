@@ -1,6 +1,6 @@
 <h2>Listing courts</h2>
 
-<table class="table">
+<table class="table table-sm" id="accordion">
   <thead>
     <tr>
       <th>Name</th>
@@ -9,25 +9,44 @@
       <th>Zip</th>
       <th>Phone</th>
 
-      <th></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
-<%= for court <- @courts do %>
-    <tr>
+  <%= for court <- @courts do %>
+    <tr class="collapsed" data-toggle="collapse" data-parent="#accordion" href=<%="#collapse#{court.id}"%> aria-expanded="false" aria-controls=<%="collapse#{court.id}"%>>
       <td><%= court.name %></td>
       <td><%= court.city %></td>
       <td><%= court.street %></td>
       <td><%= court.zip %></td>
       <td><%= court.phone %></td>
 
-      <td class="text-right">
+      <td>
         <%= link "Show", to: court_path(@conn, :show, court), class: "btn btn-default btn-xs" %>
+      </td>
+      <td>
         <%= link "Edit", to: court_path(@conn, :edit, court), class: "btn btn-default btn-xs" %>
+      </td>
+      <td>
         <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
+      <td>
+        <button type="button" class="btn btn-primary">Departments</button>
+      </td>
     </tr>
-<% end %>
+
+    <tr id=<%="collapse#{court.id}"%> class="collapse" role="tabpanel" aria-labelledby=<%="heading#{court.id}"%>>
+      <td colspan="9">
+        <%= for department <- court.departments do %>
+          <div class="row">
+            <div class="col-md-8 p-3"><%= department.name %></div>
+            <div class="col-md-2 p-3"><%= link "Show", to: court_department_path(@conn, :show, court, department), class: "btn btn-default btn-xs" %></div>
+            <div class="col-md-2 p-3"><%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "btn btn-default btn-xs" %></div>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
