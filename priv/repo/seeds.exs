@@ -9,6 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias Comeonin.Bcrypt
+
 alias Office.Client
 alias Office.Email
 alias Office.Phone
@@ -28,7 +30,7 @@ defmodule SeedHelp do
       %Office.User{
         name: login,
         username: login,
-        password_hash: Comeonin.Bcrypt.hashpwsalt(pass)
+        password_hash: Bcrypt.hashpwsalt(pass)
       }
     )
   end
@@ -48,16 +50,12 @@ clients =
         nip: SeedHelp.rand_10_int,
         regon: SeedHelp.rand_10_int,
         krs: SeedHelp.rand_10_int,
-        phones: [
-          %Phone{phone: SeedHelp.rand_10_int},
-          %Phone{phone: SeedHelp.rand_10_int},
+        phones: for _ <- 1..:rand.uniform(3) do
           %Phone{phone: SeedHelp.rand_10_int}
-        ],
-        emails: [
-          %Email{email: Faker.Internet.email},
-          %Email{email: Faker.Internet.email},
+        end,
+        emails: for _ <- 1..:rand.uniform(3) do
           %Email{email: Faker.Internet.email}
-        ]}
+        end}
     )
 end
 
@@ -88,10 +86,12 @@ for i <- 0..10 do
   defendant = Enum.at(clients, i + 1)
   court = Enum.at(courts, i)
   department = Enum.at(court.departments, 1)
-  case = Ecto.Changeset.change(%Case{}, signature: Faker.Company.bullshit, kind: kind)
-  case = Ecto.Changeset.put_assoc(case, :plaintiff, plaintiff)
-  case = Ecto.Changeset.put_assoc(case, :defendant, defendant)
-  case = Ecto.Changeset.put_assoc(case, :department, department)
+  case =
+    %Case{}
+    |> Ecto.Changeset.change(signature: Faker.Company.bullshit, kind: kind)
+    |> Ecto.Changeset.put_assoc(:plaintiff, plaintiff)
+    |> Ecto.Changeset.put_assoc(:defendant, defendant)
+    |> Ecto.Changeset.put_assoc(:department, department)
   Repo.insert!(case)
 end
 
