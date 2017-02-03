@@ -37,8 +37,23 @@ defmodule Office.ClientController do
     render(conn, "show.html", client: client)
   end
 
+  # TODO: Heavy refactor obviously neeeded ;)
   def edit(conn, %{"id" => id}) do
     client = Repo.get!(Client, id)
+    emails_len = length(client.emails)
+    phone_len = length(client.phones)
+    if emails_len < 3 do
+      emails = client.emails ++ for _ <- 1..(3 - emails_len) do
+        %Email{}
+      end
+    end
+    client = %{client | emails: emails}
+    phones = if phone_len < 3 do
+      phones = client.phones ++ for _ <- 1..3 - phone_len do
+        %Phone{}
+      end
+    end
+    client = %{client | phones: phones}
     changeset = Client.changeset(client)
     render(conn, "edit.html", client: client, changeset: changeset)
   end
