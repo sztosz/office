@@ -4,7 +4,7 @@
     </div>
   </div>
   <%= for clients <- Enum.chunk(@clients, 3, 3, []) do %>
-    <div class="ui link cards">
+    <div class="ui three cards">
       <%= for client <- clients do %>
         <div class="card">
           <div class="content">
