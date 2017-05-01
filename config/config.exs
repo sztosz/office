@@ -10,11 +10,11 @@ config :office,
   ecto_repos: [Office.Repo]
 
 # Configures the endpoint
-config :office, Office.Endpoint,
+config :office, Office.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Q626bzls07wSwyPiDRQjOSt/mt8PQmuist8bwy1wUEpnQzPXJTorjSHrTJqinlOX",
-  render_errors: [view: Office.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Office.PubSub,
+  render_errors: [view: Office.Web.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Office.Web.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

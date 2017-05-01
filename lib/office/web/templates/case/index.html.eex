@@ -1,0 +1,34 @@
+<h2>Listing cases</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Signature</th>
+      <th>Kind</th>
+      <th>Plaintiff</th>
+      <th>Defendant</th>
+      <th>Court</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for case <- @cases do %>
+    <tr>
+      <td><%= case.signature %></td>
+      <td><%= case.kind %></td>
+      <td><%= case.plaintiff.name %></td>
+      <td><%= case.defendant.name %></td>
+      <td><%= case.department.court.name <> case.department.court.city <> case.department.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: case_path(@conn, :show, case), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: case_path(@conn, :edit, case), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: case_path(@conn, :delete, case), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New case", to: case_path(@conn, :new) %>

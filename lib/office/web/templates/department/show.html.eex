@@ -1,0 +1,18 @@
+<h2>Show department</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @department.name %>
+  </li>
+
+  <li>
+    <strong>Court:</strong>
+    <%= @department.court.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: court_department_path(@conn, :edit, @department.court, @department) %>
+<%= link "Back", to: court_department_path(@conn, :index, @department.court) %>

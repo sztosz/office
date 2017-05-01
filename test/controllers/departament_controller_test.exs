@@ -1,7 +1,7 @@
-defmodule Office.DepartmentControllerTest do
-  use Office.ConnCase
+defmodule Office.Web.DepartmentControllerTest do
+  use Office.Web.ConnCase
 
-  alias Office.Department
+  alias Office.Web.Department
   @valid_attrs %{name: "some content"}
   @invalid_attrs %{}
 

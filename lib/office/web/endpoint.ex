@@ -1,7 +1,7 @@
-defmodule Office.Endpoint do
+defmodule Office.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :office
 
-  socket "/socket", Office.UserSocket
+  socket "/socket", Office.Web.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule Office.Endpoint do
     key: "_office_key",
     signing_salt: "/bais1Kq"
 
-  plug Office.Router
+  plug Office.Web.Router
 end
