@@ -1,0 +1,57 @@
+  <div class="ui top secondary menu">
+    <div class="item">
+      <%= link "New client", to: client_path(@conn, :new), class: "ui green button" %>
+    </div>
+  </div>
+  <%= for clients <- Enum.chunk(@clients, 3, 3, []) do %>
+    <div class="ui three cards">
+      <%= for client <- clients do %>
+        <div class="card">
+          <div class="content">
+            <div class="header"><%= client.company %></div>
+          </div>
+          <div class="content">
+            <h4 class="ui sub header"><%= "#{client.name} #{client.surname}" %></h4>
+            <div class="ui small feed">
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <%= for phone <- client.phones do %>
+                      <i class="call square icon"></i><span><%= phone.phone %></span><br>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <%= for email <- client.emails do %>
+                      <i class="at icon"></i><span><%= email.email %></span><br>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="event">
+                <div class="content">
+                  <div class="summary">
+                    <i class="mail square icon"></i><span><%= client.address %></span><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="ui four column grid">
+              <div class="row">
+                <div class="column"><%= link "Edit", to: client_path(@conn, :edit, client), class: "mini ui blue button" %></div>
+                <div class="column"><%= link "Delete", to: client_path(@conn, :delete, client), method: :delete, class: "mini ui red button" %></div>
+                <div class="column"></div>
+                <div class="column"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

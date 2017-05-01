@@ -1,4 +1,4 @@
-defmodule Office.ChannelCase do
+defmodule Office.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule Office.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint Office.Endpoint
+      @endpoint Office.Web.Endpoint
     end
   end
 

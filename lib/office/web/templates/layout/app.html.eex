@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Office!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+  <div class="ui container">
+    <div class="ui menu">
+      <div class="header item">
+        Office
+      </div>
+      <a class="item" href="<%= client_path(@conn, :index) %>">
+        Clients
+      </a>
+      <a class="item" href="<%= court_path(@conn, :index) %>">
+        Courts
+      </a>
+      <a class="item" href="<%= case_path(@conn, :index) %>">
+        Cases
+      </a>
+    </div>
+
+
+    <% info = get_flash(@conn, :info) %>
+    <% error = get_flash(@conn, :error) %>
+    <%= if info do %>
+      <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
+    <% end %>
+    <%= if error do %>
+      <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+    <% end %>
+
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+  </div> <!-- /container -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

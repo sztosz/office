@@ -1,7 +1,7 @@
 defmodule Office do
   use Application
 
-  alias Office.Endpoint
+  alias Office.Web.Endpoint
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -13,7 +13,7 @@ defmodule Office do
       # Start the Ecto repository
       supervisor(Office.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Office.Endpoint, []),
+      supervisor(Endpoint, []),
       # Start your own worker by calling: Office.Worker.start_link(arg1, arg2, arg3)
       # worker(Office.Worker, [arg1, arg2, arg3]),
     ]
@@ -22,12 +22,5 @@ defmodule Office do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Office.Supervisor]
     Supervisor.start_link(children, opts)
-  end
-
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    Endpoint.config_change(changed, removed)
-    :ok
   end
 end
