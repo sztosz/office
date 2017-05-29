@@ -43,8 +43,8 @@
           <div class="extra content">
             <div class="ui four column grid">
               <div class="row">
+                <div class="column"><%= link "Show", to: client_path(@conn, :show, client), class: "mini ui green button" %></div>
                 <div class="column"><%= link "Edit", to: client_path(@conn, :edit, client), class: "mini ui blue button" %></div>
-                <div class="column"><%= link "Delete", to: client_path(@conn, :delete, client), method: :delete, class: "mini ui red button" %></div>
                 <div class="column"></div>
                 <div class="column"></div>
               </div>
