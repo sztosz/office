@@ -1,53 +1,47 @@
 <h2>Listing courts</h2>
 
-<table class="table table-sm" id="accordion">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>City</th>
-      <th>Street</th>
-      <th>Zip</th>
-      <th>Phone</th>
-
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="ui styled fluid accordion">
   <%= for court <- @courts do %>
-    <tr class="collapsed" data-toggle="collapse" data-parent="#accordion" href=<%="#collapse#{court.id}"%> aria-expanded="false" aria-controls=<%="collapse#{court.id}"%>>
-      <td><%= court.name %></td>
-      <td><%= court.city %></td>
-      <td><%= court.street %></td>
-      <td><%= court.zip %></td>
-      <td><%= court.phone %></td>
-
-      <td>
-        <%= link "Show", to: court_path(@conn, :show, court), class: "btn btn-default btn-xs" %>
-      </td>
-      <td>
-        <%= link "Edit", to: court_path(@conn, :edit, court), class: "btn btn-default btn-xs" %>
-      </td>
-      <td>
-        <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-      <td>
-        <button type="button" class="btn btn-primary">Departments</button>
-      </td>
-    </tr>
-
-    <tr id=<%="collapse#{court.id}"%> class="collapse" role="tabpanel" aria-labelledby=<%="heading#{court.id}"%>>
-      <td colspan="9">
-        <%= for department <- court.departments do %>
-          <div class="row">
-            <div class="col-md-8 p-3"><%= department.name %></div>
-            <div class="col-md-2 p-3"><%= link "Show", to: court_department_path(@conn, :show, court, department), class: "btn btn-default btn-xs" %></div>
-            <div class="col-md-2 p-3"><%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "btn btn-default btn-xs" %></div>
-          </div>
-        <% end %>
-      </td>
-    </tr>
+    <div class="title">
+      <div class="ui grid">
+        <div class="four wide column">
+          <i class="dropdown icon"></i><%= court.name %>
+        </div>
+        <div class="six wide column">
+          <i class="marker icon"></i><%= court.street %> <%= court.zip %> <%= court.city %>
+        </div>
+        <div class="two wide column">
+          <i class="phone icon"></i><%= court.phone %>
+        </div>
+        <div class="four wide column">
+          <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
+          <%= link "Edit", to: court_path(@conn, :edit, court), class: "ui blue button tiny" %>
+          <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <table class="ui very basic collapsing celled table">
+        <tbody>
+          <%= for department <- court.departments do %>
+            <tr>
+              <td>
+                <%= department.name %>
+              </td>
+              <td>
+                  <%= link "Show", to: court_department_path(@conn, :show, court, department), class: "ui green button tiny" %>
+                  <%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "ui blue button tiny" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% end %>
-  </tbody>
-</table>
-
+</div>
 <%= link "New court", to: court_path(@conn, :new) %>
+<script>
+$(document).ready(function () {
+    $('.ui.accordion').accordion();
+});
+</script>
