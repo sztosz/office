@@ -8,6 +8,7 @@ defmodule Office.Court do
     field :zip, :string
     field :phone, :integer
     has_many :departments, Office.Department
+    has_many :cases, through: [:departments, :cases]
 
     timestamps()
   end
