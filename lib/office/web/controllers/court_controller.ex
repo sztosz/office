@@ -32,7 +32,10 @@ defmodule Office.Web.CourtController do
   end
 
   def show(conn, %{"id" => id}) do
-    court = Repo.get!(Court, id)
+    court =
+      Court
+      |> Repo.get!(id)
+      |> Repo.preload(:departments)
     render(conn, "show.html", court: court)
   end
 
