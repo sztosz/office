@@ -55,7 +55,7 @@ defmodule Office.Web.CaseController do
     kinds = CaseKindsEnum.__enum_map__
     case = Repo.get!(Case, id)
     changeset = Case.changeset(case)
-    render(conn, "edit.html", case: case, changeset: changeset, clients: clients, departments: departments, kinds: kinds)
+    render(conn, "edit.html", case: case, changeset: changeset, clients: clients, departments: departments, kinds: kinds, conn: conn)
   end
 
   def update(conn, %{"id" => id, "case" => case_params}) do

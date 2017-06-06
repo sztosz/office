@@ -1,6 +1,6 @@
-<h2>Listing cases</h2>
+<h2>Cases</h2>
 
-<table class="table">
+<table class="ui celled striped table">
   <thead>
     <tr>
       <th>Signature</th>
@@ -13,21 +13,20 @@
     </tr>
   </thead>
   <tbody>
-<%= for case <- @cases do %>
-    <tr>
-      <td><%= case.signature %></td>
-      <td><%= case.kind %></td>
-      <td><%= case.plaintiff.name %></td>
-      <td><%= case.defendant.name %></td>
-      <td><%= case.department.court.name <> case.department.court.city <> case.department.name %></td>
+    <%= for case <- @cases do %>
+      <tr>
+        <td><%= case.signature %></td>
+        <td><%= case.kind %></td>
+        <td><%= case.plaintiff.name %></td>
+        <td><%= case.defendant.name %></td>
+        <td><%= "#{case.department.court.name} #{case.department.court.city} #{case.department.name}" %></td>
 
-      <td class="text-right">
-        <%= link "Show", to: case_path(@conn, :show, case), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: case_path(@conn, :edit, case), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: case_path(@conn, :delete, case), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+        <td class="text-right">
+          <%= link "Show", to: case_path(@conn, :show, case), class: "ui green button tiny" %>
+          <%= link "Edit", to: case_path(@conn, :edit, case), class: "ui blue button tiny" %>
+        </td>
+      </tr>
+      <% end %>
   </tbody>
 </table>
 

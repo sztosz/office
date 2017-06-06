@@ -1,41 +1,56 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= label f, :signature, class: "control-label" %>
-    <%= text_input f, :signature, class: "form-control" %>
-    <%= error_tag f, :signature %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :plaintiff, class: "control-label" %>
-    <%= select f, :plaintiff_id, clients_option(@clients), class: "form-control" %>
-    <%= error_tag f, :plaintiff %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :defendant, class: "control-label" %>
-    <%= select f, :defendant_id, clients_option(@clients), class: "form-control" %>
-    <%= error_tag f, :defendant %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :department, class: "control-label" %>
-    <%= select f, :department_id, departments_option(@departments), class: "form-control" %>
-    <%= error_tag f, :department %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :kind, class: "control-label" %>
-    <%= select f, :kind, @kinds, class: "form-control" %>
-    <%= error_tag f, :kind %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
+<%= form_for @changeset, @action, [class: "ui form"], fn f -> %>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+  <p>Oops, something went wrong! Please check the errors below.</p>
+</div>
 <% end %>
+
+<div class="ui piled segments">
+  <div class="ui segment">
+    <h4 class="ui dividing header">Case information</h4>
+    <div class="field">
+      <%= label f, :signature %>
+      <%= text_input f, :signature, placeholder: "Signature" %>
+      <%= error_tag f, :signature %>
+    </div>
+
+    <div class="fields">
+      <div class="eight wide field">
+        <%= label f, :plaintiff %>
+        <%= select f, :plaintiff_id, clients_option(@clients), class: "ui search dropdown" %>
+        <%= error_tag f, :plaintiff %>
+      </div>
+
+      <div class="three wide field">
+        <%= label f, :defendant %>
+        <%= select f, :defendant_id, clients_option(@clients), class: "ui search dropdown" %>
+        <%= error_tag f, :defendant %>
+      </div>
+
+      <div class="three wide field">
+        <%= label f, :department %>
+        <%= select f, :department_id, departments_option(@departments), class: "ui search dropdown" %>
+        <%= error_tag f, :department %>
+      </div>
+
+      <div class="three wide field">
+        <%= label f, :kind %>
+        <%= select f, :kind, @kinds, class: "ui search dropdown" %>
+        <%= error_tag f, :kind %>
+      </div>
+
+    </div>
+
+    <%= submit "Submit", class: "ui green button" %>
+    <%= link "Back", to: case_path(@conn, :index), class: "ui blue button" %>
+  </div>
+</div>
+
+
+<% end %>
+
+<script>
+$(document).ready(function () {
+  $('select.dropdown').dropdown();
+});
+</script>
