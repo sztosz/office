@@ -1,29 +1,49 @@
-<h2>Show case</h2>
+<h2>Show Case</h2>
+<div class="ui piled segments">
+  <div class="ui segment">
+    <h4 class="ui dividing header">Court information</h4>
+    <div class="ui two column doubling stackable grid container">
+      <div class="column">
+        <h2 class="ui header">
+          <div class="sub header">Signature</div>
+          <%= @case.signature %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Kind</div>
+          <%= @case.kind %>
+        </h2>
+      </div>
+      <div class="column">
+        <h2 class="ui header">
+          <div class="sub header">Plaintiff</div>
+          <%= @case.plaintiff.name %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Defendant</div>
+          <%= @case.defendant.name %>
+        </h2>
+      </div>
+    </div>
+    <h4 class="ui dividing header">Actions</h4>
+    <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
+    <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+  </div>
+</div>
 
-<ul>
-
-  <li>
-    <strong>Signature:</strong>
-    <%= @case.signature %>
-  </li>
-  <li>
-    <strong>Kind:</strong>
-    <%= @case.kind %>
-  </li>
-  <li>
-    <strong>Plaintiff:</strong>
-    <%= @case.plaintiff.name %>
-  </li>
-  <li>
-    <strong>Defendant:</strong>
-    <%= @case.defendant.name %>
-  </li>
-  <li>
-    <strong>Court:</strong>
-    <%= @case.department.court.name <> @case.department.court.city <> @case.department.name %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: case_path(@conn, :edit, @case) %>
-<%= link "Back", to: case_path(@conn, :index) %>
+<div class="ui modal">
+  <div class="ui icon header">
+    <i class="red icon warning sign"></i>
+    Delete Clinet
+  </div>
+  <div class="content">
+    <h1>Are you sure you want to delete this court? This action cannot be reverted. If you delete Client, you will also delete all cases and files that are connected to this client!</h1>
+  </div>
+  <div class="actions">
+    <div class="ui green cancel button">
+      No
+    </div>
+    <div class="ui red ok button">
+      <%= link "Yes", to: case_path(@conn, :delete, @case), method: :delete %>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,12 @@
       </div>
     </div>
     <div class="content">
-      <table class="ui very basic collapsing celled table">
+      <table class="ui celled striped table">
+        <thead>
+          <tr>
+            <th colspan="2">Department</th>
+          </tr>
+        </thead>
         <tbody>
           <%= for department <- court.departments do %>
             <tr>
