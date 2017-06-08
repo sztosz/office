@@ -1,28 +1,30 @@
-<h2>Listing departments</h2>
+<div class="ui grid">
+  <div class="eight wide column">
+    <h2>Listing departments</h2>
+  </div>
+  <div class="eight wide column">
+    <%= link "New department", to: court_department_path(@conn, :new, @court), class: "ui blue  tiny button" %>
+  </div>
+</div>
 
-<table class="table">
+<table class="ui celled striped table">
   <thead>
     <tr>
-      <th>Court</th>
-      <th>Name</th>
-
-      <th></th>
+      <th colspan="2">Department for <%= @court.name %></th>
     </tr>
   </thead>
   <tbody>
-<%= for department <- @departments do %>
-    <tr>
-      <td><%= @court.name %></td>
-      <td><%= department.name %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: court_department_path(@conn, :delete, @court, department), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+    <%= for department <- @departments do %>
+      <tr>
+        <td>
+          <%= department.name %>
+        </td>
+        <td>
+          <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "ui green button tiny" %>
+          <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "ui blue button tiny" %>
+          <%= link "Delete", to: court_department_path(@conn, :delete, @court, department), method: :delete, data: [confirm: "Are you sure?"], class: "ui red right floated tiny button" %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
-<%= link "New department", to: court_department_path(@conn, :new, @court) %>
