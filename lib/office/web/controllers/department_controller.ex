@@ -35,7 +35,7 @@ defmodule Office.Web.DepartmentController do
     department =
       Department
       |> Repo.get!(id)
-      |> Repo.preload([:court])
+      |> Repo.preload([:court, :cases])
     render(conn, "show.html", department: department)
   end
 
