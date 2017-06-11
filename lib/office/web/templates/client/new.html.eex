@@ -1,4 +1,4 @@
 <h2>New client</h2>
 
-<%= render "form.html", changeset: @changeset, conn: @conn,
-                        action: client_path(@conn, :create) %>
+<%= render "form.html", changeset: with_empty_phones_and_emails(@changeset),
+                        conn: @conn, action: client_path(@conn, :create) %>

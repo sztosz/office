@@ -1,5 +1,7 @@
-defmodule Office.Department do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Department do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   schema "departments" do
     field :name, :string

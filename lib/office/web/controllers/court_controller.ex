@@ -1,7 +1,7 @@
 defmodule Office.Web.CourtController do
   use Office.Web, :controller
 
-  alias Office.Court
+  alias Office.Litigation.Court
 
   plug :authenticate_user
 
@@ -14,19 +14,17 @@ defmodule Office.Web.CourtController do
   end
 
   def new(conn, _params) do
-    changeset = Court.changeset(%Court{})
+    changeset = Court.new_changeset
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"court" => court_params}) do
-    changeset = Court.changeset(%Court{}, court_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _court} ->
+    case Court.create(court_params) do
+      {:ok, court} ->
         conn
         |> put_flash(:info, "Court created successfully.")
-        |> redirect(to: court_path(conn, :index))
-      {:error, changeset} ->
+        |> redirect(to: court_path(conn, :show, court))
+      {:error,  %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end

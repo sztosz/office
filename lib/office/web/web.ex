@@ -16,30 +16,22 @@ defmodule Office.Web do
   below.
   """
 
-  def model do
-    quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: Office.Web
 
-      alias Office.Repo
-      alias Office.Web.Plugs.Auth
+      import Plug.Conn
 
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
+      # alias Office.Repo
+      alias Office.Web.Plugs.Authorization
+
+      # import Ecto
+      # import Ecto.Changeset
+      # import Ecto.Query
 
       import Office.Web.Router.Helpers
       import Office.Web.Gettext
-      import Office.Web.Plugs.Auth, only: [authenticate_user: 2]
+      import Office.Web.Plugs.Authorization, only: [authenticate_user: 2]
     end
   end
 
@@ -63,7 +55,7 @@ defmodule Office.Web do
     quote do
       use Phoenix.Router
 
-      import Office.Web.Plugs.Auth, only: [authenticate_user: 2]
+      import Office.Web.Plugs.Authorization, only: [authenticate_user: 2]
     end
   end
 

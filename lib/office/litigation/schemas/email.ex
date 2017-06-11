@@ -1,5 +1,7 @@
-defmodule Office.Email do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Email do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   embedded_schema do
     field :email, :string

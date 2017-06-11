@@ -1,4 +1,4 @@
-defmodule Office do
+defmodule Office.Application do
   use Application
 
   alias Office.Web.Endpoint

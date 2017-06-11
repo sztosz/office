@@ -1,5 +1,7 @@
-defmodule Office.User do
-  use Office.Web, :model
+defmodule Office.Auth.User do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   schema "users" do
     field :name, :string

@@ -7,7 +7,7 @@ defmodule Office.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Office.Web.Plugs.Auth, repo: Office.Repo
+    plug Office.Web.Plugs.Authorization, repo: Office.Repo
     plug Office.Web.Plugs.Locale
   end
 

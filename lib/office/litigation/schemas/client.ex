@@ -1,5 +1,7 @@
-defmodule Office.Client do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Client do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   schema "clients" do
     field :name, :string
@@ -9,10 +11,10 @@ defmodule Office.Client do
     field :nip, :integer
     field :regon, :integer
     field :krs, :integer
-    embeds_many :emails, Office.Email
-    embeds_many :phones, Office.Phone
-    has_many :plaintiff_cases, Office.Department
-    has_many :defendant_cases, Office.Department
+    embeds_many :emails, Office.Litigation.Schemas.Email
+    embeds_many :phones, Office.Litigation.Schemas.Phone
+    has_many :plaintiff_cases, Office.Litigation.Schemas.Department
+    has_many :defendant_cases, Office.Litigation.Schemas.Department
 
     timestamps()
   end

@@ -1,5 +1,7 @@
-defmodule Office.Case do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Case do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   schema "cases" do
     field :signature, :string

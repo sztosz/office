@@ -1,80 +1,50 @@
 defmodule Office.Web.ClientController do
   use Office.Web, :controller
 
-  alias Office.Client
-  alias Office.Phone
-  alias Office.Email
-
-  require IEx
+  alias Office.Litigation.Client
 
   plug :authenticate_user
 
   def index(conn, _params) do
-    clients = Repo.all(Client)
+    clients = Client.list_all
     render(conn, "index.html", clients: clients)
   end
 
   def new(conn, _params) do
-    changeset =
-      Client.changeset(
-        %Client{phones: [%Phone{}, %Phone{}, %Phone{}], emails: [%Email{}, %Email{}, %Email{}]})
+    changeset = Client.new_changeset
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"client" => client_params}) do
-    changeset = Client.changeset(%Client{}, client_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _client} ->
+    case Client.create(client_params) do
+      {:ok, client} ->
         conn
         |> put_flash(:info, "Client created successfully.")
-        |> redirect(to: client_path(conn, :index))
-      {:error, changeset} ->
+        |> redirect(to: client_path(conn, :show, client))
+      {:error,  %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    client = Repo.get!(Client, id)
+    client = Client.get!(id)
     render(conn, "show.html", client: client)
   end
 
-  # TODO: Heavy refactor obviously neeeded ;)
   def edit(conn, %{"id" => id}) do
-    client = Repo.get!(Client, id)
-    emails_len = length(client.emails)
-    phones_len = length(client.phones)
-
-    if emails_len < 3 do
-      emails = client.emails ++ for _ <- 1..(3 - emails_len) do
-        %Email{}
-      end
-      client = %{client | emails: emails}
-    end
-
-    phones = if phones_len < 3 do
-      phones = client.phones ++ for _ <- 1..3 - phones_len do
-        %Phone{}
-      end
-      client = %{client | phones: phones}
-    end
-
-    changeset = Client.changeset(client)
-
-    render(conn, "edit.html", client: client, changeset: changeset)
+    changeset = Client.edit_changeset(id)
+#    render(conn, "edit.html", client: client, changeset: changeset)
+    render(conn, "edit.html", id: id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "client" => client_params}) do
-    client = Repo.get!(Client, id)
-    changeset = Client.changeset(client, client_params)
-
-    case Repo.update(changeset) do
+    case Client.update(id, client_params) do
       {:ok, client} ->
         conn
         |> put_flash(:info, "Client updated successfully.")
         |> redirect(to: client_path(conn, :show, client))
       {:error, changeset} ->
-        render(conn, "edit.html", client: client, changeset: changeset)
+        render(conn, "edit.html", id: id, changeset: changeset)
     end
   end
 
