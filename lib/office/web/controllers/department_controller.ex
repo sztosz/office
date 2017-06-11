@@ -1,33 +1,35 @@
 defmodule Office.Web.DepartmentController do
   use Office.Web, :controller
 
-  alias Office.Department
+  alias Office.Litigation.Department
+  alias Office.Litigation.Court
 
   plug :authenticate_user
 
   def index(conn, %{"court_id" => court_id}) do
-    court = Repo.get!(Office.Court, court_id)
-    departments = Repo.all(assoc(court, :departments))
+    court = Court.get!(court_id)
+    departments = Department.list_all(court)
 
     render(conn, "index.html", departments: departments, court: court)
   end
 
   def new(conn, %{"court_id" => court_id}) do
-    changeset = Department.changeset(%Department{court_id: court_id})
+    changeset = Department.new_changeset(court_id)
     render(conn, "new.html", changeset: changeset, court_id: court_id)
   end
 
-  def create(conn, %{"department" => department_params, "court_id" => court_id}) do
-    with {val, _} <- Integer.parse(court_id),
-         changeset = Department.changeset(%Department{court_id: val}, department_params),
-         {:ok, _} <- Repo.insert(changeset)
-    do conn
-       |> put_flash(:info, "Department created successfully.")
-       |> redirect(to: court_department_path(conn, :index, court_id))
-    else :error -> conn
-                   |> put_flash(:info, "Invalid Court id in path.")
-                   |> redirect(to: court_path(conn, :index))
-         {:error, changeset} -> render(conn, "new.html", changeset: changeset, court_id: court_id)
+  def create(conn, %{"court_id" => court_id, "department" => department_params}) do
+    case Department.create(court_id, department_params) do
+      {:ok, department} ->
+        conn
+        |> put_flash(:info, "Court created successfully.")
+        |> redirect(to: court_department_path(conn, :show, court_id, department))
+      {:error,  %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset)
+      {:error, :ivalid_court_id} ->
+        conn
+        |> put_flash(:info, "Invalid Court id in path.")
+        |> redirect(to: court_path(conn, :index))
     end
   end
 

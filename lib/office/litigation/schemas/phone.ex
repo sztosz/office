@@ -1,5 +1,7 @@
-defmodule Office.Phone do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Phone do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   embedded_schema do
     field :phone, :integer

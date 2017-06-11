@@ -1,5 +1,7 @@
-defmodule Office.Court do
-  use Office.Web, :model
+defmodule Office.Litigation.Schemas.Court do
+  use Ecto.Schema
+
+  import Ecto.Changeset
 
   schema "courts" do
     field :name, :string

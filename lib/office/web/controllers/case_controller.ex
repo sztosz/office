@@ -1,51 +1,39 @@
 defmodule Office.Web.CaseController do
   use Office.Web, :controller
 
-  alias Office.Case
-  alias Office.Client
-  alias Office.Department
+  alias Office.Litigation.Case
 
   plug :authenticate_user
 
   def index(conn, _params) do
-    cases = Repo.all(from c in Case, preload: [department: :court], preload: [:plaintiff, :defendant])
+    cases = Case.list_all()
     render(conn, "index.html", cases: cases)
   end
 
   def new(conn, _params) do
+    changeset = Litigation.Case.new_changeset
+
     clients = Repo.all(Client)
     departments = Repo.all(Department)
     kinds = CaseKindsEnum.__enum_map__
-    changeset =
-      %Case{}
-      |> Case.changeset()
-      |> cast_assoc(:plaintiff)
-      |> cast_assoc(:defendant)
-      |> cast_assoc(:department)
+
     render(conn, "new.html", changeset: changeset, clients: clients, departments: departments, kinds: kinds)
   end
 
   def create(conn, %{"case" => case_params}) do
-    changeset = Case.changeset(%Case{}, case_params)
-
-    case Repo.insert(changeset) do
-      {:ok, _case} ->
+    case Case.create(case_params) do
+      {:ok, case} ->
         conn
         |> put_flash(:info, "Case created successfully.")
-        |> redirect(to: case_path(conn, :index))
-      {:error, changeset} ->
+        |> redirect(to: case_path(conn, :show, case))
+      {:error,  %Ecto.Changeset{} = changeset} ->
         clients = Repo.all(Client)
         render(conn, "new.html", changeset: changeset, clients: clients)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    case =
-      Case
-      |> preload([department: :court])
-      |> preload([:plaintiff, :defendant])
-      |> Repo.get!(id)
-
+    case = Case.get!(id)
     render(conn, "show.html", case: case)
   end
 
