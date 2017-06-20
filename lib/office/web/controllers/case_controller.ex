@@ -2,6 +2,9 @@ defmodule Office.Web.CaseController do
   use Office.Web, :controller
 
   alias Office.Litigation.Case
+  alias Office.Litigation.Client
+  alias Office.Litigation.Court
+  alias Office.Litigation.Department
 
   plug :authenticate_user
 
@@ -11,13 +14,8 @@ defmodule Office.Web.CaseController do
   end
 
   def new(conn, _params) do
-    changeset = Litigation.Case.new_changeset
-
-    clients = Repo.all(Client)
-    departments = Repo.all(Department)
-    kinds = CaseKindsEnum.__enum_map__
-
-    render(conn, "new.html", changeset: changeset, clients: clients, departments: departments, kinds: kinds)
+    changeset = Case.new_changeset
+    render(conn, "new.html", changeset: changeset, selects: Case.selects)
   end
 
   def create(conn, %{"case" => case_params}) do
@@ -27,8 +25,7 @@ defmodule Office.Web.CaseController do
         |> put_flash(:info, "Case created successfully.")
         |> redirect(to: case_path(conn, :show, case))
       {:error,  %Ecto.Changeset{} = changeset} ->
-        clients = Repo.all(Client)
-        render(conn, "new.html", changeset: changeset, clients: clients)
+        render(conn, "new.html", changeset: changeset, selects: Case.selects)
     end
   end
 
@@ -38,37 +35,40 @@ defmodule Office.Web.CaseController do
   end
 
   def edit(conn, %{"id" => id}) do
-    clients = Repo.all(Client)
-    departments = Repo.all(Department)
+    clients = Client.list_all
+    departments = Department.list_all
+    # TODO: Change Enum to relation with translations.
     kinds = CaseKindsEnum.__enum_map__
-    case = Repo.get!(Case, id)
-    changeset = Case.changeset(case)
-    render(conn, "edit.html", case: case, changeset: changeset, clients: clients, departments: departments, kinds: kinds, conn: conn)
+    changeset = Case.edit_changeset(id)
+    render(conn, "edit.html", id: id, changeset: changeset, clients: clients, departments: departments, kinds: kinds, conn: conn)
+  end
+
+  def edit(conn, %{"id" => id}) do
+    changeset = Court.edit_changeset(id)
+    render(conn, "edit.html", id: id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "case" => case_params}) do
-    case = Repo.get!(Case, id)
-    changeset = Case.changeset(case, case_params)
-
-    case Repo.update(changeset) do
+    case Case.update(id, case_params) do
       {:ok, case} ->
         conn
         |> put_flash(:info, "Case updated successfully.")
         |> redirect(to: case_path(conn, :show, case))
       {:error, changeset} ->
-        render(conn, "edit.html", case: case, changeset: changeset)
+        render(conn, "edit.html", id: id, changeset: changeset)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    case = Repo.get!(Case, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(case)
-
-    conn
-    |> put_flash(:info, "Case deleted successfully.")
-    |> redirect(to: case_path(conn, :index))
+    case Case.delete(id) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Case deleted successfully.")
+        |> redirect(to: case_path(conn, :index))
+      _ ->
+        conn
+        |> put_flash(:error, "Something went wrong.")
+        |> redirect(to: case_path(conn, :index))
+    end
   end
 end

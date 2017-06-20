@@ -36,10 +36,16 @@
     <% info = get_flash(@conn, :info) %>
     <% error = get_flash(@conn, :error) %>
     <%= if info do %>
-      <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
+    <div class="ui info message">
+      <i class="close icon" data-vivaldi-spatnav-clickable="1"></i>
+      <p><%= info %></p>
+    </div>
     <% end %>
     <%= if error do %>
-      <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+    <div class="ui error message">
+      <i class="close icon" data-vivaldi-spatnav-clickable="1"></i>
+      <p><%= error %></p>
+    </div>
     <% end %>
 
     <main role="main">
@@ -48,5 +54,12 @@
 
   </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script>
+    $(document).ready(function () {
+      $('.message .close').on('click', function() {
+        $(this).closest('.message').transition('fade');
+      });
+    });
+    </script>
   </body>
 </html>

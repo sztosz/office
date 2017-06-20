@@ -6,9 +6,9 @@ defmodule Office.Litigation.Schemas.Case do
   schema "cases" do
     field :signature, :string
     field :kind, CaseKindsEnum
-    belongs_to :plaintiff, Office.Client
-    belongs_to :defendant, Office.Client
-    belongs_to :department, Office.Department
+    belongs_to :plaintiff, Office.Litigation.Schemas.Client
+    belongs_to :defendant, Office.Litigation.Schemas.Client
+    belongs_to :department, Office.Litigation.Schemas.Department
 
     timestamps()
   end

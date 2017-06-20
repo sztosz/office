@@ -1,4 +1,4 @@
 <h2>Edit court</h2>
 
 <%= render "form.html", changeset: @changeset, conn: @conn,
-                        action: court_path(@conn, :update, @court) %>
+                        action: court_path(@conn, :update, @id) %>

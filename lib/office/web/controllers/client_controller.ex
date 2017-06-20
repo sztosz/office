@@ -33,7 +33,6 @@ defmodule Office.Web.ClientController do
 
   def edit(conn, %{"id" => id}) do
     changeset = Client.edit_changeset(id)
-#    render(conn, "edit.html", client: client, changeset: changeset)
     render(conn, "edit.html", id: id, changeset: changeset)
   end
 
@@ -49,14 +48,15 @@ defmodule Office.Web.ClientController do
   end
 
   def delete(conn, %{"id" => id}) do
-    client = Repo.get!(Client, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(client)
-
-    conn
-    |> put_flash(:info, "Client deleted successfully.")
-    |> redirect(to: client_path(conn, :index))
+    case Client.delete(id) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Client deleted successfully.")
+        |> redirect(to: client_path(conn, :index))
+      _ ->
+        conn
+        |> put_flash(:error, "Something went wrong.")
+        |> redirect(to: client_path(conn, :index))
+    end
   end
 end

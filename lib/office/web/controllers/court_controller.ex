@@ -6,10 +6,7 @@ defmodule Office.Web.CourtController do
   plug :authenticate_user
 
   def index(conn, _params) do
-    courts =
-      Court
-      |> Repo.all
-      |> Repo.preload(:departments)
+    courts = Court.list_all
     render(conn, "index.html", courts: courts)
   end
 
@@ -30,42 +27,36 @@ defmodule Office.Web.CourtController do
   end
 
   def show(conn, %{"id" => id}) do
-    court =
-      Court
-      |> Repo.get!(id)
-      |> Repo.preload(:departments)
+    court = Court.get!(id)
     render(conn, "show.html", court: court)
   end
 
   def edit(conn, %{"id" => id}) do
-    court = Repo.get!(Court, id)
-    changeset = Court.changeset(court)
-    render(conn, "edit.html", court: court, changeset: changeset)
+    changeset = Court.edit_changeset(id)
+    render(conn, "edit.html", id: id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "court" => court_params}) do
-    court = Repo.get!(Court, id)
-    changeset = Court.changeset(court, court_params)
-
-    case Repo.update(changeset) do
+    case Court.update(id, court_params) do
       {:ok, court} ->
         conn
-        |> put_flash(:info, "Court updated successfully.")
+        |> put_flash(:info, "Client updated successfully.")
         |> redirect(to: court_path(conn, :show, court))
       {:error, changeset} ->
-        render(conn, "edit.html", court: court, changeset: changeset)
+        render(conn, "edit.html", id: id, changeset: changeset)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    court = Repo.get!(Court, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(court)
-
-    conn
-    |> put_flash(:info, "Court deleted successfully.")
-    |> redirect(to: court_path(conn, :index))
+    case Court.delete(id) do
+      {:ok, _} ->
+        conn
+        |> put_flash(:info, "Court deleted successfully.")
+        |> redirect(to: court_path(conn, :index))
+      _ ->
+        conn
+        |> put_flash(:error, "Something went wrong.")
+        |> redirect(to: court_path(conn, :index))
+    end
   end
 end

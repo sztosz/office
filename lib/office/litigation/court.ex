@@ -5,19 +5,44 @@ defmodule Office.Litigation.Court do
   alias Office.Repo
   alias Office.Litigation.Schemas.Court
 
-  def get!(id) do
+  def list_all do
     Court
-    # |> preload([department: :court])
-    # |> preload([:plaintiff, :defendant])
-    |> Repo.get!(id)
+    |> Repo.all
+    |> Repo.preload(:departments)
   end
 
-  def changeset(%Court{} = court) do
-    court
-    |> Court.changeset()
+  def get!(id) do
+    Court
+    |> Repo.get!(id)
+    |> Repo.preload(:departments)
+  end
+
+  def create(attrs \\ %{}) do
+    %Court{}
+    |> Court.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update(id, attrs) do
+    Court
+    |> Repo.get!(id)
+    |> Court.changeset(attrs)
+    |> Repo.update()
   end
 
   def new_changeset do
-    changeset(%Court{})
+    Court.changeset(%Court{})
+  end
+
+  def edit_changeset(id) do
+    Court
+    |> Repo.get!(id)
+    |> Court.changeset
+  end
+
+  def delete(id) do
+    id
+    |> get!
+    |> Repo.delete
   end
 end

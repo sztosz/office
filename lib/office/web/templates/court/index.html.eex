@@ -1,4 +1,10 @@
-<h2>Listing courts</h2>
+
+<div class="ui top secondary menu">
+  <h2>Listing courts</h2>
+  <div class="item">
+    <%= link "New Court", to: court_path(@conn, :new), class: "ui green button small" %>
+  </div>
+</div>
 
 <div class="ui styled fluid accordion">
   <%= for court <- @courts do %>
