@@ -7,7 +7,7 @@
 
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Client information</h4>
+    <h4 class="ui dividing header">Court information</h4>
     <div class="field">
       <%= label f, :name %>
       <%= text_input f, :name, placeholder: "Court Name" %>
@@ -17,26 +17,26 @@
     <div class="fields">
       <div class="eight wide field">
         <%= label f, :street %>
-        <%= text_input f, :street, placeholder: "Clients Surname" %>
+        <%= text_input f, :street, placeholder: "Street" %>
         <%= error_tag f, :street %>
       </div>
 
       <div class="three wide field">
         <%= label f, :zip %>
-        <%= text_input f, :zip, placeholder: "Clients Surname" %>
+        <%= text_input f, :zip, placeholder: "000-00" %>
         <%= error_tag f, :zip %>
       </div>
 
       <div class="five wide field">
         <%= label f, :city %>
-        <%= text_input f, :city, placeholder: "Placeholder" %>
+        <%= text_input f, :city, placeholder: "City" %>
         <%= error_tag f, :city %>
       </div>
     </div>
 
     <div class="field">
       <%= label f, :phone %>
-      <%= text_input f, :phone, placeholder: "Address" %>
+      <%= text_input f, :phone, placeholder: "123456789" %>
       <%= error_tag f, :phone %>
     </div>
 

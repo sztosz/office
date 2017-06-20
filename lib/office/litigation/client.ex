@@ -12,8 +12,7 @@ defmodule Office.Litigation.Client do
   end
 
   def get!(id) do
-    Client
-    |> Repo.get!(id)
+    Repo.get!(Client, id)
   end
 
   def create(attrs \\ %{}) do
@@ -29,18 +28,11 @@ defmodule Office.Litigation.Client do
     |> Repo.update()
   end
 
-  def changeeset(%Client{} = client) do
-    client
-    |> Client.changeset()
-    # |> cast_assoc(:plaintiff)
-    # |> cast_assoc(:defendant)
-    # |> cast_assoc(:department)
-  end
-
   def new_changeset do
-    change(%Client{})
+    Client.changeset(%Client{})
   end
 
+  # TODO: Move to view maybe
   def edit_changeset(id) do
     client = Repo.get!(Client, id)
     emails_len = length(client.emails)
@@ -60,7 +52,12 @@ defmodule Office.Litigation.Client do
       client = %{client | phones: phones}
     end
 
-    changeset = Client.changeset(client)
+    Client.changeset(client)
   end
 
+  def delete(id) do
+    id
+    |> get!
+    |> Repo.delete
+  end
 end

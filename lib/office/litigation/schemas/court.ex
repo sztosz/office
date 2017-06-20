@@ -9,7 +9,7 @@ defmodule Office.Litigation.Schemas.Court do
     field :street, :string
     field :zip, :string
     field :phone, :integer
-    has_many :departments, Office.Department
+    has_many :departments, Office.Litigation.Schemas.Department
     has_many :cases, through: [:departments, :cases]
 
     timestamps()

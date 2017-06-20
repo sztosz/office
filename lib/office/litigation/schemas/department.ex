@@ -5,8 +5,8 @@ defmodule Office.Litigation.Schemas.Department do
 
   schema "departments" do
     field :name, :string
-    belongs_to :court, Office.Court
-    has_many :cases, Office.Case
+    belongs_to :court, Office.Litigation.Schemas.Court
+    has_many :cases, Office.Litigation.Schemas.Case
 
     timestamps()
   end

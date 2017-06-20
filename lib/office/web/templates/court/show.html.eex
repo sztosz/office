@@ -27,8 +27,8 @@
     <table class="ui very basic collapsing celled table">
       <thead>
         <tr>
-          <th>Departament</th>
-          <th>Actions</th>
+          <th>Department</th>
+          <th>Actions <%= link "New", to: court_department_path(@conn, :new, @court), class: "ui blue button mini" %></th>
         </tr>
       </thead>
       <tbody>
