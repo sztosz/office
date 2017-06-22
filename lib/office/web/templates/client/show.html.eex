@@ -1,0 +1,77 @@
+<h2>Show client</h2>
+<div class="ui piled segments">
+  <div class="ui segment">
+    <h4 class="ui dividing header">Client information</h4>
+    <div class="ui two column doubling stackable grid container">
+      <div class="column">
+        <h2 class="ui header">
+          <div class="sub header">Company</div>
+          <%= @client.company %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Name and Surname</div>
+          <%= "#{@client.name} #{@client.surname}" %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Address</div>
+          <%= @client.address %>
+        </h2>
+      </div>
+      <div class="column">
+        <h2 class="ui header">
+          <div class="sub header">Nip</div>
+          <%= @client.nip %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Regon</div>
+          <%= @client.regon %>
+        </h2>
+        <h2  class="ui header">
+          <div class="sub header">Krs</div>
+          <%= @client.krs %>
+        </h2>
+      </div>
+    </div>
+    <h4 class="ui dividing header">Emails and Phones</h4>
+    <div class="ui two column doubling stackable grid container">
+      <div class="column">
+        <%= for phone <- @client.phones do %>
+          <h2 class="ui header">
+            <div class="sub header">Phone</div>
+            <%= phone.phone %>
+          </h2>
+        <% end %>
+      </div>
+      <div class="column">
+        <%= for email <- @client.emails do %>
+        <h2 class="ui header">
+          <div class="sub header">Email</div>
+          <%= email.email %>
+        </h2>
+        <% end %>
+      </div>
+    </div>
+    <h4 class="ui dividing header">Actions</h4>
+    <%= link "Edit", to: client_path(@conn, :edit, @client), class: "ui blue button" %>
+    <%= link "Back", to: client_path(@conn, :index), class: "ui green button" %>
+    <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+  </div>
+</div>
+
+<div class="ui modal">
+  <div class="ui icon header">
+    <i class="red icon warning sign"></i>
+    Delete Clinet
+  </div>
+  <div class="content">
+    <h1>Are you sure you want to delete this client? This action cannot be reverted. If you delete Client, you will also delete all cases and files that are connected to this client!</h1>
+  </div>
+  <div class="actions">
+    <div class="ui green cancel button">
+      No
+    </div>
+    <div class="ui red ok button">
+      <%= link "Yes", to: client_path(@conn, :delete, @client), method: :delete %>
+    </div>
+  </div>
+</div>

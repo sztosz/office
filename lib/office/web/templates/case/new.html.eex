@@ -1,0 +1,9 @@
+<h2>New case</h2>
+
+<%= render "form.html", changeset: @changeset, conn: @conn,
+                        clients: @selects.clients,
+                        departments: @selects.departments,
+                        kinds: @selects.kinds,
+                        action: case_path(@conn, :create) %>
+
+<%= link "Back", to: case_path(@conn, :index) %>

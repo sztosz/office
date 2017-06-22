@@ -1,7 +1,7 @@
-defmodule Office.ClientControllerTest do
-  use Office.ConnCase
+defmodule Office.Web.ClientControllerTest do
+  use Office.Web.ConnCase
 
-  alias Office.Client
+  alias Office.Web.Client
   @valid_attrs %{address: "some content", email: "some content", krs: 42, name: "some content", nip: 42, phone: 42, regon: 42}
   @invalid_attrs %{}
 

@@ -1,0 +1,62 @@
+<h1>Show department</h1>
+<div class="ui piled segments">
+  <div class="ui segment">
+    <h4 class="ui dividing header">Departament information</h4>
+    <div class="ui two column doubling stackable grid container">
+      <div class="column">
+        <h2 class="ui header">
+          <div class="sub header">Name</div>
+          <%= @department.name %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Court name</div>
+          <%= @department.court.name %>
+        </h2>
+      </div>
+    </div>
+    <h4 class="ui dividing header">Actions</h4>
+    <%= link "Edit", to: court_department_path(@conn, :edit, @department.court, @department), class: "ui blue button" %>
+    <%= link "Back", to: court_department_path(@conn, :index, @department.court), class: "ui green button" %>
+    <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+    <h4 class="ui dividing header">Cases</h4>
+    <table class="ui very basic collapsing celled table">
+      <thead>
+        <tr>
+          <th>Cases</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for case <- @department.cases do %>
+          <tr>
+            <td>
+              <%= case.signature %>
+            </td>
+            <td>
+                <%= link "Show", to: case_path(@conn, :show, case), class: "ui green button tiny" %>
+                <%= link "Edit", to: case_path(@conn, :edit, case), class: "ui blue button tiny" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="ui modal">
+  <div class="ui icon header">
+    <i class="red icon warning sign"></i>
+    Delete Clinet
+  </div>
+  <div class="content">
+    <h1>Are you sure you want to delete this court? This action cannot be reverted. If you delete Client, you will also delete all cases and files that are connected to this client!</h1>
+  </div>
+  <div class="actions">
+    <div class="ui green cancel button">
+      No
+    </div>
+    <div class="ui red ok button">
+      <%= link "Yes", to: court_department_path(@conn, :delete, @department.court, @department), method: :delete %>
+    </div>
+  </div>
+</div>

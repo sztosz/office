@@ -1,0 +1,58 @@
+
+<div class="ui top secondary menu">
+  <h2>Listing courts</h2>
+  <div class="item">
+    <%= link "New Court", to: court_path(@conn, :new), class: "ui green button small" %>
+  </div>
+</div>
+
+<div class="ui styled fluid accordion">
+  <%= for court <- @courts do %>
+    <div class="title">
+      <div class="ui grid">
+        <div class="four wide column">
+          <i class="dropdown icon"></i><%= court.name %>
+        </div>
+        <div class="six wide column">
+          <i class="marker icon"></i><%= court.street %> <%= court.zip %> <%= court.city %>
+        </div>
+        <div class="two wide column">
+          <i class="phone icon"></i><%= court.phone %>
+        </div>
+        <div class="four wide column">
+          <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
+          <%= link "Edit", to: court_path(@conn, :edit, court), class: "ui blue button tiny" %>
+          <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <table class="ui celled striped table">
+        <thead>
+          <tr>
+            <th colspan="2">Department</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for department <- court.departments do %>
+            <tr>
+              <td>
+                <%= department.name %>
+              </td>
+              <td>
+                  <%= link "Show", to: court_department_path(@conn, :show, court, department), class: "ui green button tiny" %>
+                  <%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "ui blue button tiny" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+<%= link "New court", to: court_path(@conn, :new) %>
+<script>
+$(document).ready(function () {
+    $('.ui.accordion').accordion();
+});
+</script>
