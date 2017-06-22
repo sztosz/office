@@ -1,4 +1,4 @@
-defmodule Office.Auth.User do
+defmodule Office.Auth.Schemas.User do
   use Ecto.Schema
 
   import Ecto.Changeset

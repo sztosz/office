@@ -1,4 +1,4 @@
-defmodule Office.Repo.Migrations.CreateCase do
+defmodule Office.Repo.Migrations.CreateCaseEnum do
   use Ecto.Migration
 
   def up do

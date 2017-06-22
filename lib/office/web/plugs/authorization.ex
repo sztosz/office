@@ -15,7 +15,7 @@ defmodule Office.Web.Plugs.Authorization do
       user = conn.assigns[:current_user] ->
         put_current_user(conn, user)
         # TODO: REFACTOR OUT TO CONTEXT
-      user = user_id && repo.get(Office.Auth.User, user_id) ->
+      user = user_id && repo.get(Office.Auth.Schemas.User, user_id) ->
         put_current_user(conn, user)
       true ->
         assign(conn, :current_user, nil)

@@ -1,14 +1,12 @@
 defmodule Office.Litigation.Schemas.Court do
   use Ecto.Schema
-
   import Ecto.Changeset
+  alias Office.Litigation.Schemas.Court
 
   schema "courts" do
     field :name, :string
-    field :city, :string
-    field :street, :string
-    field :zip, :string
-    field :phone, :integer
+    belongs_to :phone, Office.Litigation.Schemas.Phone
+    belongs_to :address, Office.Litigation.Schemas.Address
     has_many :departments, Office.Litigation.Schemas.Department
     has_many :cases, through: [:departments, :cases]
 
@@ -18,9 +16,11 @@ defmodule Office.Litigation.Schemas.Court do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:name, :city, :street, :zip, :phone])
-    |> validate_required([:name, :city, :street, :zip, :phone])
+  def changeset(%Court{} = court, params \\ %{}) do
+    court
+    |> cast(params, [:name])
+    |> validate_required([:name])
+    |> cast_assoc(:address)
+    |> cast_assoc(:phone)
   end
 end
