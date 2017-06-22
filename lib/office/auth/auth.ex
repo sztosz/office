@@ -1,7 +1,7 @@
 defmodule Office.Auth.Auth do
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  alias Office.Auth.User, as: User
+  alias Office.Auth.Schemas.User, as: User
 
   def authenticate_user(user) do
     case user do

@@ -1,16 +1,17 @@
 defmodule Office.Litigation.Schemas.Phone do
   use Ecto.Schema
-
   import Ecto.Changeset
+  alias Office.Litigation.Schemas.Phone
 
-  embedded_schema do
-    field :phone, :integer
+  schema "phones" do
+    field :phone, :string
 
     timestamps()
   end
 
-  def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:phone])
+  def changeset(%Phone{} = phone, attrs) do
+    phone
+    |> cast(attrs, [:phone])
+    |> validate_required([:phone])
   end
 end

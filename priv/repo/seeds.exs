@@ -9,30 +9,50 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
 alias Comeonin.Bcrypt
 
-alias Office.Client
-alias Office.Email
-alias Office.Phone
-alias Office.Court
-alias Office.Department
-alias Office.Case
 alias Office.Repo
 
-defmodule SeedHelp do
-  def rand_10_int do
-    {int, _} = Integer.parse(Faker.Code.isbn10)
-    int
-  end
+alias Office.Litigation.Schemas.Address
+alias Office.Litigation.Schemas.Client
+alias Office.Litigation.Schemas.Phone
+alias Office.Litigation.Schemas.Email
+alias Office.Litigation.Schemas.ClientsPhones
+alias Office.Litigation.Schemas.ClientsEmails
+alias Office.Litigation.Schemas.Court
+alias Office.Litigation.Schemas.Department
+alias Office.Litigation.Schemas.Case
+alias Office.Litigation.Schemas.Hearing
 
+
+defmodule SeedHelp do
   def create_admin(login, pass) do
     Repo.insert!(
-      %Office.User{
+      %Office.Auth.Schemas.User{
         name: login,
         username: login,
         password_hash: Bcrypt.hashpwsalt(pass)
       }
     )
+  end
+
+  def address do
+    Repo.insert!(
+      %Address{
+        zip: Faker.Address.zip,
+        town: Faker.Address.city,
+        street: Faker.Address.street_name
+      }
+    )
+  end
+
+  def phone do
+   Repo.insert!(%Phone{phone: Enum.random(1_000_000_000..9_999_999_999) |> Integer.to_string})
+   end
+
+  def email do
+    Repo.insert!(%Email{email: Faker.Internet.email})
   end
 end
 
@@ -40,59 +60,64 @@ Faker.start
 
 # Inserting clients
 clients =
-  for _ <- 0..30 do
-    Repo.insert!(
+  for _ <- 1..30 do
+    client = Repo.insert!(
       %Client{
         name: Faker.Name.first_name,
         surname: Faker.Name.last_name,
         company: Faker.Company.name,
-        address: Faker.Address.street_address(true),
-        nip: SeedHelp.rand_10_int,
-        regon: SeedHelp.rand_10_int,
-        krs: SeedHelp.rand_10_int,
-        phones: for _ <- 1..:rand.uniform(3) do
-          %Phone{phone: SeedHelp.rand_10_int}
-        end,
-        emails: for _ <- 1..:rand.uniform(3) do
-          %Email{email: Faker.Internet.email}
-        end}
+        address: SeedHelp.address(),
+        nip: Enum.random(1_000_000_000..9_999_999_999) |> Integer.to_string,
+        krs: Enum.random(1_000_000_000..9_999_999_999) |> Integer.to_string,
+        }
     )
-end
+    for _ <- 1..:rand.uniform(5) do
+      Repo.insert!(%ClientsPhones{phone: SeedHelp.phone, client: client})
+    end
+    for _ <- 1..:rand.uniform(5) do
+      Repo.insert!(%ClientsEmails{email: SeedHelp.email, client: client})
+    end
+    client
+  end
 
 # Inserting courts with departaments
 courts =
-  for _ <- 0..10 do
-    city = Faker.Address.city()
+  for _ <- 1..10 do
+    address = SeedHelp.address()
 
     Repo.insert!(
       %Court{
-        name: "COURT #{city}",
-        city: city,
-        street: Faker.Address.street_address(),
-        zip: Faker.Address.zip_code(),
-        phone: SeedHelp.rand_10_int(),
+        name: "SĄD OKRĘGOWY W #{address.town}",
+        address: address,
+        phone: SeedHelp.phone,
         departments: [
-          %Department{name: Faker.Company.name},
-          %Department{name: Faker.Company.name},
-          %Department{name: Faker.Company.name}
+          %Department{name: Faker.Company.name, address: address, phone: SeedHelp.phone, email: SeedHelp.email},
+          %Department{name: Faker.Company.name, address: address, phone: SeedHelp.phone, email: SeedHelp.email},
+          %Department{name: Faker.Company.name, address: address, phone: SeedHelp.phone, email: SeedHelp.email},
         ]}
-    )
-end
+      )
+  end
 
 # Insert some cases
-for i <- 0..10 do
-  kind = if (:erlang.rem(i, 2) == 0), do: :civil, else: :criminal
-  plaintiff = Enum.at(clients, i)
-  defendant = Enum.at(clients, i + 1)
-  court = Enum.at(courts, i)
-  department = Enum.at(court.departments, 1)
-  case =
+cases =
+  for i <- 1..20 do
     %Case{}
-    |> Ecto.Changeset.change(signature: Faker.Company.bullshit, kind: kind)
-    |> Ecto.Changeset.put_assoc(:plaintiff, plaintiff)
-    |> Ecto.Changeset.put_assoc(:defendant, defendant)
-    |> Ecto.Changeset.put_assoc(:department, department)
-  Repo.insert!(case)
+    |> Ecto.Changeset.change(signature: Faker.Company.bullshit, kind: Enum.random(CaseKindsEnum.__enum_map__), value: :rand.uniform * 100)
+    |> Ecto.Changeset.put_assoc(:plaintiff, clients |> Enum.at(i))
+    |> Ecto.Changeset.put_assoc(:defendant, clients |> Enum.at(i + 10))
+    |> Ecto.Changeset.put_assoc(:department, Enum.random(courts).departments |> Enum.random)
+    |> Repo.insert!
+  end
+
+for i <- 1..20 do
+  date = DateTime.utc_now |> DateTime.to_unix
+  date = date + Enum.random(10_000..99_999) |> DateTime.from_unix!
+  courtroom = Enum.random(0..999)
+  summoned = Faker.Name.first_name <> " " <> Faker.Name.last_name
+  %Hearing{}
+  |> Ecto.Changeset.change(date: date, courtroom: courtroom, summoned: summoned)
+  |> Ecto.Changeset.put_assoc(:case, cases |> Enum.random )
 end
+
 
 SeedHelp.create_admin("admin", "admin")
