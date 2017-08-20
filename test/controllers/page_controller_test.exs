@@ -1,5 +1,5 @@
-defmodule Office.Web.PageControllerTest do
-  use Office.Web.ConnCase
+defmodule OfficeWeb.PageControllerTest do
+  use OfficeWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

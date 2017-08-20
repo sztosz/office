@@ -29,49 +29,39 @@
     </div>
 
     <div class="field">
-      <%= label f, :address %>
-      <%= text_input f, :address, placeholder: "Address" %>
+      <%= inputs_for f, :address, fn a -> %>
+        <div class="fields">
+          <div class="five wide field">
+            <%= label a, :street %>
+            <%= text_input a, :street, placeholder: "Al. Marszałkowska 1" %>
+            <%= error_tag a, :street %>
+          </div>
+
+          <div class="five wide field">
+            <%= label a, :zip %>
+            <%= text_input a, :zip, placeholder: "00-000" %>
+            <%= error_tag a, :zip %>
+          </div>
+
+          <div class="six wide field">
+            <%= label a, :town %>
+            <%= text_input a, :town, placeholder: "Warszawa" %>
+            <%= error_tag a, :town %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
     <div class="fields">
-      <div class="five wide field">
+      <div class="eight wide field">
         <%= label f, :nip %>
         <%= number_input f, :nip, placeholder: "NIP" %>
       </div>
 
-      <div class="five wide field">
-        <%= label f, :regon %>
-        <%= number_input f, :regon, placeholder: "REGON" %>
-      </div>
-
-      <div class="six wide field">
+      <div class="eight wide field">
         <%= label f, :krs %>
         <%= number_input f, :krs, placeholder: "KRS" %>
       </div>
-    </div>
-
-    <h4 class="ui dividing header">Emails and Phones</h4>
-
-    <div class="inline fields">
-      <%= inputs_for f, :emails, fn i -> %>
-      <div class="six wide inline field">
-        <i class="at icon"></i>
-        <%= text_input i, :email, placeholder: "Email" %>
-        <%= error_tag i, :email %>
-      </div>
-      <% end %>
-      <%= error_tag f, :emails %>
-    </div>
-
-    <div class="inline fields">
-      <%= inputs_for f, :phones, fn i -> %>
-      <div class="six wide inline field">
-        <i class="mail square icon"></i>
-        <%= number_input i, :phone, placeholder: "phone" %>
-        <%= error_tag i, :phone %>
-      </div>
-      <% end %>
-      <%= error_tag f, :phones %>
     </div>
 
     <%= submit "Submit", class: "ui green button" %>

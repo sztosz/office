@@ -5,9 +5,8 @@ defmodule Office.Auth.Schemas.User do
 
   schema "users" do
     field :name, :string
-    field :username, :string
-    field :password, :string, virtual: true
-    field :password_hash, :string
+    field :email, :string
+    field :password, :string
 
     timestamps()
   end
@@ -17,7 +16,7 @@ defmodule Office.Auth.Schemas.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :username])
-    |> unique_constraint(:username)
+    |> cast(params, [:name, :email])
+    |> unique_constraint([:name, :email])
   end
 end

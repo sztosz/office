@@ -17,7 +17,7 @@
                 <div class="content">
                   <div class="summary">
                     <%= for phone <- client.phones do %>
-                      <i class="call square icon"></i><span><%= phone.phone %></span><br>
+                      <i class="call square icon"></i><span><%= phone.number %></span><br>
                     <% end %>
                   </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="content">
                   <div class="summary">
                     <%= for email <- client.emails do %>
-                      <i class="at icon"></i><span><%= email.email %></span><br>
+                      <i class="at icon"></i><span><%= email.address %></span><br>
                     <% end %>
                   </div>
                 </div>
@@ -34,7 +34,7 @@
               <div class="event">
                 <div class="content">
                   <div class="summary">
-                    <i class="mail square icon"></i><span><%= client.address %></span><br>
+                    <i class="mail square icon"></i><%= single_line_address(client.address) %><br>
                   </div>
                 </div>
               </div>

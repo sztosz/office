@@ -1,0 +1,5 @@
+<h2>Edit Phone</h2>
+
+<%= render "form.html", changeset: @changeset, conn: @conn, client_id: @client_id,
+                        action: client_email_path(@conn, :update, @client_id, @email) %>
+

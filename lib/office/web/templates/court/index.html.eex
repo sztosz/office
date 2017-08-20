@@ -14,10 +14,10 @@
           <i class="dropdown icon"></i><%= court.name %>
         </div>
         <div class="six wide column">
-          <i class="marker icon"></i><%= court.street %> <%= court.zip %> <%= court.city %>
+          <i class="marker icon"></i><%= court.address.street %> <%= court.address.zip %> <%= court.address.town %>
         </div>
         <div class="two wide column">
-          <i class="phone icon"></i><%= court.phone %>
+          <i class="phone icon"></i><%= court.phone.phone %>
         </div>
         <div class="four wide column">
           <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>

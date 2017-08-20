@@ -17,9 +17,11 @@ defmodule Office.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Office.Application, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+    [
+      mod: {Office.Application, []},
+#     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+#                    :phoenix_ecto, :postgrex, :comeonin]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -30,18 +32,24 @@ defmodule Office.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.3.0-rc1"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.2.3"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"},
-     {:credo, ">= 0.8.1", only: [:dev, :test]},
-     {:faker, "~> 0.8", only: [:dev, :test]},
-     {:comeonin, "~> 2.0"},
-     {:ecto_enum, "~> 1.0"}]
+    [
+      {:phoenix, "~> 1.3"},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_ecto, "~> 3.2"},
+      {:postgrex, ">= 0.0.0"},
+      {:phoenix_html, "~> 2.10"},
+      {:phoenix_live_reload, "~> 1.1", only: :dev},
+      {:gettext, "~> 0.13"},
+      {:cowboy, "~> 1.1"},
+      {:credo, ">= 0.8.6", only: [:dev, :test]},
+      {:faker, "~> 0.8", only: [:dev, :test]},
+      {:ecto_enum, "~> 1.0"},
+      {:ueberauth, "~> 0.4"},
+      {:guardian, "~> 0.14"},
+      {:ueberauth_identity, "~> 0.2"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"},
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

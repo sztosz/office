@@ -3,7 +3,7 @@ defmodule Office.Repo.Migrations.CreateOffice.Office.Litigation.Schemas.Email do
 
   def change do
     create table(:emails) do
-      add :email, :string, null: false
+      add :address, :string, null: false
 
       timestamps()
     end

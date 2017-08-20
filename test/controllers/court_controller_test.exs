@@ -1,7 +1,7 @@
-defmodule Office.Web.CourtControllerTest do
-  use Office.Web.ConnCase
+defmodule OfficeWeb.CourtControllerTest do
+  use OfficeWeb.ConnCase
 
-  alias Office.Web.Court
+  alias OfficeWeb.Court
   @valid_attrs %{city: "some content", name: "some content", phone: 42, street: "some content", zip: "some content"}
   @invalid_attrs %{}
 

@@ -1,9 +1,7 @@
-defmodule Office.Web.ClientController do
-  use Office.Web, :controller
+defmodule OfficeWeb.ClientController do
+  use OfficeWeb, :controller
 
   alias Office.Litigation.Client
-
-  plug :authenticate_user
 
   def index(conn, _params) do
     clients = Client.list_all
@@ -53,10 +51,19 @@ defmodule Office.Web.ClientController do
         conn
         |> put_flash(:info, "Client deleted successfully.")
         |> redirect(to: client_path(conn, :index))
-      _ ->
+      {:error, :client_phones, _, _} ->
         conn
-        |> put_flash(:error, "Something went wrong.")
-        |> redirect(to: client_path(conn, :index))
+        |> put_flash(:error, "Something went wrong, can't delete all phones.")
+        |> redirect(to: client_path(conn, :show, id))
+      {:error, :client_emails, _, _} ->
+        conn
+        |> put_flash(:error, "Something went wrong, can't delete all emails.")
+        |> redirect(to: client_path(conn, :show, id))
+      {:error, :client, _, _} ->
+        conn
+        |> put_flash(:error, "Something went wrong, can't delete client.")
+        |> redirect(to: client_path(conn, :show, id))
     end
   end
 end
+

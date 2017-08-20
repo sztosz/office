@@ -1,5 +1,5 @@
-defmodule Office.Web.LayoutView do
-  use Office.Web, :view
+defmodule OfficeWeb.LayoutView do
+  use OfficeWeb, :view
 
   def set_lang(conn, lang) do
     conn.request_path <> "?locale=#{lang}"

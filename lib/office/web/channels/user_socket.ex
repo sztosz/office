@@ -1,4 +1,4 @@
-defmodule Office.Web.UserSocket do
+defmodule OfficeWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels

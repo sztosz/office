@@ -1,9 +1,9 @@
-defmodule Office.Web.CourtController do
-  use Office.Web, :controller
+defmodule OfficeWeb.CourtController do
+  use OfficeWeb, :controller
 
   alias Office.Litigation.Court
 
-  plug :authenticate_user
+#  plug :authenticate_user
 
   def index(conn, _params) do
     courts = Court.list_all

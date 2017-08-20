@@ -1,3 +1,3 @@
-defmodule Office.Web.DepartmentView do
-  use Office.Web, :view
+defmodule OfficeWeb.DepartmentView do
+  use OfficeWeb, :view
 end

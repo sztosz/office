@@ -1,5 +1,5 @@
-defmodule Office.Web.Router do
-  use Office.Web, :router
+defmodule OfficeWeb.Router do
+  use OfficeWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,24 +7,41 @@ defmodule Office.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Office.Web.Plugs.Authorization, repo: Office.Repo
-    plug Office.Web.Plugs.Locale
+    plug OfficeWeb.Plugs.Locale
+  end
+
+  pipeline :browser_auth do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.EnsureAuthenticated, handler: OfficeWeb.Token
+    plug Guardian.Plug.LoadResource
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/", Office.Web do
-    pipe_through :browser # Use the default browser stack
+  scope "/", OfficeWeb do
+    pipe_through :browser
 
     get "/", PageController, :index
-    resources "/clients", ClientController
-    resources "/sessions", SessionController, only: [:new, :create]
+
+    get "/session/new", SessionController, :new
+    post "/session/identity/callback", SessionController, :identity_callback
+  end
+
+  scope "/", OfficeWeb do
+    pipe_through [:browser, :browser_auth]
+
+    resources "/clients", ClientController do
+      resources "/phones", PhoneController, except: [:index, :show]
+      resources "/emails", EmailController, except: [:index, :show]
+    end
     resources "/courts", CourtController do
       resources "/departments", DepartmentController
     end
     resources "/cases", CaseController
+#    resources "/phones", PhoneController, except: [:index, :show]
+#    resources "/emails", EmailController, except: [:index, :show]
   end
 
   # Other scopes may use custom stacks.

@@ -3,7 +3,7 @@ defmodule Office.Repo.Migrations.CreateOffice.Office.Litigation.Schemas.Phone do
 
   def change do
     create table(:phones) do
-      add :phone, :string, null: false
+      add :number, :string, null: false
 
       timestamps()
     end

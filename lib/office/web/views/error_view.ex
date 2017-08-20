@@ -1,5 +1,5 @@
-defmodule Office.Web.ErrorView do
-  use Office.Web, :view
+defmodule OfficeWeb.ErrorView do
+  use OfficeWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"

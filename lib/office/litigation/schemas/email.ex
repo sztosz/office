@@ -4,14 +4,14 @@ defmodule Office.Litigation.Schemas.Email do
   alias Office.Litigation.Schemas.Email
 
   schema "emails" do
-    field :email, :string
+    field :address, :string
 
     timestamps()
   end
 
-  def changeset(%Email{} = email, attrs) do
+  def changeset(%Email{} = email, params \\ %{}) do
     email
-    |> cast(attrs, [:email])
-    |> validate_required([:email])
+    |> cast(params, [:address])
+    |> validate_required([:address])
   end
 end

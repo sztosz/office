@@ -1,4 +1,4 @@
-defmodule Office.Web.ConnCase do
+defmodule OfficeWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,7 +25,7 @@ defmodule Office.Web.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Office.Web.Router.Helpers
+      import OfficeWeb.Router.Helpers
 
       # The default endpoint for testing
       @endpoint Office.Endpoint

@@ -1,3 +1,3 @@
-defmodule Office.Web.PageView do
-  use Office.Web, :view
+defmodule OfficeWeb.PageView do
+  use OfficeWeb, :view
 end

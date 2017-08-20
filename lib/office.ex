@@ -1,7 +1,7 @@
 defmodule Office.Application do
   use Application
 
-  alias Office.Web.Endpoint
+  alias OfficeWeb.Endpoint
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
