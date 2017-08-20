@@ -1,5 +1,5 @@
-defmodule Office.Web.CaseView do
-  use Office.Web, :view
+defmodule OfficeWeb.CaseView do
+  use OfficeWeb, :view
 
   def clients_option(clients) do
     Enum.map(clients, &{&1.name, &1.id})

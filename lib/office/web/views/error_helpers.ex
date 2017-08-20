@@ -1,4 +1,4 @@
-defmodule Office.Web.ErrorHelpers do
+defmodule OfficeWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Office.Web.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Office.Web.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(OfficeWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Office.Web.Gettext, "errors", msg, opts)
+      Gettext.dgettext(OfficeWeb.Gettext, "errors", msg, opts)
     end
   end
 end

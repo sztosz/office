@@ -1,9 +1,15 @@
-defmodule Office.Web.ClientView do
-  use Office.Web, :view
+defmodule OfficeWeb.ClientView do
+  use OfficeWeb, :view
 
   alias Office.Litigation.Schemas.Phone
   alias Office.Litigation.Schemas.Email
   alias Office.Litigation.Schemas.Client
+  alias Office.Litigation.Schemas.Address
+
+  def single_line_address(%Address{} = address) do
+    address.street <> " " <> address.zip <> " " <> address.town
+  end
+
 
   def with_empty_embeds(client) do
     changes = client

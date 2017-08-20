@@ -1,4 +1,4 @@
-defmodule Office.Web.Plugs.Locale do
+defmodule OfficeWeb.Plugs.Locale do
   import Plug.Conn
 
   def init(_opts) do
@@ -9,7 +9,7 @@ defmodule Office.Web.Plugs.Locale do
     case conn.params["locale"] || get_session(conn, :locale) do
       nil -> conn
       locale ->
-        Gettext.put_locale(Office.Web.Gettext, locale)
+        Gettext.put_locale(OfficeWeb.Gettext, locale)
         put_session(conn, :locale, locale)
     end
   end

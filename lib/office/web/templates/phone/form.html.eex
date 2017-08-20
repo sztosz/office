@@ -1,0 +1,21 @@
+<%= form_for @changeset, @action, [class: "ui form"], fn f -> %>
+<%= if @changeset.action do %>
+<div class="alert alert-danger">
+  <p>Oops, something went wrong! Please check the errors below.</p>
+</div>
+<% end %>
+<div class="ui piled segments">
+  <div class="ui segment">
+    <h4 class="ui dividing header">Edit Phone</h4>
+    <div class="fields">
+      <div class="twelve wide field">
+        <%= label f, :number %>
+        <%= text_input f, :number, placeholder: "Phone number" %>
+        <%= error_tag f, :number %>
+      </div>
+    </div>
+    <%= submit "Submit", class: "ui green button" %>
+    <%= link "Back", to: client_path(@conn, :show, @client_id), class: "ui blue button" %>
+  </div>
+</div>
+<% end %>

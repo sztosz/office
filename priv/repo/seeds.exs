@@ -10,7 +10,6 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Comeonin.Bcrypt
 
 alias Office.Repo
 
@@ -18,8 +17,8 @@ alias Office.Litigation.Schemas.Address
 alias Office.Litigation.Schemas.Client
 alias Office.Litigation.Schemas.Phone
 alias Office.Litigation.Schemas.Email
-alias Office.Litigation.Schemas.ClientsPhones
-alias Office.Litigation.Schemas.ClientsEmails
+alias Office.Litigation.Schemas.ClientPhone
+alias Office.Litigation.Schemas.ClientEmail
 alias Office.Litigation.Schemas.Court
 alias Office.Litigation.Schemas.Department
 alias Office.Litigation.Schemas.Case
@@ -31,8 +30,8 @@ defmodule SeedHelp do
     Repo.insert!(
       %Office.Auth.Schemas.User{
         name: login,
-        username: login,
-        password_hash: Bcrypt.hashpwsalt(pass)
+        email: login,
+        password: Argon2.hash_pwd_salt(pass)
       }
     )
   end
@@ -48,11 +47,11 @@ defmodule SeedHelp do
   end
 
   def phone do
-   Repo.insert!(%Phone{phone: Enum.random(1_000_000_000..9_999_999_999) |> Integer.to_string})
-   end
+    Repo.insert!(%Phone{number: Enum.random(1_000_000_000..9_999_999_999) |> Integer.to_string})
+  end
 
   def email do
-    Repo.insert!(%Email{email: Faker.Internet.email})
+    Repo.insert!(%Email{address: Faker.Internet.email})
   end
 end
 
@@ -72,10 +71,10 @@ clients =
         }
     )
     for _ <- 1..:rand.uniform(5) do
-      Repo.insert!(%ClientsPhones{phone: SeedHelp.phone, client: client})
+      Repo.insert!(%ClientPhone{phone: SeedHelp.phone, client: client})
     end
     for _ <- 1..:rand.uniform(5) do
-      Repo.insert!(%ClientsEmails{email: SeedHelp.email, client: client})
+      Repo.insert!(%ClientEmail{email: SeedHelp.email, client: client})
     end
     client
   end

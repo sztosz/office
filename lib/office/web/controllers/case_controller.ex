@@ -1,12 +1,12 @@
-defmodule Office.Web.CaseController do
-  use Office.Web, :controller
+defmodule OfficeWeb.CaseController do
+  use OfficeWeb, :controller
 
   alias Office.Litigation.Case
   alias Office.Litigation.Client
   alias Office.Litigation.Court
   alias Office.Litigation.Department
 
-  plug :authenticate_user
+#  plug :authenticate_user
 
   def index(conn, _params) do
     cases = Case.list_all()
@@ -41,11 +41,6 @@ defmodule Office.Web.CaseController do
     kinds = CaseKindsEnum.__enum_map__
     changeset = Case.edit_changeset(id)
     render(conn, "edit.html", id: id, changeset: changeset, clients: clients, departments: departments, kinds: kinds, conn: conn)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    changeset = Court.edit_changeset(id)
-    render(conn, "edit.html", id: id, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "case" => case_params}) do

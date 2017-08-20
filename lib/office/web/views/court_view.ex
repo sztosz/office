@@ -1,3 +1,3 @@
-defmodule Office.Web.CourtView do
-  use Office.Web, :view
+defmodule OfficeWeb.CourtView do
+  use OfficeWeb, :view
 end

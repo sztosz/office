@@ -1,3 +1,3 @@
-defmodule Office.Web.SessionView do
-  use Office.Web, :view
+defmodule OfficeWeb.SessionView do
+  use OfficeWeb, :view
 end

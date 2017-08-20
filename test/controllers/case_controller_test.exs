@@ -1,7 +1,7 @@
-defmodule Office.Web.CaseControllerTest do
-  use Office.Web.ConnCase
+defmodule OfficeWeb.CaseControllerTest do
+  use OfficeWeb.ConnCase
 
-  alias Office.Web.Case
+  alias OfficeWeb.Case
   @valid_attrs %{signature: "some content"}
   @invalid_attrs %{}
 

@@ -9,9 +9,9 @@ defmodule Office.Litigation.Schemas.Client do
     field :company, :string
     field :nip, :string
     field :krs, :string
-    has_many :clients_emails, Office.Litigation.Schemas.ClientsEmails
+    has_many :clients_emails, Office.Litigation.Schemas.ClientEmail
     has_many :emails, through: [:clients_emails, :email]
-    has_many :clients_phones, Office.Litigation.Schemas.ClientsPhones
+    has_many :clients_phones, Office.Litigation.Schemas.ClientPhone
     has_many :phones, through: [:clients_phones, :phone]
     has_many :plaintiff_cases, Office.Litigation.Schemas.Department
     has_many :defendant_cases, Office.Litigation.Schemas.Department

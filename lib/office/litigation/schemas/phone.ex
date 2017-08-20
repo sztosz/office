@@ -4,14 +4,14 @@ defmodule Office.Litigation.Schemas.Phone do
   alias Office.Litigation.Schemas.Phone
 
   schema "phones" do
-    field :phone, :string
+    field :number, :string
 
     timestamps()
   end
 
-  def changeset(%Phone{} = phone, attrs) do
+  def changeset(%Phone{} = phone, params \\ %{}) do
     phone
-    |> cast(attrs, [:phone])
-    |> validate_required([:phone])
+    |> cast(params, [:number])
+    |> validate_required([:number])
   end
 end

@@ -1,12 +1,12 @@
-defmodule Office.Web do
+defmodule OfficeWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Office.Web, :controller
-      use Office.Web, :view
+      use OfficeWeb, :controller
+      use OfficeWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -18,44 +18,35 @@ defmodule Office.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: Office.Web
+      use Phoenix.Controller, namespace: OfficeWeb
 
       import Plug.Conn
 
-      # alias Office.Repo
-      alias Office.Web.Plugs.Authorization
+      alias OfficeWeb.Plugs.Authorization
 
-      # import Ecto
-      # import Ecto.Changeset
-      # import Ecto.Query
-
-      import Office.Web.Router.Helpers
-      import Office.Web.Gettext
-      import Office.Web.Plugs.Authorization, only: [authenticate_user: 2]
+      import OfficeWeb.Router.Helpers
+      import OfficeWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/office/web/templates", namespace: Office.Web
+      use Phoenix.View, root: "lib/office/web/templates", namespace: OfficeWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
-      # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Office.Web.Router.Helpers
-      import Office.Web.ErrorHelpers
-      import Office.Web.Gettext
+      import OfficeWeb.Router.Helpers
+      import OfficeWeb.ErrorHelpers
+      import OfficeWeb.Gettext
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
-
-      import Office.Web.Plugs.Authorization, only: [authenticate_user: 2]
     end
   end
 
@@ -66,7 +57,7 @@ defmodule Office.Web do
       alias Office.Repo
       import Ecto
       import Ecto.Query
-      import Office.Web.Gettext
+      import OfficeWeb.Gettext
     end
   end
 
