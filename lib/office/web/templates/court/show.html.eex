@@ -10,11 +10,11 @@
         </h2>
         <h2 class="ui header">
           <div class="sub header">Phone</div>
-          <%= @court.phone %>
+          <%= @court.phone.number %>
         </h2>
         <h2 class="ui header">
           <div class="sub header">Address</div>
-          <%= @court.street %> <%= @court.zip %> <%= @court.city %>
+          <%= @court.address.street %> <%= @court.address.zip %> <%= @court.address.town %>
         </h2>
       </div>
       <div class="column"></div>

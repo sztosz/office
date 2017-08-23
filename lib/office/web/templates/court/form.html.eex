@@ -15,29 +15,33 @@
     </div>
 
     <div class="fields">
-      <div class="eight wide field">
-        <%= label f, :street %>
-        <%= text_input f, :street, placeholder: "Street" %>
-        <%= error_tag f, :street %>
-      </div>
+      <%= inputs_for f, :address, fn a -> %>
+        <div class="eight wide field">
+          <%= label a, :street %>
+          <%= text_input a, :street, placeholder: "Street" %>
+          <%= error_tag a, :street %>
+        </div>
 
-      <div class="three wide field">
-        <%= label f, :zip %>
-        <%= text_input f, :zip, placeholder: "000-00" %>
-        <%= error_tag f, :zip %>
-      </div>
+        <div class="three wide field">
+          <%= label a, :zip %>
+          <%= text_input a, :zip, placeholder: "000-00" %>
+          <%= error_tag a, :zip %>
+        </div>
 
-      <div class="five wide field">
-        <%= label f, :city %>
-        <%= text_input f, :city, placeholder: "City" %>
-        <%= error_tag f, :city %>
-      </div>
+        <div class="five wide field">
+          <%= label a, :city %>
+          <%= text_input a, :town, placeholder: "Town" %>
+          <%= error_tag a, :town %>
+        </div>
+      <% end %>
     </div>
 
     <div class="field">
-      <%= label f, :phone %>
-      <%= text_input f, :phone, placeholder: "123456789" %>
-      <%= error_tag f, :phone %>
+      <%= inputs_for f, :phone, fn p -> %>
+        <%= label p, :number %>
+        <%= text_input p, :number, placeholder: "123456789" %>
+        <%= error_tag p, :number %>
+      <% end %>
     </div>
 
     <%= submit "Submit", class: "ui green button" %>

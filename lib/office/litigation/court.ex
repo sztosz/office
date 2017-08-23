@@ -15,6 +15,8 @@ defmodule Office.Litigation.Court do
     Court
     |> Repo.get!(id)
     |> Repo.preload(:departments)
+    |> Repo.preload(:phone)
+    |> Repo.preload(:address)
   end
 
   def create(attrs \\ %{}) do
@@ -35,8 +37,8 @@ defmodule Office.Litigation.Court do
   end
 
   def edit_changeset(id) do
-    Court
-    |> Repo.get!(id)
+    id
+    |> get!
     |> Court.changeset
   end
 
