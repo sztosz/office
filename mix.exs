@@ -43,6 +43,7 @@ defmodule Office.Mixfile do
       {:cowboy, "~> 1.1"},
       {:credo, ">= 0.8.6", only: [:dev, :test]},
       {:faker, "~> 0.8", only: [:dev, :test]},
+      {:ecto, "~> 2.1.0"},
       {:ecto_enum, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
       {:guardian, "~> 0.14"},

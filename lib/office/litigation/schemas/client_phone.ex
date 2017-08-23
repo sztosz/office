@@ -12,7 +12,7 @@ defmodule Office.Litigation.Schemas.ClientPhone do
 
   def changeset(%ClientPhone{} = client_phone, attrs) do
     client_phone
-    |> cast(attrs, [:phone_id, :client_id])
+    |> cast(attrs, [:phone_id, :client_id ])
     |> cast_assoc(:phone)
     |> assoc_constraint(:client)
     |> assoc_constraint(:phone)

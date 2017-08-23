@@ -17,7 +17,7 @@
           <i class="marker icon"></i><%= court.address.street %> <%= court.address.zip %> <%= court.address.town %>
         </div>
         <div class="two wide column">
-          <i class="phone icon"></i><%= court.phone.phone %>
+          <i class="phone icon"></i><%= court.phone.number %>
         </div>
         <div class="four wide column">
           <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
