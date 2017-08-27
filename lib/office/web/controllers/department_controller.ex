@@ -9,7 +9,6 @@ defmodule OfficeWeb.DepartmentController do
   def index(conn, %{"court_id" => court_id}) do
     court = Court.get!(court_id)
     departments = Department.list_all(court)
-
     render(conn, "index.html", departments: departments, court: court)
   end
 
@@ -19,17 +18,13 @@ defmodule OfficeWeb.DepartmentController do
   end
 
   def create(conn, %{"court_id" => court_id, "department" => department_params}) do
-    case Department.create(court_id, department_params) do
+    case Map.put(department_params, "court_id", court_id) |> Department.create do
       {:ok, department} ->
         conn
         |> put_flash(:info, "Court created successfully.")
         |> redirect(to: court_department_path(conn, :show, court_id, department))
       {:error,  %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
-      {:error, :ivalid_court_id} ->
-        conn
-        |> put_flash(:info, "Invalid Court id in path.")
-        |> redirect(to: court_path(conn, :index))
+        render(conn, "new.html", changeset: changeset, court_id: court_id)
     end
   end
 
@@ -60,10 +55,18 @@ defmodule OfficeWeb.DepartmentController do
         conn
         |> put_flash(:info, "Court deleted successfully.")
         |> redirect(to: court_department_path(conn, :index, court_id))
-      _ ->
+      {:error, :cases, _, _} ->
         conn
-        |> put_flash(:error, "Something went wrong.")
-        |> redirect(to: court_department_path(conn, :index, court_id))
+        |> put_flash(:error, "Something went wrong, can't delete all cases.")
+        |> redirect(to: court_department_path(conn, :show, court_id))
+      {:error, :hearings, _, _} ->
+        conn
+        |> put_flash(:error, "Something went wrong, can't delete all hearings.")
+        |> redirect(to: court_department_path(conn, :show, court_id))
+      {:error, :department, _, _} ->
+        conn
+        |> put_flash(:error, "Something went wrong, can't delete department.")
+        |> redirect(to: court_department_path(conn, :show, court_id))
     end
   end
 end

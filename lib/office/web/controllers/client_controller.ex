@@ -1,6 +1,7 @@
 defmodule OfficeWeb.ClientController do
   use OfficeWeb, :controller
 
+  alias OfficeWeb.ErrorHelpers
   alias Office.Litigation.Client
 
   def index(conn, _params) do
@@ -51,19 +52,16 @@ defmodule OfficeWeb.ClientController do
         conn
         |> put_flash(:info, "Client deleted successfully.")
         |> redirect(to: client_path(conn, :index))
-      {:error, :client_phones, _, _} ->
+      {:error, %{errors: errors}} ->
         conn
-        |> put_flash(:error, "Something went wrong, can't delete all phones.")
+        |> put_flash(:error, ErrorHelpers.flash_errors(errors))
         |> redirect(to: client_path(conn, :show, id))
-      {:error, :client_emails, _, _} ->
+      _ ->
         conn
-        |> put_flash(:error, "Something went wrong, can't delete all emails.")
-        |> redirect(to: client_path(conn, :show, id))
-      {:error, :client, _, _} ->
-        conn
-        |> put_flash(:error, "Something went wrong, can't delete client.")
+        |> put_flash(:error, "Something got really sideways!")
         |> redirect(to: client_path(conn, :show, id))
     end
   end
+
 end
 

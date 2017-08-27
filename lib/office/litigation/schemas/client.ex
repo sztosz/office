@@ -13,8 +13,8 @@ defmodule Office.Litigation.Schemas.Client do
     has_many :emails, through: [:clients_emails, :email]
     has_many :clients_phones, Office.Litigation.Schemas.ClientPhone
     has_many :phones, through: [:clients_phones, :phone]
-    has_many :plaintiff_cases, Office.Litigation.Schemas.Department
-    has_many :defendant_cases, Office.Litigation.Schemas.Department
+    has_many :plaintiff_cases, Office.Litigation.Schemas.Case
+    has_many :defendant_cases, Office.Litigation.Schemas.Case
     belongs_to :address, Office.Litigation.Schemas.Address
 
     timestamps()
@@ -26,7 +26,8 @@ defmodule Office.Litigation.Schemas.Client do
   def changeset(%Client{} = client, params \\ %{}) do
     client
     |> cast(params, [:name, :surname, :company, :nip, :krs])
+    |> no_assoc_constraint(:plaintiff_cases, name: :cases_plaintiff_id_fkey)
+    |> no_assoc_constraint(:defendant_cases, name: :cases_defendant_id_fkey)
     |> cast_assoc(:address)
-
   end
 end

@@ -99,7 +99,7 @@ courts =
 
 # Insert some cases
 cases =
-  for i <- 1..20 do
+  for i <- 0..19 do
     %Case{}
     |> Ecto.Changeset.change(signature: Faker.Company.bullshit, kind: Enum.random(CaseKindsEnum.__enum_map__), value: :rand.uniform * 100)
     |> Ecto.Changeset.put_assoc(:plaintiff, clients |> Enum.at(i))
@@ -108,14 +108,15 @@ cases =
     |> Repo.insert!
   end
 
-for i <- 1..20 do
+for _ <- 1..20 do
   date = DateTime.utc_now |> DateTime.to_unix
   date = date + Enum.random(10_000..99_999) |> DateTime.from_unix!
-  courtroom = Enum.random(0..999)
+  courtroom = Enum.random(0..999) |> to_string
   summoned = Faker.Name.first_name <> " " <> Faker.Name.last_name
   %Hearing{}
   |> Ecto.Changeset.change(date: date, courtroom: courtroom, summoned: summoned)
-  |> Ecto.Changeset.put_assoc(:case, cases |> Enum.random )
+  |> Ecto.Changeset.put_assoc(:case, cases |> Enum.random)
+  |> Repo.insert!
 end
 
 

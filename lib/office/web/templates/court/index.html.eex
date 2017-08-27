@@ -50,7 +50,7 @@
     </div>
   <% end %>
 </div>
-<%= link "New court", to: court_path(@conn, :new) %>
+
 <script>
 $(document).ready(function () {
     $('.ui.accordion').accordion();

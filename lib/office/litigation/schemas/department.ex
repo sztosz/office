@@ -9,6 +9,8 @@ defmodule Office.Litigation.Schemas.Department do
     belongs_to :address, Office.Litigation.Schemas.Address
     belongs_to :email, Office.Litigation.Schemas.Email
     belongs_to :phone, Office.Litigation.Schemas.Phone
+    has_many :cases, Office.Litigation.Schemas.Case
+    has_many :hearings, through: [:cases, :hearings]
 
     timestamps()
   end
@@ -20,6 +22,7 @@ defmodule Office.Litigation.Schemas.Department do
     deparment
     |> cast(params, [:name, :court_id])
     |> validate_required([:name, :court_id])
+    |> cast_assoc(:court)
     |> cast_assoc(:address)
     |> cast_assoc(:email)
     |> cast_assoc(:phone)

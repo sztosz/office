@@ -7,12 +7,45 @@
 
   <div class="ui piled segments">
     <div class="ui segment">
-      <h4 class="ui dividing header">Client information</h4>
-      <div class="field">
-        <%= label f, :name %>
-        <%= text_input f, :name, placeholder: "Court Name" %>
-        <%= error_tag f, :name %>
+      <h4 class="ui dividing header">Department information</h4>
+      <div class="fields">
+        <div class="ten wide field">
+          <%= label f, :name %>
+          <%= text_input f, :name, placeholder: "Department Name" %>
+          <%= error_tag f, :name %>
+        </div>
+
+        <%= inputs_for f, :phone, fn p -> %>
+          <div class="six wide field">
+            <%= label p, :number %>
+            <%= text_input p, :number, placeholder: "123456789" %>
+            <%= error_tag p, :number %>
+          </div>
+        <% end %>
       </div>
+
+      <%= inputs_for f, :address, fn a -> %>
+        <div class="fields">
+          <div class="five wide field">
+            <%= label a, :street %>
+            <%= text_input a, :street, placeholder: "Al. Marszałkowska 1" %>
+            <%= error_tag a, :street %>
+          </div>
+
+          <div class="five wide field">
+            <%= label a, :zip %>
+            <%= text_input a, :zip, placeholder: "00-000" %>
+            <%= error_tag a, :zip %>
+          </div>
+
+          <div class="six wide field">
+            <%= label a, :town %>
+            <%= text_input a, :town, placeholder: "Warszawa" %>
+            <%= error_tag a, :town %>
+          </div>
+        </div>
+      <% end %>
+
 
       <%= submit "Submit", class: "ui green button" %>
       <%= link "Back", to: client_path(@conn, :index), class: "ui blue button" %>

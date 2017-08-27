@@ -1,6 +1,7 @@
 defmodule OfficeWeb.CourtController do
   use OfficeWeb, :controller
 
+  alias OfficeWeb.ErrorHelpers
   alias Office.Litigation.Court
 
 #  plug :authenticate_user
@@ -53,10 +54,15 @@ defmodule OfficeWeb.CourtController do
         conn
         |> put_flash(:info, "Court deleted successfully.")
         |> redirect(to: court_path(conn, :index))
-      _ ->
+      {:error, %{errors: errors}} ->
         conn
-        |> put_flash(:error, "Something went wrong.")
-        |> redirect(to: court_path(conn, :index))
+        |> put_flash(:error, ErrorHelpers.flash_errors(errors))
+        |> redirect(to: court_path(conn, :show, id))
+      x ->
+        IO.inspect(x)
+        conn
+        |> put_flash(:error, "Something got really sideways!")
+        |> redirect(to: court_path(conn, :show, id))
     end
   end
 end
