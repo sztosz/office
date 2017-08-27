@@ -1,8 +1,10 @@
-  <div class="ui top secondary menu">
-    <div class="item">
-      <%= link "New client", to: client_path(@conn, :new), class: "ui green button" %>
-    </div>
+<div class="container">
+  <div class="ui raised segment">
+    <h1>Court
+      <%= link "New client", to: client_path(@conn, :new), class: "ui right floated green button" %>
+    </h1>
   </div>
+
   <%= for clients <- Enum.chunk(@clients, 3, 3, []) do %>
     <div class="ui three cards">
       <%= for client <- clients do %>

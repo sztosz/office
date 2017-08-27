@@ -24,9 +24,11 @@
           </div>
 
           <div class="three wide column">
+            <div class="ui buttons tiny">
             <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
             <%= link "Edit", to: court_path(@conn, :edit, court), class: "ui blue button tiny" %>
             <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+          </div>
           </div>
         </div>
       </div>
