@@ -36,9 +36,7 @@
 
 </div>
 <div class="ui raised segment">
-  <!--<div class="sixteen wide column">-->
   <h4>Departments</h4>
-  <!--</div>-->
   <%= for department <- @court.departments do %>
 
   <div class="ui four column grid">
@@ -56,7 +54,7 @@
     </div>
 
     <div class="three wide column">
-      <div class="ui buttons">
+      <div class="ui buttons tiny">
         <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "ui green button tiny"
         %>
         <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "ui blue button tiny"
