@@ -1,58 +1,76 @@
-
-<div class="ui top secondary menu">
-  <h2>Listing courts</h2>
-  <div class="item">
-    <%= link "New Court", to: court_path(@conn, :new), class: "ui green button small" %>
+<div class=" container">
+  <div class="ui raised segment">
+    <h1>Courts
+    <%= link "New Court", to: court_path(@conn, :new), class: "ui right floated green button" %>
+    </h1>
   </div>
-</div>
 
-<div class="ui styled fluid accordion">
-  <%= for court <- @courts do %>
-    <div class="title">
-      <div class="ui grid">
-        <div class="four wide column">
-          <i class="dropdown icon"></i><%= court.name %>
-        </div>
-        <div class="six wide column">
-          <i class="marker icon"></i><%= court.address.street %> <%= court.address.zip %> <%= court.address.town %>
-        </div>
-        <div class="two wide column">
-          <i class="phone icon"></i><%= court.phone.number %>
-        </div>
-        <div class="four wide column">
-          <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
-          <%= link "Edit", to: court_path(@conn, :edit, court), class: "ui blue button tiny" %>
-          <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+  <div class="ui raised segment">
+    <div class="ui fluid accordion">
+      <%= for court <- @courts do %>
+      <div class="title">
+        <div class="ui four column grid">
+          <div class="four wide column">
+            <i class="dropdown icon"></i><%= court.name %>
+          </div>
+
+          <div class="six wide column">
+            <%= court.address.street %><br/>
+            <%= court.address.zip %> <%= court.address.town %>
+          </div>
+
+          <div class="three wide column">
+            <i class="phone icon"></i><%= court.phone.number %>
+          </div>
+
+          <div class="three wide column">
+            <%= link "Show", to: court_path(@conn, :show, court), class: "ui green button tiny" %>
+            <%= link "Edit", to: court_path(@conn, :edit, court), class: "ui blue button tiny" %>
+            <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+          </div>
         </div>
       </div>
-    </div>
-    <div class="content">
-      <table class="ui celled striped table">
-        <thead>
-          <tr>
-            <th colspan="2">Department</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= for department <- court.departments do %>
-            <tr>
-              <td>
-                <%= department.name %>
-              </td>
-              <td>
-                  <%= link "Show", to: court_department_path(@conn, :show, court, department), class: "ui green button tiny" %>
-                  <%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "ui blue button tiny" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <% end %>
-</div>
 
-<script>
-$(document).ready(function () {
-    $('.ui.accordion').accordion();
-});
-</script>
+      <div class="content">
+        <div class="ui raised segment">
+          <div class="sixteen wide column">
+            <h4>Departments</h4>
+          </div>
+          <%= for department <- court.departments do %>
+
+          <div class="ui four column grid">
+            <div class="four wide column">
+              <%= department.name %>
+            </div>
+
+            <div class="six wide column">
+              <%= department.address.street %><br/>
+              <%= department.address.zip %> <%= department.address.town %>
+            </div>
+
+            <div class="three wide column">
+              <i class="phone icon"></i><%= department.phone.number %>
+            </div>
+
+            <div class="three wide column">
+              <%= link "Show", to: court_department_path(@conn, :show, court, department), class: "ui green button tiny"
+              %>
+              <%= link "Edit", to: court_department_path(@conn, :edit, court, department), class: "ui blue button tiny"
+              %>
+              <!-- <%= link "Delete", to: court_path(@conn, :delete, court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+            </div>
+          </div>
+
+          <% end %>
+        </div>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+  <script>
+    $(document).ready(function () {
+      $('.ui.accordion').accordion();
+    });
+  </script>
