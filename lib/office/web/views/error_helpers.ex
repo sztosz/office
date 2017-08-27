@@ -37,4 +37,16 @@ defmodule OfficeWeb.ErrorHelpers do
       Gettext.dgettext(OfficeWeb.Gettext, "errors", msg, opts)
     end
   end
+
+  def flash_errors(errors) do
+    Enum.reduce(errors, "", &flash_error(&1, &2))
+  end
+
+  defp flash_error({key, msg}, output) do
+    output
+    <> Phoenix.Naming.humanize(key)
+    <> " "
+    <> OfficeWeb.ErrorHelpers.translate_error(msg)
+    <> "\n"
+  end
 end

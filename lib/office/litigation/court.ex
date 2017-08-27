@@ -1,9 +1,14 @@
 defmodule Office.Litigation.Court do
   import Ecto.Query
   import Ecto.Changeset
+  alias Ecto.Multi
 
   alias Office.Repo
   alias Office.Litigation.Schemas.Court
+  alias Office.Litigation.Schemas.Department
+  alias Office.Litigation.Schemas.Case
+  alias Office.Litigation.Schemas.Phone
+  alias Office.Litigation.Schemas.Address
 
   def list_all do
     Court
@@ -43,8 +48,13 @@ defmodule Office.Litigation.Court do
   end
 
   def delete(id) do
-    id
-    |> get!
-    |> Repo.delete
+    court = get!(id)
+    phone_id = court.phone_id
+    address_id = court.address_id
+    Multi.new
+    |> Multi.delete(:department, court     |> Court.changeset())
+    |> Multi.delete(:phone, court.phone)
+    |> Multi.delete(:address, court.address)
+    |> Repo.transaction()
   end
 end

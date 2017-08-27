@@ -25,5 +25,6 @@ defmodule Office.Litigation.Schemas.Court do
     |> validate_required([:name])
     |> cast_assoc(:address)
     |> cast_assoc(:phone)
+    |> no_assoc_constraint(:departments)
   end
 end

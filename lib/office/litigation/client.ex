@@ -10,6 +10,7 @@ defmodule Office.Litigation.Client do
   alias Office.Litigation.Schemas.Phone
   alias Office.Litigation.Schemas.ClientPhone
   alias Office.Litigation.Schemas.Case
+  alias Office.Litigation.Schemas.Hearing
 
   def list_all do
     Client
@@ -31,8 +32,8 @@ defmodule Office.Litigation.Client do
 
   def update(id, attrs) do
     Client
-    |> preload(:address)
     |> Repo.get!(id)
+    |> Repo.preload(:address)
     |> Client.changeset(attrs)
     |> Repo.update()
   end
@@ -49,27 +50,9 @@ defmodule Office.Litigation.Client do
   end
 
   def delete(id) do
-    Multi.new
-    |> Multi.delete_all(:client_phones, client_phone_delete_query(id))
-    |> Multi.delete_all(:client_emails, client_email_delete_query(id))
-    |> Multi.delete_all(:client_cases, client_cases_delete_query(id))
-    |> Multi.delete_all(:client, client_delete_query(id))
-    |> Repo.transaction()
-  end
-
-  defp client_phone_delete_query(id) do
-    from cp in ClientPhone, where: cp.client_id == ^id
-  end
-
-  defp client_email_delete_query(id) do
-    from ce in ClientEmail, where: ce.client_id == ^id
-  end
-
-  defp client_cases_delete_query(id) do
-    from c in Case, where: c.plaintiff_id == ^id, or_where: c.defendant_id == ^id
-  end
-
-  defp client_delete_query(id) do
-    from c in Client, where: c.id  == ^id
+    Client
+    |> Repo.get!(id)
+    |> Client.changeset()
+    |> Repo.delete
   end
 end

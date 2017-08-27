@@ -8,10 +8,20 @@
 <div class="ui piled segments">
   <div class="ui segment">
     <h4 class="ui dividing header">Court information</h4>
-    <div class="field">
-      <%= label f, :name %>
-      <%= text_input f, :name, placeholder: "Court Name" %>
-      <%= error_tag f, :name %>
+    <div class="fields">
+      <div class="ten wide field">
+        <%= label f, :name %>
+        <%= text_input f, :name, placeholder: "Court Name" %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <%= inputs_for f, :phone, fn p -> %>
+      <div class="six wide field">
+        <%= label p, :number %>
+        <%= text_input p, :number, placeholder: "123456789" %>
+        <%= error_tag p, :number %>
+      </div>
+      <% end %>
     </div>
 
     <div class="fields">
@@ -33,14 +43,6 @@
           <%= text_input a, :town, placeholder: "Town" %>
           <%= error_tag a, :town %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="field">
-      <%= inputs_for f, :phone, fn p -> %>
-        <%= label p, :number %>
-        <%= text_input p, :number, placeholder: "123456789" %>
-        <%= error_tag p, :number %>
       <% end %>
     </div>
 
