@@ -10,6 +10,7 @@ defmodule Office.Litigation.Case do
   def list_all do
     query = from case in Case,
       preload: [department: :court],
+      preload: [department: :address],
       preload: [:plaintiff, :defendant]
     Repo.all(query)
   end
@@ -17,7 +18,10 @@ defmodule Office.Litigation.Case do
   def get!(id) do
     Case
     |> preload([department: :court])
-    |> preload([:plaintiff, :defendant])
+    |> preload([department: :address])
+    |> preload([department: :phone])
+    |> preload([department: :email])
+    |> preload([:plaintiff, :defendant, :hearings])
     |> Repo.get!(id)
   end
 

@@ -1,5 +1,6 @@
 defmodule OfficeWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :office
+  use ExDebugToolbar.Phoenix
 
   socket "/socket", OfficeWeb.UserSocket
 

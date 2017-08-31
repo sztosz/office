@@ -40,8 +40,7 @@ defmodule OfficeWeb.Router do
       resources "/departments", DepartmentController
     end
     resources "/cases", CaseController
-#    resources "/phones", PhoneController, except: [:index, :show]
-#    resources "/emails", EmailController, except: [:index, :show]
+    resources "/calendar", CalendarController, only: [:index]
   end
 
   # Other scopes may use custom stacks.

@@ -50,6 +50,7 @@ defmodule Office.Mixfile do
       {:ueberauth_identity, "~> 0.2"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
+      {:ex_debug_toolbar, "~> 0.3.0"},
     ]
   end
 
