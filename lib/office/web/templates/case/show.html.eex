@@ -1,32 +1,90 @@
-<h2>Show Case</h2>
-<div class="ui piled segments">
-  <div class="ui segment">
-    <h4 class="ui dividing header">Court information</h4>
-    <div class="ui two column doubling stackable grid container">
-      <div class="column">
+<div class="container">
+  <div class="ui raised segment">
+    <h1>Case <%= @case.signature %></h1>
+
+  </div>
+
+  <div class="ui raised segment">
+    <div class="ui two column grid">
+      <div class="seven wide column">
+
         <h2 class="ui header">
-          <div class="sub header">Signature</div>
-          <%= @case.signature %>
+          <div class="ui sub header">Plaintiff</div>
+          <%= link(@case.plaintiff.name <> " " <> @case.plaintiff.surname, to: client_path(@conn, :show,
+          @case.plaintiff)) %>
+          <div class="ui sub header">
+            <%= @case.plaintiff.company %>
+          </div>
         </h2>
         <h2 class="ui header">
-          <div class="sub header">Kind</div>
-          <%= @case.kind %>
+          <div class="ui sub header">Department</div>
+          <%= @case.department.name %>
+        </h2>
+        <h2 class="ui header">
+          <div class="ui sub header">Department Address</div>
+          <%= @case.department.address.street %><br/>
+          <%= @case.department.address.zip %> <%= @case.department.address.town %>
         </h2>
       </div>
-      <div class="column">
+
+      <div class="seven wide column">
+
         <h2 class="ui header">
-          <div class="sub header">Plaintiff</div>
-          <%= @case.plaintiff.name %>
+          <div class="ui sub header">Defendant</div>
+          <%= link(@case.defendant.name <> " " <> @case.defendant.surname, to: client_path(@conn, :show,
+          @case.defendant)) %>
+          <div class="ui sub header">
+            <%= @case.defendant.company %>
+          </div>
+          <h2 class="ui header">
+            <div class="ui sub header">Court</div>
+            <%= @case.department.court.name %>
+          </h2>
+          <h2 class="ui header">
+            <div class="ui sub header">Department phone</div>
+            <%= @case.department.phone.number %>
+            <div class="ui sub header">Department email</div>
+            <%= @case.department.email.address %>
+          </h2>
         </h2>
-        <h2 class="ui header">
-          <div class="sub header">Defendant</div>
-          <%= @case.defendant.name %>
-        </h2>
+
+      </div>
+
+      <div class="two wide column">
+        <div class="ui raised segment">
+          <div class="ui vertical buttons">
+            <%= link "Show", to: case_path(@conn, :show, @case), class: "ui green button" %>
+            <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
+          </div>
+        </div>
       </div>
     </div>
-    <h4 class="ui dividing header">Actions</h4>
-    <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
-    <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+  </div>
+
+  <div class="ui raised segment">
+    <h4>Hearings</h4>
+    <table class="ui celled table">
+      <thead>
+      <tr>
+        <th>Courtroom</th>
+        <th>Date</th>
+        <th>Summoned</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <%= for hearing <- @case.hearings do %>
+
+      <tr>
+        <td><%= hearing.courtroom %></td>
+        <td><%= hearing.date %></td>
+        <td><%= hearing.summoned %></td>
+      </tr>
+
+      <% end %>
+
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -36,7 +94,8 @@
     Delete Clinet
   </div>
   <div class="content">
-    <h1>Are you sure you want to delete this court? This action cannot be reverted. If you delete Client, you will also delete all cases and files that are connected to this client!</h1>
+    <h1>Are you sure you want to delete this court? This action cannot be reverted. If you delete Client, you will also
+      delete all cases and files that are connected to this client!</h1>
   </div>
   <div class="actions">
     <div class="ui green cancel button">
