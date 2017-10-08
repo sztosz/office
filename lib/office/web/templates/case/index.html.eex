@@ -29,6 +29,7 @@
             <%= case.defendant.company %>
           </div>
         </h2>
+        
       </div>
 
       <div class="seven wide column">

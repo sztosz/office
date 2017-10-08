@@ -19,6 +19,7 @@ defmodule Office.Litigation.Department do
   def list_all_for_court(court) do
     court
     |> assoc(:departments)
+    |> preload([:address, :court, :phone, :email])
     |> Repo.all
   end
 

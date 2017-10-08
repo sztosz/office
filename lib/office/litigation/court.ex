@@ -19,7 +19,7 @@ defmodule Office.Litigation.Court do
   def get!(id) do
     Court
     |> Repo.get!(id)
-    |> Repo.preload(departments: [:address, :phone])
+    |> Repo.preload(departments: [:address, :phone, :email])
     |> Repo.preload(:phone)
     |> Repo.preload(:address)
   end
