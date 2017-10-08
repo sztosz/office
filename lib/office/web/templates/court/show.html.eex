@@ -41,25 +41,26 @@
 
     <div class="ui four column grid">
       <div class="four wide column">
-        <p><%= department.name %></p>
+        <%= department.name %>
       </div>
 
-      <div class="six wide column">
+      <div class="three wide column">
         <%= department.address.street %><br/>
         <%= department.address.zip %> <%= department.address.town %>
       </div>
 
-      <div class="three wide column">
+      <div class="two wide column">
         <i class="phone icon"></i><%= department.phone.number %>
+      </div>
+
+      <div class="four wide column">
+        <i class="email icon"></i><%= department.email.address %>
       </div>
 
       <div class="three wide column">
         <div class="ui buttons tiny">
-          <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "ui green button tiny"
-          %>
-          <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "ui blue button tiny"
-          %>
-          <!-- <%= link "Delete", to: court_path(@conn, :delete, @court), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %> -->
+          <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "ui green button tiny"%>
+          <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "ui blue button tiny"%>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ defmodule OfficeWeb.DepartmentController do
 
   def index(conn, %{"court_id" => court_id}) do
     court = Court.get!(court_id)
-    departments = Department.list_all(court)
+    departments = Department.list_all_for_court(court)
     render(conn, "index.html", departments: departments, court: court)
   end
 
