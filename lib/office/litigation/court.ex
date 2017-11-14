@@ -13,7 +13,7 @@ defmodule Office.Litigation.Court do
   def list_all do
     Court
     |> Repo.all
-    |> Repo.preload([:address, :phone, departments: [:address, :phone] ])
+    |> Repo.preload([:address, :phone, departments: [:address, :phone, :email] ])
   end
 
   def get!(id) do

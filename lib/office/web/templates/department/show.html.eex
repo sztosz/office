@@ -1,24 +1,53 @@
-<h1>Show department</h1>
-<div class="ui piled segments">
-  <div class="ui segment">
-    <h4 class="ui dividing header">Departament information</h4>
-    <div class="ui two column doubling stackable grid container">
-      <div class="column">
+<div class="container">
+  <div class="ui raised segment">
+    <h1>Show department</h1>
+  </div>
+
+  <div class="ui raised segment">
+    <div class="ui two column grid">
+      
+      <div class="seven wide column">
         <h2 class="ui header">
           <div class="sub header">Name</div>
           <%= @department.name %>
         </h2>
+
         <h2 class="ui header">
-          <div class="sub header">Court name</div>
+          <div class="sub header">Court</div>
           <%= @department.court.name %>
         </h2>
+        
+        <h2 class="ui header">
+          <div class="sub header">Address</div>
+          <%= @department.address.street %> <%= @department.address.zip %> <%= @department.address.town %>
+        </h2>
+      </div>
+
+      <div class="six wide column">
+        <h2 class="ui header">
+          <div class="sub header">Phone</div>
+          <%= @department.phone.number %>
+        </h2>
+        <h2 class="ui header">
+          <div class="sub header">Email</div>
+          <%= @department.email.address %>
+        </h2>
+      </div>
+
+      <div class="three wide column">
+        <div class="ui raised segment">
+          <div class="ui vertical buttons">
+            <%= link "All Courts Departments", to: court_department_path(@conn, :index, @department), class: "ui teal button" %>
+            <%= link "Court", to: court_path(@conn, :show, @department.court_id), class: "ui green button" %>
+            <%= link "Edit", to: court_department_path(@conn, :edit, @department, @department.court), class: "ui blue button" %>
+            <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+          </div>
+        </div>
       </div>
     </div>
-    <h4 class="ui dividing header">Actions</h4>
-    <%= link "Edit", to: court_department_path(@conn, :edit, @department.court, @department), class: "ui blue button" %>
-    <%= link "Back", to: court_department_path(@conn, :index, @department.court), class: "ui green button" %>
-    <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
+  </div>
 
+  <div class="ui raised segment">
 
     <h4 class="ui dividing header">Cases</h4>
     <table class="ui very basic collapsing celled table">

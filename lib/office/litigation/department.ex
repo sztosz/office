@@ -31,7 +31,7 @@ defmodule Office.Litigation.Department do
   def get!(id) do
     Department
     |> Repo.get!(id)
-    |> Repo.preload([:court, :hearings, cases: [:plaintiff, :defendant]])
+    |> Repo.preload([:address, :court, :phone, :email, :hearings, cases: [:plaintiff, :defendant]])
   end
 
   def create(attrs \\ %{}) do
