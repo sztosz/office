@@ -40,7 +40,6 @@ defmodule OfficeWeb.Router do
       resources "/departments", DepartmentController
     end
     resources "/cases", CaseController
-    resources "/calendar", CalendarController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
