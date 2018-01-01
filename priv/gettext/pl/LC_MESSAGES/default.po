@@ -9,16 +9,81 @@
 msgid ""
 msgstr ""
 "Language: pl\n"
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
 
-#: web/templates/page/index.html.eex:2
+#: lib/office/web/templates/page/index.html.eex:2
 msgid "Welcome to %{name}"
 msgstr "Witaj w %{name}"
+
+#: lib/office/web/templates/layout/app.html.eex:29
+msgid "Cases"
+msgstr "Sprawy"
+
+#: lib/office/web/templates/client/index.html.eex:3
+#: lib/office/web/templates/layout/app.html.eex:26
+msgid "Clients"
+msgstr "Klienci"
+
+#: lib/office/web/templates/layout/app.html.eex:32
+msgid "Courts"
+msgstr "Sądy"
+
+#: lib/office/web/templates/client/index.html.eex:49
+#: lib/office/web/templates/client/show.html.eex:39
+#: lib/office/web/templates/client/show.html.eex:63
+#: lib/office/web/templates/client/show.html.eex:87
+msgid "Edit"
+msgstr "Edytuj"
+
+#: lib/office/web/templates/client/index.html.eex:4
+msgid "New client"
+msgstr "Nowy Klient"
+
+#: lib/office/web/templates/layout/app.html.eex:23
+msgid "Office"
+msgstr "Biuro"
+
+#: lib/office/web/templates/client/index.html.eex:48
+msgid "Show"
+msgstr "Pokaż"
+
+#: lib/office/web/templates/client/show.html.eex:19
+msgid "Address"
+msgstr "Adres"
+
+#: lib/office/web/templates/client/show.html.eex:38
+msgid "All Clients"
+msgstr "Wszyscy klienci"
+
+#: lib/office/web/templates/client/show.html.eex:3
+msgid "Client"
+msgstr "Klient"
+
+#: lib/office/web/templates/client/show.html.eex:11
+msgid "Company"
+msgstr "Firma"
+
+#: lib/office/web/templates/client/show.html.eex:40
+#: lib/office/web/templates/client/show.html.eex:66
+#: lib/office/web/templates/client/show.html.eex:90
+msgid "Delete"
+msgstr "Usuń"
+
+#: lib/office/web/templates/client/show.html.eex:77
+msgid "Emails"
+msgstr "Emaile111111111"
+
+#: lib/office/web/templates/client/show.html.eex:15
+msgid "Name and Surname"
+msgstr "Imię i Nazwisko"
+
+#: lib/office/web/templates/client/show.html.eex:104
+msgid "New Email"
+msgstr "Nowy Email"
+
+#: lib/office/web/templates/client/show.html.eex:103
+msgid "New Phone"
+msgstr "Nowy Telefon"
+
+#: lib/office/web/templates/client/show.html.eex:52
+msgid "Phones"
+msgstr "Telefony"
