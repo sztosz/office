@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ui raised segment">
-    <h1>Client</h1>
+    <h1><%= gettext("Client") %></h1>
   </div>
 
   <div class="ui raised segment">
@@ -8,22 +8,22 @@
 
       <div class="seven wide column">
         <h2 class="ui header">
-          <div class="sub header">Company</div>
+          <div class="sub header"><%= gettext("Company") %></div>
           <%= @client.company %>
         </h2>
         <h2 class="ui header">
-          <div class="sub header">Name and Surnam</div>
+          <div class="sub header"><%= gettext("Name and Surname") %></div>
           <%= "#{@client.name} #{@client.surname}" %>
         </h2>
         <h2 class="ui header">
-          <div class="sub header">Address</div>
+          <div class="sub header"><%= gettext("Address") %></div>
           <%= single_line_address(@client.address) %>
         </h2>
       </div>
 
       <div class="seven wide column">
         <h2 class="ui header">
-          <div class="sub header">Nip</div>
+          <div class="sub header">NIP</div>
           <%= @client.nip %>
         </h2>
         <h2 class="ui header">
@@ -33,12 +33,10 @@
       </div>
 
       <div class="two wide column">
-        <div class="ui raised segment">
-          <div class="ui vertical buttons">
-            <%= link "All Clients", to: client_path(@conn, :index), class: "ui green button" %>
-            <%= link "Edit", to: client_path(@conn, :edit, @client), class: "ui blue button" %>
-            <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
-          </div>
+        <div class="ui raised vertical buttons">
+          <%= link gettext("All Clients"), to: client_path(@conn, :index), class: "ui green button" %>
+          <%= link gettext("Edit"), to: client_path(@conn, :edit, @client), class: "ui blue button" %>
+          <button class="ui red button" onclick="$('.ui.modal').modal('show');"><%= gettext("Delete") %></button>
         </div>
       </div>
     </div>
@@ -49,7 +47,7 @@
 
       <div class="six wide column">
 
-        <h2>Phones</h2>
+        <h2><%= gettext("Phones") %></h2>
         <%= for phone <- @client.phones do %>
         <div class="ui two column grid">
 
@@ -60,10 +58,10 @@
           <div class="column">
             <div class="ui buttons tiny" style="float: right;">
 
-              <%= link "Edit", to: client_phone_path(@conn, :edit, @client, phone), class: "ui blue right floated
+              <%= link gettext("Edit"), to: client_phone_path(@conn, :edit, @client, phone), class: "ui blue right floated
               button
               mini" %>
-              <%= link "Delete", to: client_phone_path(@conn, :delete, @client, phone), method: :delete, data:
+              <%= link gettext("Delete"), to: client_phone_path(@conn, :delete, @client, phone), method: :delete, data:
               [confirm:
               "Are you sure?"], class: "ui red right floated button mini" %>
             </div>
@@ -74,7 +72,7 @@
       </div>
 
       <div class="eight wide column">
-        <h2>Emails</h2>
+        <h2><%= gettext("Emails") %></h2>
         <%= for email <- @client.emails do %>
         <div class="ui two column grid">
 
@@ -84,10 +82,10 @@
 
           <div class="column">
             <div class="ui buttons tiny" style="float: right;">
-              <%= link "Edit", to: client_email_path(@conn, :edit, @client, email), class: "ui blue right floated
+              <%= link gettext("Edit"), to: client_email_path(@conn, :edit, @client, email), class: "ui blue right floated
               button
               mini" %>
-              <%= link "Delete", to: client_email_path(@conn, :delete, @client, email), method: :delete, data:
+              <%= link gettext("Delete"), to: client_email_path(@conn, :delete, @client, email), method: :delete, data:
               [confirm:
               "Are you sure?"], class: "ui red right floated button mini" %>
             </div>
@@ -98,11 +96,9 @@
       </div>
 
       <div class="two wide column">
-        <div class="ui raised segment">
-          <div class="ui vertical buttons">
-            <%= link "New Phone", to: client_phone_path(@conn, :new, @client), class: "ui blue button mini" %>
-            <%= link "New Email", to: client_email_path(@conn, :new, @client), class: "ui blue button mini" %>
-          </div>
+        <div class="ui vertical buttons">
+          <%= link gettext("New Phone"), to: client_phone_path(@conn, :new, @client), class: "ui blue button mini" %>
+          <%= link gettext("New Email"), to: client_email_path(@conn, :new, @client), class: "ui blue button mini" %>
         </div>
       </div>
 

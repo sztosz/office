@@ -17,18 +17,19 @@
 
   <body>
   <div class="ui container">
+    <div class="top_of_container">
     <div class="ui menu">
       <div class="header item">
-        Office
+        <%= gettext("Office") %>
       </div>
       <a class="item" href="<%= client_path(@conn, :index) %>">
-        Clients
+        <%= gettext("Clients") %>
       </a>
       <a class="item" href="<%= case_path(@conn, :index) %>">
-        Cases
+        <%= gettext("Cases") %>
       </a>
       <a class="item" href="<%= court_path(@conn, :index) %>">
-        Courts
+        <%= gettext("Courts") %>
       </a>
     </div>
 
