@@ -44,7 +44,7 @@ defmodule Office.Mixfile do
       {:credo, "~> 0.8", only: [:dev, :test]},
       {:faker, "~> 0.9", only: [:dev, :test]},
       {:ecto, "~> 2.2", override: true},
-      {:ecto_enum, "~> 0.3.0"},
+      {:ecto_enum, "~> 1.1.0"},
       {:ueberauth, "~> 0.5"},
       {:guardian, "~> 0.14"},
       {:ueberauth_identity, "~> 0.2"},

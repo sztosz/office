@@ -9,9 +9,6 @@ defmodule OfficeWeb.EmailController do
   end
 
   def create(conn, %{"client_id" => client_id} = params) do
-    IO.inspect("*********")
-    IO.inspect(params)
-    IO.inspect("*********")
     case Email.create_client_email(params) do
       {:ok, phone} ->
         conn

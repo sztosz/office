@@ -108,7 +108,7 @@ cases =
     |> Repo.insert!
   end
 
-for _ <- 1..20 do
+for _ <- 1..200 do
   date = DateTime.utc_now |> DateTime.to_unix
   date = date + Enum.random(10_000..99_999) |> DateTime.from_unix!
   courtroom = Enum.random(0..999) |> to_string

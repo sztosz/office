@@ -70,7 +70,7 @@ msgstr "Usuń"
 
 #: lib/office/web/templates/client/show.html.eex:77
 msgid "Emails"
-msgstr "Emaile111111111"
+msgstr "Emaile"
 
 #: lib/office/web/templates/client/show.html.eex:15
 msgid "Name and Surname"
