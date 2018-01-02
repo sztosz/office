@@ -58,36 +58,47 @@
   </div>
 
   <div class="ui raised segment">
-    <h2><%= gettext("Hearings") %></h2>
-
+    <h2>
+      <%= gettext("Hearings") %>
+      <%= link gettext("New Hearing"), to: case_hearing_path(@conn, :new, @case), class: "ui green right floated button" %>
+    </h2>
+  
     <%= for hearing <- @case.hearings do %>
       <div class="ui vertical segment">
         <div class="ui three column grid">
         
-          <div class="six wide column">
+          <div class="four wide column">
             <h2 class="ui header">
               <div class="ui sub header"><%= gettext("Date") %></div>
               <%= human_date_time(hearing.date) %>
             </h2>
           </div>
 
-          <div class="four wide column">
+          <div class="two wide column">
             <h2 class="ui header">
               <div class="ui sub header"><%= gettext("Courtroom") %></div>
               <%= hearing.courtroom %>
             </h2>
           </div>
 
-          <div class="six wide column">
+          <div class="eight wide column">
             <h2 class="ui header">
               <div class="ui sub header"><%= gettext("Summoned") %></div>
               <%= hearing.summoned %>
             </h2>
+          </div>
+
+          <div class="two wide column">
+            <div class="ui vertical buttons">
+              <%= link gettext("Edit"), to: case_hearing_path(@conn, :edit, @case, hearing.id), class: "ui blue button" %>
+              <button class="ui red button" onclick="$('.ui.modal').modal('show');"><%= gettext("Delete") %></button>
+            </div>
           </div>
         
         </div>
       </div>
     <% end %>
 
+    </div>
   </div>
 </div>
