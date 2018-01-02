@@ -10,8 +10,6 @@ defmodule OfficeWeb.CaseView do
   end
 
   def human_date_time(date_time) do
-    date = Enum.join([date_time.day, "/", date_time.month, "/", date_time.year])
-    time = Enum.join([date_time.hour, ":", date_time.minute])
-    Enum.join([date, " ", time])
+    Enum.join([date_time.day, "/", date_time.month, "/", date_time.year, " ", date_time.hour, ":", date_time.minute])
   end
 end
