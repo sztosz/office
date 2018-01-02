@@ -5,5 +5,3 @@
                         departments: @selects.departments,
                         kinds: @selects.kinds,
                         action: case_path(@conn, :create) %>
-
-<%= link "Back", to: case_path(@conn, :index) %>

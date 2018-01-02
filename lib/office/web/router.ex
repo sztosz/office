@@ -39,7 +39,9 @@ defmodule OfficeWeb.Router do
     resources "/courts", CourtController do
       resources "/departments", DepartmentController
     end
-    resources "/cases", CaseController
+    resources "/cases", CaseController do
+      resources "/hearings", HearingController
+    end
   end
 
   # Other scopes may use custom stacks.
