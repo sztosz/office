@@ -50,11 +50,8 @@
       </div>
 
       <div class="two wide column">
-        <div class="ui raised segment">
-          <div class="ui vertical buttons">
-            <%= link "Show", to: case_path(@conn, :show, @case), class: "ui green button" %>
-            <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
-          </div>
+        <div class="ui vertical buttons">
+          <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
         </div>
       </div>
     </div>

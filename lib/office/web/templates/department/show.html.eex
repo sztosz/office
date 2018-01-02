@@ -35,70 +35,89 @@
       </div>
 
       <div class="three wide column">
-        <div class="ui raised segment">
-          <div class="ui vertical buttons">
-            <%= link "All Courts Departments", to: court_department_path(@conn, :index, @department), class: "ui teal button" %>
-            <%= link "Court", to: court_path(@conn, :show, @department.court_id), class: "ui green button" %>
-            <%= link "Edit", to: court_department_path(@conn, :edit, @department, @department.court), class: "ui blue button" %>
-            <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
-          </div>
+        <div class="ui vertical buttons">
+          <%= link "All Courts Departments", to: court_department_path(@conn, :index, @department), class: "ui teal button" %>
+          <%= link "Court", to: court_path(@conn, :show, @department.court_id), class: "ui green button" %>
+          <%= link "Edit", to: court_department_path(@conn, :edit, @department, @department.court), class: "ui blue button" %>
+          <button class="ui red button" onclick="$('.ui.modal').modal('show');">Delete</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="ui raised segment">
+    <h2><%= gettext("Cases") %></h2>
 
-    <h4 class="ui dividing header">Cases</h4>
-    <table class="ui very basic collapsing celled table">
-      <thead>
-        <tr>
-          <th>Signature</th>
-          <th>Plaintiff</th>
-          <th>Defendant</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= for case <- @department.cases do %>
-          <tr>
-            <td><%= case.signature %></td>
-            <td><%= case.plaintiff.name %></td>
-            <td><%= case.defendant.name %></td>
-            <td>
+      <%= for case <- @department.cases do %>
+        <div class="ui vertical segment">
+          <div class="ui three column grid">
+
+            <div class="four wide column">
+              <h2 class="ui header">
+                <div class="ui sub header"><%= gettext("Signature") %></div>
+                <%= case.signature %>
+              </h2>
+            </div>
+
+            <div class="five wide column">
+              <h2 class="ui header">
+                <div class="ui sub header"><%= gettext("Plaintiff") %></div>
+                <%= case.plaintiff.name %>
+              </h2>
+            </div>
+
+            <div class="five wide column">
+              <h2 class="ui header">
+                <div class="ui sub header"><%= gettext("Defendant") %></div>
+                <%= case.defendant.name %>
+              </h2>
+            </div>
+
+            <div class="two wide column">
+              <h2 class="ui header">
+                <div class="ui sub header"><%= gettext("Action") %></div>
                 <%= link "Show", to: case_path(@conn, :show, case), class: "ui green button tiny" %>
-                <%= link "Edit", to: case_path(@conn, :edit, case), class: "ui blue button tiny" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+              </h2>
+            </div>
 
-    <h4 class="ui dividing header">Hearings</h4>
-    <table class="ui very basic collapsing celled table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Courtroom</th>
-          <th>Summoned</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= for hearing <- @department.hearings do %>
-          <tr>
-            <td><%= hearing.date %></td>
-            <td><%= hearing.courtroom %></td>
-            <td><%= hearing.summoned %></td>
+          </div>
+        </div>
+      <% end %>
 
-            <td>
-              <%= link "Back", to: court_department_path(@conn, :index, @department.court), class: "ui green button" %>
-              <%= link "Back", to: court_department_path(@conn, :index, @department.court), class: "ui green button" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  </div>
+
+  <div class="ui raised segment">
+    <h2><%= gettext("Hearings") %></h2>
+
+    <%= for hearing <- @department.hearings do %>
+      <div class="ui vertical segment">
+        <div class="ui three column grid">
+
+          <div class="six wide column">
+            <h2 class="ui header">
+              <div class="ui sub header"><%= gettext("Date") %></div>
+              <%= human_date_time(hearing.date) %>
+            </h2>
+          </div>
+
+          <div class="four wide column">
+            <h2 class="ui header">
+              <div class="ui sub header"><%= gettext("Courtroom") %></div>
+              <%= hearing.courtroom %>
+            </h2>
+          </div>
+
+          <div class="six wide column">
+            <h2 class="ui header">
+              <div class="ui sub header"><%= gettext("Summoned") %></div>
+              <%= hearing.summoned %>
+            </h2>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+
   </div>
 </div>
 
