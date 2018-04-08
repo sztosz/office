@@ -27,3 +27,4 @@ erl_crash.dump
 # INTELIJ
 /.idea
 office.iml
+/.elixir_ls

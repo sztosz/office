@@ -53,7 +53,7 @@ exports.config = {
       ignore: [/vendor/]
     },
     copycat: {
-      fonts: ["vendor/assets/fonts"],
+      fonts: ["vendor/assets/fonts", "css/themes/default/assets/fonts"],
       images: ["vendor/assets/images"],
       verbose: true,
       onlyChanged: true

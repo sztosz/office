@@ -4,9 +4,10 @@ defmodule Office.Litigation.Hearing do
 
   alias Office.Repo
   alias Office.Litigation.Schemas.Hearing
+  alias Office.Litigation.Schemas.Phone
 
   def get!(id) do
-    Phone
+    Hearing
     |> Repo.get!(id)
   end
 
@@ -30,13 +31,13 @@ defmodule Office.Litigation.Hearing do
   def edit_changeset(id) do
     id
     |> get!
-    |> Hearing.changeset
+    |> Hearing.changeset()
   end
 
   def delete(id) do
     Hearing
     |> Repo.get!(id)
     |> Hearing.changeset()
-    |> Repo.delete
+    |> Repo.delete()
   end
 end
