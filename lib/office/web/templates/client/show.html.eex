@@ -114,18 +114,18 @@
 <div class="ui modal">
   <div class="ui icon header">
     <i class="red icon warning sign"></i>
-    Delete Client
+    <%= gettext("Delete Client") %>
   </div>
   <div class="content">
-    <h1>Are you sure you want to delete this client? This action cannot be reverted. If you delete Client, you
+    <h1><%= gettext("Are you sure you want to delete this client? This action cannot be reverted. If you delete Client, you
       will
       also
-      delete all cases and files that are connected to this client!</h1>
+      delete all cases and files that are connected to this client!")%></h1>
   </div>
   <div class="actions">
     <div class="ui green cancel button">
-      No
+      <%= gettext("No") %>
     </div>
-    <%= link "Yes", to: client_path(@conn, :delete, @client), method: :delete, class: "ui red ok button" %>
+    <%= link gettext("Yes"), to: client_path(@conn, :delete, @client), method: :delete, class: "ui red ok button" %>
   </div>
 </div>

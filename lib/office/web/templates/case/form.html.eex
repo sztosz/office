@@ -7,42 +7,42 @@
 
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Case information</h4>
+    <h4 class="ui dividing header"><%= gettext("Case information") %></h4>
     <div class="field">
-      <%= label f, :signature %>
-      <%= text_input f, :signature, placeholder: "Signature" %>
+      <%= label f, :signature, gettext("Signature") %>
+      <%= text_input f, :signature, placeholder: gettext("Signature") %>
       <%= error_tag f, :signature %>
     </div>
 
     <div class="fields">
       <div class="eight wide field">
-        <%= label f, :plaintiff %>
+        <%= label f, :plaintiff, gettext("Plaintiff") %>
         <%= select f, :plaintiff_id, clients_option(@clients), class: "ui search dropdown" %>
         <%= error_tag f, :plaintiff %>
       </div>
 
       <div class="three wide field">
-        <%= label f, :defendant %>
+        <%= label f, :defendant, gettext("Defendant") %>
         <%= select f, :defendant_id, clients_option(@clients), class: "ui search dropdown" %>
         <%= error_tag f, :defendant %>
       </div>
 
       <div class="three wide field">
-        <%= label f, :department %>
+        <%= label f, :department, gettext("Department") %>
         <%= select f, :department_id, departments_option(@departments), class: "ui search dropdown" %>
         <%= error_tag f, :department %>
       </div>
 
       <div class="three wide field">
-        <%= label f, :kind %>
+        <%= label f, :kind, gettext("Kind") %>
         <%= select f, :kind, @kinds, class: "ui search dropdown" %>
         <%= error_tag f, :kind %>
       </div>
 
     </div>
 
-    <%= submit "Submit", class: "ui green button" %>
-    <%= link "Back", to: case_path(@conn, :index), class: "ui blue button" %>
+    <%= submit gettext("Submit"), class: "ui green button" %>
+    <%= link gettext("Back"), to: case_path(@conn, :index), class: "ui blue button" %>
   </div>
 </div>
 

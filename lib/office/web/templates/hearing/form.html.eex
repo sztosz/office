@@ -6,26 +6,26 @@
 <% end %>
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Edit Phone</h4>
+    <h4 class="ui dividing header"><%= gettext("Hearing details") %></h4>
     <div class="fields">
       <div class="four wide field">
-        <%= label f, :date %>
-        <%= text_input f, :date, placeholder: "Date" %>
+        <%= label f, :date, gettext("Date") %>
+        <%= text_input f, :date, placeholder: gettext("Date") %>
         <%= error_tag f, :date %>
       </div>
       <div class="two wide field">
-        <%= label f, :courtroom %>
-        <%= text_input f, :courtroom, placeholder: "Courtroom" %>
+        <%= label f, :courtroom, gettext("Courtroom") %>
+        <%= text_input f, :courtroom, placeholder: gettext("Courtroom") %>
         <%= error_tag f, :courtroom %>
       </div>
       <div class="ten wide field">
-        <%= label f, :summoned %>
-        <%= text_input f, :summoned, placeholder: "Summoned" %>
+        <%= label f, :summoned, gettext("Summoned") %>
+        <%= text_input f, :summoned, placeholder: gettext("Summoned") %>
         <%= error_tag f, :summoned %>
       </div>
     </div>
-    <%= submit "Submit", class: "ui green button" %>
-    <%= link "Back", to: case_path(@conn, :show, @case_id), class: "ui blue button" %>
+    <%= submit gettext("Submit"), class: "ui green button" %>
+    <%= link gettext("Back"), to: case_path(@conn, :show, @case_id), class: "ui blue button" %>
   </div>
 </div>
 <% end %>

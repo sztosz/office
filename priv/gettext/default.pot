@@ -15,6 +15,8 @@ msgstr ""
 msgid "Welcome to %{name}"
 msgstr ""
 
+#: lib/office/web/templates/case/index.html.eex:3
+#: lib/office/web/templates/department/show.html.eex:49
 #: lib/office/web/templates/layout/app.html.eex:29
 msgid "Cases"
 msgstr ""
@@ -28,14 +30,18 @@ msgstr ""
 msgid "Courts"
 msgstr ""
 
+#: lib/office/web/templates/case/index.html.eex:54
+#: lib/office/web/templates/case/show.html.eex:54
+#: lib/office/web/templates/case/show.html.eex:93
 #: lib/office/web/templates/client/index.html.eex:49
-#: lib/office/web/templates/client/show.html.eex:39
-#: lib/office/web/templates/client/show.html.eex:63
-#: lib/office/web/templates/client/show.html.eex:87
+#: lib/office/web/templates/client/show.html.eex:38
+#: lib/office/web/templates/client/show.html.eex:61
+#: lib/office/web/templates/client/show.html.eex:91
 msgid "Edit"
 msgstr ""
 
 #: lib/office/web/templates/client/index.html.eex:4
+#: lib/office/web/templates/client/new.html.eex:1
 msgid "New client"
 msgstr ""
 
@@ -43,15 +49,17 @@ msgstr ""
 msgid "Office"
 msgstr ""
 
+#: lib/office/web/templates/case/index.html.eex:53
 #: lib/office/web/templates/client/index.html.eex:48
 msgid "Show"
 msgstr ""
 
 #: lib/office/web/templates/client/show.html.eex:19
+#: lib/office/web/templates/email/form.html.eex:12
 msgid "Address"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:38
+#: lib/office/web/templates/client/show.html.eex:37
 msgid "All Clients"
 msgstr ""
 
@@ -59,17 +67,19 @@ msgstr ""
 msgid "Client"
 msgstr ""
 
+#: lib/office/web/templates/client/form.html.eex:25
 #: lib/office/web/templates/client/show.html.eex:11
 msgid "Company"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:40
-#: lib/office/web/templates/client/show.html.eex:66
-#: lib/office/web/templates/client/show.html.eex:90
+#: lib/office/web/templates/case/show.html.eex:94
+#: lib/office/web/templates/client/show.html.eex:39
+#: lib/office/web/templates/client/show.html.eex:64
+#: lib/office/web/templates/client/show.html.eex:94
 msgid "Delete"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:77
+#: lib/office/web/templates/client/show.html.eex:81
 msgid "Emails"
 msgstr ""
 
@@ -77,14 +87,264 @@ msgstr ""
 msgid "Name and Surname"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:104
+#: lib/office/web/templates/client/show.html.eex:106
+#: lib/office/web/templates/email/new.html.eex:1
 msgid "New Email"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:103
+#: lib/office/web/templates/client/show.html.eex:76
+#: lib/office/web/templates/phone/new.html.eex:1
 msgid "New Phone"
 msgstr ""
 
-#: lib/office/web/templates/client/show.html.eex:52
+#: lib/office/web/templates/client/show.html.eex:50
 msgid "Phones"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/department/show.html.eex:78
+msgid "Action"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/show.html.eex:120
+msgid "Are you sure you want to delete this client? This action cannot be reverted. If you delete Client, you\n      will\n      also\n      delete all cases and files that are connected to this client!"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:79
+#: lib/office/web/templates/department/show.html.eex:105
+#: lib/office/web/templates/hearing/form.html.eex:17
+#: lib/office/web/templates/hearing/form.html.eex:18
+msgid "Courtroom"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:72
+#: lib/office/web/templates/department/show.html.eex:98
+#: lib/office/web/templates/hearing/form.html.eex:12
+#: lib/office/web/templates/hearing/form.html.eex:13
+msgid "Date"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:25
+#: lib/office/web/templates/case/index.html.eex:26
+#: lib/office/web/templates/case/show.html.eex:32
+#: lib/office/web/templates/department/show.html.eex:71
+msgid "Defendant"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/show.html.eex:117
+msgid "Delete Client"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:62
+#: lib/office/web/templates/department/show.html.eex:90
+msgid "Hearings"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:63
+#: lib/office/web/templates/hearing/new.html.eex:1
+msgid "New Hearing"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/show.html.eex:127
+msgid "No"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:19
+#: lib/office/web/templates/case/index.html.eex:19
+#: lib/office/web/templates/case/show.html.eex:11
+#: lib/office/web/templates/department/show.html.eex:64
+msgid "Plaintiff"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:12
+#: lib/office/web/templates/case/form.html.eex:13
+#: lib/office/web/templates/case/index.html.eex:15
+#: lib/office/web/templates/department/show.html.eex:57
+msgid "Signature"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:86
+#: lib/office/web/templates/department/show.html.eex:112
+#: lib/office/web/templates/hearing/form.html.eex:22
+#: lib/office/web/templates/hearing/form.html.eex:23
+msgid "Summoned"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/show.html.eex:129
+msgid "Yes"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:45
+#: lib/office/web/templates/client/form.html.eex:68
+#: lib/office/web/templates/email/form.html.eex:18
+#: lib/office/web/templates/hearing/form.html.eex:28
+#: lib/office/web/templates/phone/form.html.eex:18
+msgid "Back"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/phone/edit.html.eex:1
+#: lib/office/web/templates/phone/form.html.eex:9
+msgid "Edit Phone"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/phone/form.html.eex:13
+msgid "Phone number"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:44
+#: lib/office/web/templates/client/form.html.eex:67
+#: lib/office/web/templates/email/form.html.eex:17
+#: lib/office/web/templates/hearing/form.html.eex:27
+#: lib/office/web/templates/phone/form.html.eex:17
+msgid "Submit"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/phone/form.html.eex:12
+msgid "Number"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/email/edit.html.eex:1
+#: lib/office/web/templates/email/form.html.eex:9
+msgid "Edit Email"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/email/form.html.eex:13
+msgid "Email address"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/index.html.eex:38
+#: lib/office/web/templates/case/show.html.eex:39
+msgid "Court"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:31
+#: lib/office/web/templates/case/index.html.eex:42
+#: lib/office/web/templates/case/show.html.eex:19
+msgid "Department"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/index.html.eex:4
+msgid "New Case"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:36
+msgid "Al. Marszałkowska 1"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:10
+msgid "Client information"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:14
+msgid "Clients Name"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:20
+msgid "Clients Surname"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:26
+msgid "Company Name"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:13
+msgid "Name"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:35
+msgid "Street"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:19
+msgid "Surname"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:47
+msgid "Town"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/client/form.html.eex:41
+msgid "Zip code"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:3
+msgid "Case"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:23
+msgid "Department Address"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:45
+msgid "Department email"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/show.html.eex:43
+msgid "Department phone"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:10
+msgid "Case information"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/edit.html.eex:1
+msgid "Edit case"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/form.html.eex:37
+msgid "Kind"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/case/new.html.eex:1
+msgid "New case"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/hearing/edit.html.eex:1
+msgid "Edit Hearing"
+msgstr ""
+
+#, elixir-format
+#: lib/office/web/templates/hearing/form.html.eex:9
+msgid "Hearing details"
 msgstr ""

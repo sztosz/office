@@ -1,7 +1,7 @@
 <div class="container">
   <div class="ui raised segment">
-    <h1>Cases
-      <%= link "New Case", to: case_path(@conn, :new), class: "ui right floated green button" %>
+    <h1><%= gettext("Cases") %>
+      <%= link gettext("New Case"), to: case_path(@conn, :new), class: "ui right floated green button" %>
     </h1>
   </div>
 
@@ -12,18 +12,18 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Signature</div>
+          <div class="ui sub header"><%= gettext("Signature") %></div>
           <%= case.signature %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Plaintiff</div>
+          <div class="ui sub header"><%= gettext("Plaintiff") %></div>
           <%= case.plaintiff.name %> <%= case.plaintiff.surname %>
           <div class="ui sub header">
             <%= case.plaintiff.company %>
           </div>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Defendant</div>
+          <div class="ui sub header"><%= gettext("Defendant") %></div>
           <%= case.defendant.name %> <%= case.defendant.surname %>
           <div class="ui sub header">
             <%= case.defendant.company %>
@@ -35,11 +35,11 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Court</div>
+          <div class="ui sub header"><%= gettext("Court") %></div>
           <%= case.department.court.name %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Department</div>
+          <div class="ui sub header"><%= gettext("Department") %></div>
           <%= case.department.name %>
           <div class="ui sub header">
             <%= case.department.address.town %>
@@ -50,8 +50,8 @@
       <div class="two wide column">
         <div class="ui raised segment">
           <div class="ui vertical buttons">
-            <%= link "Show", to: case_path(@conn, :show, case), class: "ui green button" %>
-            <%= link "Edit", to: case_path(@conn, :edit, case), class: "ui blue button" %>
+            <%= link gettext("Show"), to: case_path(@conn, :show, case), class: "ui green button" %>
+            <%= link gettext("Edit"), to: case_path(@conn, :edit, case), class: "ui blue button" %>
           </div>
         </div>
       </div>
