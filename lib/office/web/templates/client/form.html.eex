@@ -7,23 +7,23 @@
 
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Client information</h4>
+    <h4 class="ui dividing header"><%= gettext("Client information") %></h4>
     <div class="fields">
       <div class="five wide field">
-        <%= label f, :name %>
-        <%= text_input f, :name, placeholder: "Clients Name" %>
+        <%= label f, :name, gettext("Name") %>
+        <%= text_input f, :name, placeholder: gettext("Clients Name") %>
         <%= error_tag f, :name %>
       </div>
 
       <div class="five wide field">
-        <%= label f, :surname %>
-        <%= text_input f, :surname, placeholder: "Clients Surname" %>
+        <%= label f, :surname, gettext("Surname") %>
+        <%= text_input f, :surname, placeholder: gettext("Clients Surname") %>
         <%= error_tag f, :surname %>
       </div>
 
       <div class="six wide field">
-        <%= label f, :company %>
-        <%= text_input f, :company, placeholder: "Placeholder" %>
+        <%= label f, :company, gettext("Company") %>
+        <%= text_input f, :company, placeholder: gettext("Company Name") %>
         <%= error_tag f, :company %>
       </div>
     </div>
@@ -32,19 +32,19 @@
       <%= inputs_for f, :address, fn a -> %>
         <div class="fields">
           <div class="five wide field">
-            <%= label a, :street %>
-            <%= text_input a, :street, placeholder: "Al. Marszałkowska 1" %>
+            <%= label a, :street, gettext("Street") %>
+            <%= text_input a, :street, placeholder: gettext("Al. Marszałkowska 1") %>
             <%= error_tag a, :street %>
           </div>
 
           <div class="five wide field">
-            <%= label a, :zip %>
+            <%= label a, :zip, gettext("Zip code") %>
             <%= text_input a, :zip, placeholder: "00-000" %>
             <%= error_tag a, :zip %>
           </div>
 
           <div class="six wide field">
-            <%= label a, :town %>
+            <%= label a, :town, gettext("Town") %>
             <%= text_input a, :town, placeholder: "Warszawa" %>
             <%= error_tag a, :town %>
           </div>
@@ -64,8 +64,8 @@
       </div>
     </div>
 
-    <%= submit "Submit", class: "ui green button" %>
-    <%= link "Back", to: client_path(@conn, :index), class: "ui blue button" %>
+    <%= submit gettext("Submit"), class: "ui green button" %>
+    <%= link gettext("Back"), to: client_path(@conn, :index), class: "ui blue button" %>
   </div>
 </div>
 

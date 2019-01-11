@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ui raised segment">
-    <h1>Case <%= @case.signature %></h1>
+    <h1><%= gettext("Case") %>  <%= @case.signature %></h1>
   </div>
 
   <div class="ui raised segment">
@@ -8,7 +8,7 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Plaintiff</div>
+          <div class="ui sub header"><%= gettext("Plaintiff") %></div>
           <%= link(@case.plaintiff.name <> " " <> @case.plaintiff.surname, to: client_path(@conn, :show,
           @case.plaintiff)) %>
           <div class="ui sub header">
@@ -16,11 +16,11 @@
           </div>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Department</div>
+          <div class="ui sub header"><%= gettext("Department") %></div>
           <%= @case.department.name %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Department Address</div>
+          <div class="ui sub header"><%= gettext("Department Address") %></div>
           <%= @case.department.address.street %><br/>
           <%= @case.department.address.zip %> <%= @case.department.address.town %>
         </h2>
@@ -29,20 +29,20 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Defendant</div>
+          <div class="ui sub header"><%= gettext("Defendant") %></div>
           <%= link(@case.defendant.name <> " " <> @case.defendant.surname, to: client_path(@conn, :show,
           @case.defendant)) %>
           <div class="ui sub header">
             <%= @case.defendant.company %>
           </div>
           <h2 class="ui header">
-            <div class="ui sub header">Court</div>
+            <div class="ui sub header"><%= gettext("Court") %></div>
             <%= @case.department.court.name %>
           </h2>
           <h2 class="ui header">
-            <div class="ui sub header">Department phone</div>
+            <div class="ui sub header"><%= gettext("Department phone") %></div>
             <%= @case.department.phone.number %>
-            <div class="ui sub header">Department email</div>
+            <div class="ui sub header"><%= gettext("Department email") %></div>
             <%= @case.department.email.address %>
           </h2>
         </h2>
@@ -51,7 +51,7 @@
 
       <div class="two wide column">
         <div class="ui vertical buttons">
-          <%= link "Edit", to: case_path(@conn, :edit, @case), class: "ui blue button" %>
+          <%= link gettext("Edit"), to: case_path(@conn, :edit, @case), class: "ui blue button" %>
         </div>
       </div>
     </div>

@@ -6,16 +6,16 @@
 <% end %>
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Edit Email</h4>
+    <h4 class="ui dividing header"><%= gettext("Edit Email") %></h4>
     <div class="fields">
       <div class="twelve wide field">
-        <%= label f, :address %>
-        <%= text_input f, :address, placeholder: "Email address" %>
+        <%= label f, :address, gettext("Address") %>
+        <%= text_input f, :address, placeholder: gettext("Email address") %>
         <%= error_tag f, :address %>
       </div>
     </div>
-    <%= submit "Submit", class: "ui green button" %>
-    <%= link "Back", to: client_path(@conn, :show, @client_id), class: "ui blue button" %>
+    <%= submit gettext("Submit"), class: "ui green button" %>
+    <%= link gettext("Back"), to: client_path(@conn, :show, @client_id), class: "ui blue button" %>
   </div>
 </div>
 <% end %>
