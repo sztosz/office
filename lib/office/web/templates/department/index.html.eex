@@ -1,7 +1,7 @@
 <div class=" container">
   <div class="ui raised segment">
-    <h1>Departments
-    <%= link "New Department", to: court_department_path(@conn, :new, @court), class: "ui right floated green button" %>
+    <h1><%= gettext("Departments") %>
+    <%= link gettext("New Department"), to: court_department_path(@conn, :new, @court), class: "ui right floated green button" %>
     </h1>
   </div>
 
@@ -11,15 +11,15 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Name</div>
+          <div class="ui sub header"><%= gettext("Departmennt") %></div>
           <%= department.name %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Court</div>
+          <div class="ui sub header"><%= gettext("Court") %></div>
           <%= department.court.name %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Address</div>
+          <div class="ui sub header"><%= gettext("Address") %></div>
           <%= department.address.street %>
           <div class="ui sub header">
             <%= department.address.zip %> <%= department.address.town %>
@@ -30,11 +30,11 @@
       <div class="seven wide column">
 
         <h2 class="ui header">
-          <div class="ui sub header">Phone</div>
+          <div class="ui sub header"><%= gettext("Phone") %></div>
           <%= department.phone.number %>
         </h2>
         <h2 class="ui header">
-          <div class="ui sub header">Email</div>
+          <div class="ui sub header"><%= gettext("Email") %></div>
           <%= department.email.address %>
         </h2>
       </div>
@@ -42,8 +42,8 @@
       <div class="two wide column">
         <div class="ui raised segment">
           <div class="ui vertical buttons">
-            <%= link "Show", to: court_department_path(@conn, :show, @court, department), class: "ui green button" %>
-            <%= link "Edit", to: court_department_path(@conn, :edit, @court, department), class: "ui blue button" %>
+            <%= link gettext("Show"), to: court_department_path(@conn, :show, @court, department), class: "ui green button" %>
+            <%= link gettext("Edit"), to: court_department_path(@conn, :edit, @court, department), class: "ui blue button" %>
           </div>
         </div>
       </div>
