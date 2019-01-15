@@ -7,17 +7,17 @@
 
 <div class="ui piled segments">
   <div class="ui segment">
-    <h4 class="ui dividing header">Court information</h4>
+    <h4 class="ui dividing header"><%= gettext("Court information") %></h4>
     <div class="fields">
       <div class="ten wide field">
-        <%= label f, :name %>
+        <%= label f, :name, gettext("Court Name") %>
         <%= text_input f, :name, placeholder: "Court Name" %>
         <%= error_tag f, :name %>
       </div>
 
       <%= inputs_for f, :phone, fn p -> %>
       <div class="six wide field">
-        <%= label p, :number %>
+        <%= label p, :number, gettext("Number") %>
         <%= text_input p, :number, placeholder: "123456789" %>
         <%= error_tag p, :number %>
       </div>
@@ -27,29 +27,28 @@
     <div class="fields">
       <%= inputs_for f, :address, fn a -> %>
         <div class="eight wide field">
-          <%= label a, :street %>
+          <%= label a, :street, gettext("Street") %>
           <%= text_input a, :street, placeholder: "Street" %>
           <%= error_tag a, :street %>
         </div>
 
         <div class="three wide field">
-          <%= label a, :zip %>
+          <%= label a, :zip, gettext("Zip code") %>
           <%= text_input a, :zip, placeholder: "000-00" %>
           <%= error_tag a, :zip %>
         </div>
 
         <div class="five wide field">
-          <%= label a, :city %>
+          <%= label a, :city, gettext("Town") %>
           <%= text_input a, :town, placeholder: "Town" %>
           <%= error_tag a, :town %>
         </div>
       <% end %>
     </div>
 
-    <%= submit "Submit", class: "ui green button" %>
-    <%= link "Back", to: client_path(@conn, :index), class: "ui blue button" %>
+    <%= submit gettext("Submit"), class: "ui green button" %>
+    <%= link gettext("Back"), to: client_path(@conn, :index), class: "ui blue button" %>
   </div>
 </div>
-
 
 <% end %>

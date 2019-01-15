@@ -25,6 +25,7 @@ msgstr "Sprawy"
 msgid "Clients"
 msgstr "Klienci"
 
+#: lib/office/web/templates/court/index.html.eex:3
 #: lib/office/web/templates/layout/app.html.eex:32
 msgid "Courts"
 msgstr "Sądy"
@@ -36,6 +37,11 @@ msgstr "Sądy"
 #: lib/office/web/templates/client/show.html.eex:38
 #: lib/office/web/templates/client/show.html.eex:61
 #: lib/office/web/templates/client/show.html.eex:91
+#: lib/office/web/templates/court/index.html.eex:30
+#: lib/office/web/templates/court/index.html.eex:64
+#: lib/office/web/templates/court/show.html.eex:29
+#: lib/office/web/templates/court/show.html.eex:63
+#: lib/office/web/templates/department/index.html.eex:46
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -50,10 +56,16 @@ msgstr "Biuro"
 
 #: lib/office/web/templates/case/index.html.eex:53
 #: lib/office/web/templates/client/index.html.eex:48
+#: lib/office/web/templates/court/index.html.eex:28
+#: lib/office/web/templates/court/index.html.eex:63
+#: lib/office/web/templates/court/show.html.eex:62
+#: lib/office/web/templates/department/index.html.eex:45
 msgid "Show"
 msgstr "Pokaż"
 
 #: lib/office/web/templates/client/show.html.eex:19
+#: lib/office/web/templates/court/show.html.eex:20
+#: lib/office/web/templates/department/index.html.eex:22
 #: lib/office/web/templates/email/form.html.eex:12
 msgid "Address"
 msgstr "Adres"
@@ -75,6 +87,7 @@ msgstr "Firma"
 #: lib/office/web/templates/client/show.html.eex:39
 #: lib/office/web/templates/client/show.html.eex:64
 #: lib/office/web/templates/client/show.html.eex:94
+#: lib/office/web/templates/court/show.html.eex:30
 msgid "Delete"
 msgstr "Usuń"
 
@@ -153,6 +166,7 @@ msgstr "Nowa Rozprawa"
 
 #, elixir-format
 #: lib/office/web/templates/client/show.html.eex:127
+#: lib/office/web/templates/court/show.html.eex:83
 msgid "No"
 msgstr "Nie"
 
@@ -182,12 +196,14 @@ msgstr "Wezwani świadkowie"
 
 #, elixir-format
 #: lib/office/web/templates/client/show.html.eex:129
+#: lib/office/web/templates/court/show.html.eex:85
 msgid "Yes"
 msgstr "Tak"
 
 #, elixir-format
 #: lib/office/web/templates/case/form.html.eex:45
 #: lib/office/web/templates/client/form.html.eex:68
+#: lib/office/web/templates/court/form.html.eex:50
 #: lib/office/web/templates/email/form.html.eex:18
 #: lib/office/web/templates/hearing/form.html.eex:28
 #: lib/office/web/templates/phone/form.html.eex:18
@@ -208,6 +224,7 @@ msgstr "Numer telefonu"
 #, elixir-format
 #: lib/office/web/templates/case/form.html.eex:44
 #: lib/office/web/templates/client/form.html.eex:67
+#: lib/office/web/templates/court/form.html.eex:49
 #: lib/office/web/templates/email/form.html.eex:17
 #: lib/office/web/templates/hearing/form.html.eex:27
 #: lib/office/web/templates/phone/form.html.eex:17
@@ -215,6 +232,7 @@ msgid "Submit"
 msgstr "Wyślij"
 
 #, elixir-format
+#: lib/office/web/templates/court/form.html.eex:20
 #: lib/office/web/templates/phone/form.html.eex:12
 msgid "Number"
 msgstr "Numer"
@@ -233,6 +251,8 @@ msgstr "Adres email"
 #, elixir-format
 #: lib/office/web/templates/case/index.html.eex:38
 #: lib/office/web/templates/case/show.html.eex:39
+#: lib/office/web/templates/court/show.html.eex:3
+#: lib/office/web/templates/department/index.html.eex:18
 msgid "Court"
 msgstr "Sąd"
 
@@ -275,11 +295,13 @@ msgstr "Nazwa firmy"
 
 #, elixir-format
 #: lib/office/web/templates/client/form.html.eex:13
+#: lib/office/web/templates/court/show.html.eex:12
 msgid "Name"
 msgstr "Imię"
 
 #, elixir-format
 #: lib/office/web/templates/client/form.html.eex:35
+#: lib/office/web/templates/court/form.html.eex:30
 msgid "Street"
 msgstr "Ulica"
 
@@ -290,11 +312,13 @@ msgstr "Nazwisko"
 
 #, elixir-format
 #: lib/office/web/templates/client/form.html.eex:47
+#: lib/office/web/templates/court/form.html.eex:42
 msgid "Town"
 msgstr "Miasto"
 
 #, elixir-format
 #: lib/office/web/templates/client/form.html.eex:41
+#: lib/office/web/templates/court/form.html.eex:36
 msgid "Zip code"
 msgstr "Kod pocztowy"
 
@@ -346,4 +370,73 @@ msgstr "Edytuj Rozprawę"
 #, elixir-format
 #: lib/office/web/templates/hearing/form.html.eex:9
 msgid "Hearing details"
-msgstr "Szczegóły rozprawye"
+msgstr "Szczegóły rozprawy  "
+
+#, elixir-format
+#: lib/office/web/templates/court/index.html.eex:29
+#: lib/office/web/templates/court/index.html.eex:40
+#: lib/office/web/templates/court/show.html.eex:39
+#: lib/office/web/templates/department/index.html.eex:3
+msgid "Departments"
+msgstr "Wydziały"
+
+#, elixir-format
+#: lib/office/web/templates/court/index.html.eex:4
+msgid "New Court"
+msgstr "Nowy Sąd"
+
+#, elixir-format
+#: lib/office/web/templates/court/show.html.eex:28
+msgid "All Courts"
+msgstr "Wszystkie Sądy"
+
+#, elixir-format
+#: lib/office/web/templates/court/show.html.eex:78
+msgid "Are you sure you want to delete this court? This action cannot be reverted. If you delete Court, you will also\n      delete all cases and departments that are connected to this court!"
+msgstr "Czy jesteś pewien że chcesz usunąć ten sąd? Po usunięciu sądu nie będzie można go przywrócić.\n Usunięcie danych spowoduje usunięcie wszystkich danych powiązanych z tym sądem!"
+
+#, elixir-format
+#: lib/office/web/templates/court/show.html.eex:75
+msgid "Delete Court"
+msgstr "Usuń Sąd"
+
+#, elixir-format
+#: lib/office/web/templates/court/show.html.eex:16
+#: lib/office/web/templates/department/index.html.eex:33
+msgid "Phone"
+msgstr "Telefon"
+
+#, elixir-format
+#: lib/office/web/templates/court/form.html.eex:13
+msgid "Court Name"
+msgstr "Nazwa Sąd"
+
+#, elixir-format
+#: lib/office/web/templates/court/form.html.eex:10
+msgid "Court information"
+msgstr "Szczegóły Sądu"
+
+#, elixir-format
+#: lib/office/web/templates/court/edit.html.eex:1
+msgid "Edit court"
+msgstr "Edytuj Sąd"
+
+#, elixir-format
+#: lib/office/web/templates/court/new.html.eex:1
+msgid "New court"
+msgstr "Nowy Sąd"
+
+#, elixir-format
+#: lib/office/web/templates/department/index.html.eex:37
+msgid "Email"
+msgstr "Email"
+
+#, elixir-format
+#: lib/office/web/templates/department/index.html.eex:4
+msgid "New Department"
+msgstr "Nowy Wydział"
+
+#, elixir-format, fuzzy
+#: lib/office/web/templates/department/index.html.eex:14
+msgid "Departmennt"
+msgstr "Wydział"
